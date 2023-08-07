@@ -1,0 +1,28 @@
+@import 'libs/variables';
+@import 'libs/mixins';
+@import 'libs/reset';
+
+@import 'sections/all';
+
+body {
+  font-family: 'Nunito', sans-serif;
+}
+
+.app {
+    @include flex();
+}
+
+.content {
+  overflow: auto;
+  width: 100%;
+  height: 100vh;
+  background-color: $bg;
+  padding: 40px 56px;
+}
+
+.section {
+  &-title {
+    @include text(40px, 56px, 700, $dark-green);
+    margin-bottom: 24px;
+  }
+}

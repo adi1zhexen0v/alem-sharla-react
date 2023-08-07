@@ -1,0 +1,65 @@
+@import '../libs/variables';
+@import '../libs/mixins';
+
+.sidebar {
+  width: 360px;
+  height: 100vh;
+  padding: 48px 0 12px;
+  background-color: $green;
+  box-shadow: 2px 2px 12px 0px rgba(#000, 0.2);
+  @include flex(space-between, flex-start);
+  flex-direction: column;
+
+  &-part {
+    width: 100%; 
+  }
+
+  &-logo {
+    @include text(28px, 36px, 700, #fff);
+    padding-bottom: 12px;
+    margin: 0 32px;
+    border-bottom: 1px solid rgba(#fff, 0.3);
+  }
+
+  &-links {
+    &__list {
+      margin-top: 24px;
+    }
+
+    &__link {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+      @include text(18px, 24px, 300, #fff);
+      text-transform: uppercase;
+      padding: 14px 32px;
+      transition: 0.3s ease;
+
+      i {
+        width: 28px;
+        text-align: center;
+        margin-right: 8px;
+      }
+
+      &:after {
+        content: '';
+        position: absolute;
+        width: 6px;
+        height: 100%;
+        left: 0;
+        top: 0;
+        background: $green;
+        transition: 0.2s ease;
+      }
+
+      &-active,
+      &:hover {
+        cursor: pointer;
+        background-color: $green-hover;
+        &:after {
+          background: rgba(#fff, 0.6);
+        }
+      }
+    }
+  }
+}
