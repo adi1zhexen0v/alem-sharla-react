@@ -1,18 +1,17 @@
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { auth } from "./config";
 import { FirebaseError } from "@firebase/app";
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, updateProfile, User } from "firebase/auth";
+import { auth } from "./config";
 
-export const firebaseAuthSignUp = async (name: string, email: string, password: string): Promise<string | null> => {
+export const firebaseAuthSignUp = async (name: string, email: string, password: string): Promise<string | User> => {
   try {
     const { user } = await createUserWithEmailAndPassword(auth, email, password);
-    
+
     if (user) {
       await updateProfile(user, {
         displayName: name
       });
 
-      console.log(user);
-      return null;
+      return user;
     }
   } catch (error: unknown) {
     const firebaseError = error as FirebaseError;
@@ -23,13 +22,12 @@ export const firebaseAuthSignUp = async (name: string, email: string, password: 
   return "unknown-error";
 }
 
-export const firebaseAuthSignIn = async (email: string, password: string): Promise<string | null> => {
+export const firebaseAuthSignIn = async (email: string, password: string): Promise<string | User> => {
   try {
     const { user } = await signInWithEmailAndPassword(auth, email, password);
     
     if (user) {
-      console.log(user);
-      return null;
+      return user;
     }
   } catch (error: unknown) {
     const firebaseError = error as FirebaseError;
@@ -38,4 +36,13 @@ export const firebaseAuthSignIn = async (email: string, password: string): Promi
   }
 
   return "unknown-error";
+}
+
+export const firebaseAuthSignOut = async () => {
+  try {
+    await signOut(auth);
+
+  } catch (error) {
+    console.error(error);
+  }
 }

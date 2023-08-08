@@ -5,6 +5,8 @@ import AuthInput from "../components/AuthInput";
 import { firebaseAuthSignUp } from "../firebase/auth";
 import { CHAT_ROUTE, LOGIN_ROUTE } from "../utils/consts";
 import { getErrorMessage } from "../utils/errors";
+import { useAppDispatch } from "../hooks/reduxHooks";
+import { setUser } from "../redux/slices/userSlice";
 
 const RegisterPage = () => {
   const [name, setName] = useState<string>('');
@@ -13,17 +15,26 @@ const RegisterPage = () => {
 
   const [error, setError] = useState<string>('');
 
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const signUp = async (event: FormEvent) => {
     setError('');
     event.preventDefault();
     if (name.trim() !== '' && email.trim() !== '' && password.trim() !== '') {
-      const error = await firebaseAuthSignUp(name, email, password);
+      const authResult = await firebaseAuthSignUp(name, email, password);
 
-      if (error !== null) {
-        setError(getErrorMessage(error));
+      if (typeof authResult === 'string') {
+        setError(getErrorMessage(authResult));
       } else {
+        const { displayName, email, uid } = authResult;
+        const token = await authResult.getIdToken();
+        dispatch(setUser({
+          name: displayName,
+          email,
+          token,
+          id: uid
+        }))
         navigate(CHAT_ROUTE);
       }
     } else {

@@ -5,23 +5,34 @@ import AuthInput from "../components/AuthInput";
 import { firebaseAuthSignIn } from "../firebase/auth";
 import { CHAT_ROUTE, REGISTER_ROUTE } from "../utils/consts";
 import { getErrorMessage } from "../utils/errors";
+import { useAppDispatch } from "../hooks/reduxHooks";
+import { setUser } from "../redux/slices/userSlice";
 
 const LoginPage = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-
   const [error, setError] = useState<string>('');
 
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const signIn = async (event: FormEvent) => {
     setError('');
     event.preventDefault();
     if (email.trim() !== '' && password.trim() !== '') {
-      const error = await firebaseAuthSignIn(email, password);
-      if (error !== null) {
-        setError(getErrorMessage(error));
+      const authResult = await firebaseAuthSignIn(email, password);
+
+      if (typeof authResult === 'string') {
+        setError(getErrorMessage(authResult));
       } else {
+        const { displayName, email, uid } = authResult;
+        const token = await authResult.getIdToken();
+        dispatch(setUser({
+          name: displayName,
+          email,
+          token,
+          id: uid
+        }))
         navigate(CHAT_ROUTE);
       }
     } else {
