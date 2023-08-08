@@ -16,8 +16,7 @@
     &__title {
       text-align: center;
       @include text(28px, 40px, 700, $green);
-      margin-bottom: 32px;
-      margin-top: 12px;
+      margin: 32px 0 12px;
     }
 
     &__block {
@@ -32,18 +31,16 @@
         margin-bottom: 16px;
       }
 
-      i {
-        width: 32px;
-        font-size: 24px;
+      svg {
+        width: 28px;
+        font-size: 20px;
         color: $green;
       }
     }
 
     &__error {
-      position: absolute;
+      margin: 8px 0;
       @include text(12px, 12px, 400, $red);
-      top: calc(100% + 2px);
-      left: 0;
     }
 
     &__input {
@@ -63,6 +60,16 @@
       &:hover {
         cursor: pointer;
         background: $green-hover;
+      }
+    }
+
+    &__link {
+      @include text(16px, 20px, 400, $dark-gray);
+      margin-top: 16px;
+
+      a {
+        color: $green;
+        font-weight: 700;
       }
     }
   }
