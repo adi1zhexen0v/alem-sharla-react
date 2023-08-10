@@ -100,6 +100,12 @@
       @include flex(flex-start, center);
       gap: 32px;
 
+      &-part {
+        &:nth-child(2) {
+          flex: 1;
+        }
+      }
+
       &-img {
         width: 84px;
         aspect-ratio: 1/1;
@@ -112,10 +118,32 @@
       &-name {
         @include text(22px, 28px, 700, $dark-green);
       }
+
+      &-close {
+        width: 40px;
+        aspect-ratio: 1/1;
+        border-radius: 100%;
+        background: rgba($red, 0.8);
+        box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.15);
+        transition: 0.2s ease;
+
+        @include flex(center, center);
+
+        &:hover {
+          background: $red;
+          cursor: pointer;
+        }
+
+        svg {
+          font-size: 24px;
+          color: #fff;
+        }
+      }
     }
 
     &__body {
-      flex: 1;
+      height: 100%;
+      width: 100%;
       background: $ghost-white;
       box-shadow: 2px 2px 10px 0px rgba(34, 60, 80, 0.15);
       padding: 24px;
@@ -127,15 +155,17 @@
 
       &-list {
         flex: 1;
-        overflow-x: scroll;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
+        overflow-y: scroll;
 
         &::-webkit-scrollbar {
           display: none;
         }
+      }
+
+      &-image {
+        width: 320px;
+        border-radius: 16px;
+        box-shadow: 2px 2px 10px 0px rgba(34, 60, 80, 0.15);
       }
 
       &-message {
@@ -151,7 +181,6 @@
         }
 
         &-box {
-          margin-bottom: 6px;
           max-width: 80%;
           padding: 8px 20px;
           border-radius: 16px;
@@ -161,6 +190,7 @@
 
         &-date {
           @include text(16px, 20px, 600, rgba($gray, 0.6));
+          margin-top: 6px;
         }
       }
 

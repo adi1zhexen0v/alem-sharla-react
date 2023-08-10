@@ -21,6 +21,13 @@
     border-bottom: 1px solid rgba(#fff, 0.3);
   }
 
+  &-welcome {
+    @include text(20px, 28px, 600, #fff);
+    padding-bottom: 12px;
+    margin: 0 32px;
+    border-bottom: 1px solid rgba(#fff, 0.3);
+  }
+
   &-links {
     &__list {
       margin-top: 24px;
