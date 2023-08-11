@@ -1,9 +1,9 @@
 import { FormEvent, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
 import AuthInput from '../components/AuthInput';
 import { firebaseAuthSignIn } from '../firebase/auth';
-import { CHAT_ROUTE, REGISTER_ROUTE } from '../utils/consts';
+import { CHAT_ROUTE } from '../utils/consts';
 import { getErrorMessage } from '../utils/errors';
 import { useAppDispatch } from '../hooks/reduxHooks';
 import { setUser } from '../redux/slices/userSlice';
@@ -25,11 +25,10 @@ const LoginPage = () => {
 			if (typeof authResult === 'string') {
 				setError(getErrorMessage(authResult));
 			} else {
-				const { displayName, email, uid } = authResult;
+				const { email, uid } = authResult;
 				const token = await authResult.getIdToken();
 				dispatch(
 					setUser({
-						name: displayName,
 						email,
 						token,
 						id: uid
@@ -60,9 +59,6 @@ const LoginPage = () => {
 					isPassword={true}
 				/>
 				<input type='submit' value='Войти' className='auth-form__submit' />
-				<p className='auth-form__link'>
-					У вас еще нет аккаунта: <Link to={REGISTER_ROUTE}>Регистрация</Link>
-				</p>
 				{error && <p className='auth-form__error'>{error}</p>}
 			</form>
 		</div>

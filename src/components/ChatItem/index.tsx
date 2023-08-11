@@ -1,4 +1,4 @@
-const userProfilePicture = require('../assets/img/ava-default.png');
+const userProfilePicture = require('../../assets/img/ava-default.png');
 
 interface ChatItemProps {
 	correspondenceId: string;

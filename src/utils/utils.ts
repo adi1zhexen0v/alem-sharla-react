@@ -20,3 +20,15 @@ export const getLastMessageText = (correspondence: Correspondence): string => {
 
 	return '';
 };
+
+const getZero = (num: number): string => {
+	return num < 10 ? `0${num}` : `${num}`;
+};
+
+export const formatDate = (timestamp: number): string => {
+	const date = new Date(timestamp);
+	const formattedDate = `${getZero(date.getDate())}.${getZero(
+		date.getMonth() + 1
+	)} ${getZero(date.getHours())}:${getZero(date.getMinutes())}`;
+	return formattedDate;
+};
