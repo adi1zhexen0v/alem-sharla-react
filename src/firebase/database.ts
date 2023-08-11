@@ -1,12 +1,27 @@
-import { ref, set, update } from 'firebase/database';
+import { ref, set, update, onValue } from 'firebase/database';
 import { v4 as uuidv4 } from 'uuid';
 import { database } from './config';
 import { Chat } from '../pages/ChatPage';
+
+
+export const selectAllMessages = (callback: (data: any) => void) => {
+  const messagesRef = ref(database, 'messages/');
+
+  const messagesListener = onValue(messagesRef, snapshot => {
+    const data = snapshot.val();
+    callback(data);
+  });
+
+  return messagesListener;
+}
 
 export const insertNewMessage = (userId: string, text: string) => {
 	try {
 		const messageId = uuidv4().toUpperCase();
 		const message = {
+      messageId,
+      senderId: userId,
+      displayName: 'Менеджер',
 			text,
 			sentDate: Date.now(),
 			isManager: true,
@@ -18,10 +33,7 @@ export const insertNewMessage = (userId: string, text: string) => {
 	}
 };
 
-export const updateAllMessagesAsSeen = async (
-	userId: string,
-	correspondences: Chat
-) => {
+export const updateAllMessagesAsSeen = async (userId: string, correspondences: Chat) => {
 	try {
 		const updatedCorrespondences = { ...correspondences };
 		const userCorrespondence = updatedCorrespondences[userId];
@@ -32,6 +44,6 @@ export const updateAllMessagesAsSeen = async (
 
 		update(ref(database, `messages/${userId}`), userCorrespondence);
 	} catch (error) {
-		console.error('Error marking messages as seen:', error);
+		console.error(error);
 	}
 };
