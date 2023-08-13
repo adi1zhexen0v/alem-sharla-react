@@ -16,10 +16,10 @@ const ImageWithSkeleton = ({ imageUrl, setValue }: ImageWithSkeletonProps) => {
         alt="Изображение"
         onLoad={() => setIsLoaded(true)}
         onClick={() => setValue(true)}
-        className='chat-typing__body-image'
+        className="chat-typing__body-image"
         style={{ display: isLoaded ? 'block' : 'none' }}
       />
-      { !isLoaded && <ImageSkeleton/> }
+      {!isLoaded && <ImageSkeleton />}
     </>
   );
 };

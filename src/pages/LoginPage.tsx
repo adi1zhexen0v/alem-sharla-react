@@ -9,60 +9,60 @@ import { useAppDispatch } from '../hooks/reduxHooks';
 import { setUser } from '../redux/slices/userSlice';
 
 const LoginPage = () => {
-	const [email, setEmail] = useState<string>('');
-	const [password, setPassword] = useState<string>('');
-	const [error, setError] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [error, setError] = useState<string>('');
 
-	const dispatch = useAppDispatch();
-	const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
-	const signIn = async (event: FormEvent) => {
-		setError('');
-		event.preventDefault();
-		if (email.trim() !== '' && password.trim() !== '') {
-			const authResult = await firebaseAuthSignIn(email, password);
+  const signIn = async (event: FormEvent) => {
+    setError('');
+    event.preventDefault();
+    if (email.trim() !== '' && password.trim() !== '') {
+      const authResult = await firebaseAuthSignIn(email, password);
 
-			if (typeof authResult === 'string') {
-				setError(getErrorMessage(authResult));
-			} else {
-				const { email, uid } = authResult;
-				const token = await authResult.getIdToken();
-				dispatch(
-					setUser({
-						email,
-						token,
-						id: uid
-					})
-				);
-				navigate(CHAT_ROUTE);
-			}
-		} else {
-			setError('Ошибка: Заполните все поля');
-		}
-	};
+      if (typeof authResult === 'string') {
+        setError(getErrorMessage(authResult));
+      } else {
+        const { email, uid } = authResult;
+        const token = await authResult.getIdToken();
+        dispatch(
+          setUser({
+            email,
+            token,
+            id: uid,
+          }),
+        );
+        navigate(CHAT_ROUTE);
+      }
+    } else {
+      setError('Ошибка: Заполните все поля');
+    }
+  };
 
-	return (
-		<div className='auth'>
-			<form className='auth-form' onSubmit={signIn}>
-				<h1 className='auth-form__title'>Вход</h1>
-				<AuthInput
-					value={email}
-					setValue={setEmail}
-					placeholder='E-mail'
-					icon={faEnvelope}
-				/>
-				<AuthInput
-					value={password}
-					setValue={setPassword}
-					placeholder='Пароль'
-					icon={faLock}
-					isPassword={true}
-				/>
-				<input type='submit' value='Войти' className='auth-form__submit' />
-				{error && <p className='auth-form__error'>{error}</p>}
-			</form>
-		</div>
-	);
+  return (
+    <div className="auth">
+      <form className="auth-form" onSubmit={signIn}>
+        <h1 className="auth-form__title">Вход</h1>
+        <AuthInput
+          value={email}
+          setValue={setEmail}
+          placeholder="E-mail"
+          icon={faEnvelope}
+        />
+        <AuthInput
+          value={password}
+          setValue={setPassword}
+          placeholder="Пароль"
+          icon={faLock}
+          isPassword={true}
+        />
+        <input type="submit" value="Войти" className="auth-form__submit" />
+        {error && <p className="auth-form__error">{error}</p>}
+      </form>
+    </div>
+  );
 };
 
 export default LoginPage;

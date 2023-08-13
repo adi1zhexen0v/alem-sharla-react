@@ -6,19 +6,19 @@ import FullPageLoader from './components/FullPageLoader';
 import './assets/scss/style.scss';
 
 const App = () => {
-	const { isAuth, loading, user } = useAuth();
-	useUpdateUser(user);
+  const { isAuth, loading, user } = useAuth();
+  useUpdateUser(user);
 
-	if (loading) {
-		return <FullPageLoader />;
-	}
+  if (loading) {
+    return <FullPageLoader />;
+  }
 
-	return (
-		<div className='app'>
-			{isAuth && <Sidebar />}
-			<AppRouter />
-		</div>
-	);
+  return (
+    <div className="app">
+      {isAuth && <Sidebar />}
+      <AppRouter />
+    </div>
+  );
 };
 
 export default App;

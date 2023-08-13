@@ -8,58 +8,57 @@ import ChatItemSkeletion from '../components/ChatItem/Skeleton';
 export interface Message {
   displayName: string;
   isManager: false;
-	isSeen: boolean;
-	imageURL?: string;
+  isSeen: boolean;
+  imageURL?: string;
   fileURL?: string;
   messageId: string;
   senderId: string;
-	sentDate: number;
-	text?: string;
+  sentDate: number;
+  text?: string;
 }
 
 export interface Correspondence {
-	[messageId: string]: Message;
+  [messageId: string]: Message;
 }
 
 export interface Chat {
-	[correspondenceId: string]: Correspondence;
+  [correspondenceId: string]: Correspondence;
 }
 
 const ChatPage = () => {
-  const { isLoading, correspondences, sortedCorrespondencesKeys } = useMessages();
-	
-	const correspondenceId = useAppSelector(
-		(state: RootState) => state.correspondence.id
-	);
+  const { isLoading, correspondences, sortedCorrespondencesKeys } =
+    useMessages();
 
-  
+  const correspondenceId = useAppSelector(
+    (state: RootState) => state.correspondence.id,
+  );
 
-	return (
-		<div className='content'>
-			<div className='chat'>
-				<h2 className='section-title'>Чат</h2>
-				<div className='chat-wrapper'>
-					<div className='chat-part'>
-						{
-              isLoading ?
-              [...new Array(6)].map((_, index) => <ChatItemSkeletion key={index}/>) :
-              correspondences && (
-                <ChatList
-                  correspondences={correspondences!}
-                  correspondencesKeys={sortedCorrespondencesKeys}
-                />
-              )
-            }
-					</div>
-					<div className='chat-part'>
-						{correspondenceId !== '' && (
-							<ChatTyping correspondences={correspondences!} />
-						)}
-					</div>
-				</div>
-			</div>
-		</div>
-	);
+  return (
+    <div className="content">
+      <div className="chat">
+        <h2 className="section-title">Чат</h2>
+        <div className="chat-wrapper">
+          <div className="chat-part">
+            {isLoading
+              ? [...new Array(6)].map((_, index) => (
+                  <ChatItemSkeletion key={index} />
+                ))
+              : correspondences && (
+                  <ChatList
+                    correspondences={correspondences!}
+                    correspondencesKeys={sortedCorrespondencesKeys}
+                  />
+                )}
+          </div>
+          <div className="chat-part">
+            {correspondenceId !== '' && (
+              <ChatTyping correspondences={correspondences!} />
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default ChatPage;

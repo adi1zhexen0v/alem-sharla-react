@@ -1,8 +1,8 @@
 const ApplicationsPage = () => {
-	return (
+  return (
     <div className="content">
       <div className="applications">
-        <h2 className='section-title'>Заявки</h2>
+        <h2 className="section-title">Заявки</h2>
       </div>
     </div>
   );

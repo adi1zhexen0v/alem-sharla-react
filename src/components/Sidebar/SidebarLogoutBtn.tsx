@@ -6,22 +6,22 @@ import { removeUser } from '../../redux/slices/userSlice';
 import { removeCorrespondenceId } from '../../redux/slices/correspondenceSlise';
 
 const SidebarLogoutBtn = () => {
-	const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
 
-	const logOut = async () => {
-		await firebaseAuthSignOut();
-		dispatch(removeUser());
+  const logOut = async () => {
+    await firebaseAuthSignOut();
+    dispatch(removeUser());
     dispatch(removeCorrespondenceId());
-	};
+  };
 
-	return (
-		<div className='sidebar-links__item' onClick={logOut}>
-			<div className='sidebar-links__link'>
-				<FontAwesomeIcon icon={faArrowRightFromBracket} />
-				Выйти
-			</div>
-		</div>
-	);
+  return (
+    <div className="sidebar-links__item" onClick={logOut}>
+      <div className="sidebar-links__link">
+        <FontAwesomeIcon icon={faArrowRightFromBracket} />
+        Выйти
+      </div>
+    </div>
+  );
 };
 
 export default SidebarLogoutBtn;
