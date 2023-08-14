@@ -1,6 +1,6 @@
 import ContentLoader from 'react-content-loader';
 
-const ChatItemSkeletion = () => (
+const ChatItemSkeletion: React.FunctionComponent = () => (
   <ContentLoader
     speed={2}
     width={490}

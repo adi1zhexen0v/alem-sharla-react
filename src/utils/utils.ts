@@ -1,4 +1,4 @@
-import { Correspondence, Message } from '../pages/ChatPage';
+import { Correspondence, Message } from './interfaces';
 
 export const countUnseenMessages = (correspondence: Correspondence) => {
   return Object.values(correspondence).filter((message) => !message.isSeen)
@@ -31,4 +31,16 @@ export const formatDate = (timestamp: number): string => {
     date.getMonth() + 1,
   )} ${getZero(date.getHours())}:${getZero(date.getMinutes())}`;
   return formattedDate;
+};
+
+
+export const truncateText = (text: string, maxLength: number) => {
+  if (text.length <= maxLength) {
+    return text;
+  }
+  const truncatedText = text.substring(0, maxLength);
+  const lastSpaceIndex = truncatedText.lastIndexOf(' ');
+  return lastSpaceIndex === -1
+    ? truncatedText
+    : truncatedText.substring(0, lastSpaceIndex) + '...';
 };

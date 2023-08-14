@@ -5,8 +5,9 @@ import { insertNewMessage } from '../firebase/database';
 import { useAppDispatch, useAppSelector } from '../hooks/reduxHooks';
 import { RootState } from '../redux/store';
 import { removeCorrespondenceId } from '../redux/slices/correspondenceSlise';
-import { Chat } from '../pages/ChatPage';
-import MessageItem, { MessageTypes } from './MessageItem';
+import { Chat } from '../utils/interfaces';
+import MessageItem from './MessageItem';
+import { MessageTypes } from '../utils/enums';
 
 interface ChatTypingProps {
   correspondences: Chat;
@@ -14,9 +15,9 @@ interface ChatTypingProps {
 
 const userProfilePicture = require('../assets/img/ava-default.png');
 
-const ChatTyping = ({ correspondences }: ChatTypingProps) => {
+const ChatTyping: React.FunctionComponent<ChatTypingProps> = ({ correspondences }) => {
   const listRef = useRef<HTMLDivElement>(null);
-  const [inputText, setInputText] = useState('');
+  const [inputText, setInputText] = useState<string>('');
   const dispatch = useAppDispatch();
   const correspondenceId = useAppSelector(
     (state: RootState) => state.correspondence.id,

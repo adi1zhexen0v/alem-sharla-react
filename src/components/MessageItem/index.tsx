@@ -4,12 +4,7 @@ import { faFile } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ImageWithSkeleton from './ImageWithSkeleton';
 import { formatDate } from '../../utils/utils';
-
-export enum MessageTypes {
-  TEXT = 'text',
-  IMAGE = 'image',
-  FILE = 'file',
-}
+import { MessageTypes } from '../../utils/enums';
 
 interface MessageItemProps {
   message: string;
@@ -18,7 +13,7 @@ interface MessageItemProps {
   type: MessageTypes;
 }
 
-const MessageItem = ({ message, isManager, date, type }: MessageItemProps) => {
+const MessageItem: React.FunctionComponent<MessageItemProps> = ({ message, isManager, date, type }) => {
   const [imageIsOpen, setImageIsOpen] = useState<boolean>(false);
   const className = isManager
     ? 'chat-typing__body-message chat-typing__body-message-self'

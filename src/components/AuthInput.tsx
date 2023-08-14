@@ -10,13 +10,13 @@ interface AuthInputProps {
   isPassword?: boolean;
 }
 
-const AuthInput = ({
+const AuthInput: React.FunctionComponent<AuthInputProps> = ({
   value,
   setValue,
   placeholder,
   icon,
   isPassword,
-}: AuthInputProps) => {
+}) => {
   return (
     <div className="auth-form__block">
       <FontAwesomeIcon icon={icon} />

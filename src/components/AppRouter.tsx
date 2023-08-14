@@ -3,7 +3,7 @@ import { privateRoutes, publicRoutes } from '../utils/routes';
 import { CHAT_ROUTE, LOGIN_ROUTE } from '../utils/consts';
 import { useAuth } from '../hooks/useAuth';
 
-const AppRouter = () => {
+const AppRouter: React.FunctionComponent = () => {
   const { isAuth } = useAuth();
   const routesToRender = isAuth ? privateRoutes : publicRoutes;
 

@@ -1,16 +1,16 @@
 import { updateAllMessagesAsSeen } from '../firebase/database';
-import { Chat } from '../pages/ChatPage';
 import ChatItem from './ChatItem';
 import { useAppDispatch } from '../hooks/reduxHooks';
 import { setCorrespondenceId } from '../redux/slices/correspondenceSlise';
 import { countUnseenMessages, getLastMessageText } from '../utils/utils';
+import { Chat } from '../utils/interfaces';
 
 interface ChatListProps {
   correspondences: Chat;
   correspondencesKeys: string[];
 }
 
-const ChatList = ({ correspondences, correspondencesKeys }: ChatListProps) => {
+const ChatList: React.FunctionComponent<ChatListProps> = ({ correspondences, correspondencesKeys }) => {
   const dispatch = useAppDispatch();
 
   const markMessagesAsSeen = async (uid: string) => {

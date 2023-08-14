@@ -1,3 +1,5 @@
+import { truncateText } from "../../utils/utils";
+
 const userProfilePicture = require('../../assets/img/ava-default.png');
 
 interface ChatItemProps {
@@ -7,23 +9,13 @@ interface ChatItemProps {
   markMessagesAsSeen: (userId: string) => void;
 }
 
-const truncateText = (text: string, maxLength: number) => {
-  if (text.length <= maxLength) {
-    return text;
-  }
-  const truncatedText = text.substring(0, maxLength);
-  const lastSpaceIndex = truncatedText.lastIndexOf(' ');
-  return lastSpaceIndex === -1
-    ? truncatedText
-    : truncatedText.substring(0, lastSpaceIndex) + '...';
-};
 
-const ChatItem = ({
+const ChatItem: React.FunctionComponent<ChatItemProps> = ({
   correspondenceId,
   lastMessage,
   unseenMessageCount,
   markMessagesAsSeen,
-}: ChatItemProps) => {
+}) => {
   return (
     <div
       className="chat-item"

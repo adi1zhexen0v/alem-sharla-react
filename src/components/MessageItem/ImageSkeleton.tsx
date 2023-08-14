@@ -1,6 +1,6 @@
 import ContentLoader from 'react-content-loader';
 
-const ImageSkeleton = () => (
+const ImageSkeleton: React.FunctionComponent = () => (
   <ContentLoader
     speed={2}
     width={360}

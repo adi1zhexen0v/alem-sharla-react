@@ -6,7 +6,7 @@ interface ImageWithSkeletonProps {
   setValue: (value: boolean) => void;
 }
 
-const ImageWithSkeleton = ({ imageUrl, setValue }: ImageWithSkeletonProps) => {
+const ImageWithSkeleton: React.FunctionComponent<ImageWithSkeletonProps> = ({ imageUrl, setValue }) => {
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
 
   return (

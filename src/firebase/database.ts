@@ -1,7 +1,7 @@
 import { ref, set, update, onValue } from 'firebase/database';
 import { v4 as uuidv4 } from 'uuid';
 import { database } from './config';
-import { Chat } from '../pages/ChatPage';
+import { Chat } from '../utils/interfaces';
 
 export const selectAllMessages = (callback: (data: any) => void) => {
   const messagesRef = ref(database, 'messages/');

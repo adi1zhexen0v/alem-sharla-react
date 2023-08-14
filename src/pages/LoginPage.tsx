@@ -8,7 +8,7 @@ import { getErrorMessage } from '../utils/errors';
 import { useAppDispatch } from '../hooks/reduxHooks';
 import { setUser } from '../redux/slices/userSlice';
 
-const LoginPage = () => {
+const LoginPage: React.FunctionComponent = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [error, setError] = useState<string>('');

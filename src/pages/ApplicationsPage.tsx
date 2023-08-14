@@ -1,4 +1,4 @@
-const ApplicationsPage = () => {
+const ApplicationsPage: React.FunctionComponent = () => {
   return (
     <div className="content">
       <div className="applications">

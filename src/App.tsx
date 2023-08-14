@@ -5,7 +5,7 @@ import AppRouter from './components/AppRouter';
 import FullPageLoader from './components/FullPageLoader';
 import './assets/scss/style.scss';
 
-const App = () => {
+const App: React.FunctionComponent = () => {
   const { isAuth, loading, user } = useAuth();
   useUpdateUser(user);
 

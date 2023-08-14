@@ -8,17 +8,9 @@ import {
 } from 'firebase/auth';
 import { auth } from './config';
 
-export const firebaseAuthSignUp = async (
-  name: string,
-  email: string,
-  password: string,
-): Promise<string | User> => {
+export const firebaseAuthSignUp = async (name: string, email: string, password: string): Promise<string | User> => {
   try {
-    const { user } = await createUserWithEmailAndPassword(
-      auth,
-      email,
-      password,
-    );
+    const { user } = await createUserWithEmailAndPassword(auth, email, password);
 
     if (user) {
       await updateProfile(user, {
@@ -36,10 +28,7 @@ export const firebaseAuthSignUp = async (
   return 'unknown-error';
 };
 
-export const firebaseAuthSignIn = async (
-  email: string,
-  password: string,
-): Promise<string | User> => {
+export const firebaseAuthSignIn = async (email: string, password: string): Promise<string | User> => {
   try {
     const { user } = await signInWithEmailAndPassword(auth, email, password);
 
