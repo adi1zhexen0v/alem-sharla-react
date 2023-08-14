@@ -24,9 +24,9 @@
   }
 
   &-list {
-    overflow-x: scroll;
+    overflow-y: scroll;
     height: 100%;
-    padding-right: 16px;
+    padding: 0 12px;
 
     &::-webkit-scrollbar {
       display: none;

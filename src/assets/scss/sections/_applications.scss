@@ -1,0 +1,145 @@
+@import '../libs/variables';
+@import '../libs/mixins';
+
+.applications {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  &-wrapper {
+    padding: 36px 12px 12px 0;
+    flex: 1;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+
+  &-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 60px 40px;
+  }
+
+  &-item {
+    position: relative;
+    background: $ghost-white;
+    padding: 48px 36px 20px;
+    border-radius: 12px;
+    box-shadow: 2px 2px 10px 0px rgba(34, 60, 80, 0.2);
+
+    &__btn {
+      &-list {
+        position: absolute;
+        top: -28px;
+        left: 36px;
+        @include flex(flex-start, center);
+        gap: 12px;
+      }
+
+      &-item {
+        width: 56px;
+        height: 56px;
+        background: $green;
+        border-radius: 12px;
+        box-shadow: 2px 2px 10px 0px rgba(34, 60, 80, 0.2);
+        transition: 0.3s ease;
+
+        @include flex(center, center);
+
+        svg {
+          font-size: 24px;
+          color: $ghost-white;
+        }
+
+        &:hover {
+          cursor: pointer;
+          background: $green-hover;
+        }
+
+        &-active {
+          background: $ghost-white;
+          
+          svg {
+            color: $green;
+          }
+
+          &:hover {
+            cursor: default;
+            background: $ghost-white;
+
+            color: $green;
+          }
+        }
+      }
+    }
+
+    &__grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 56px 40px;
+    }
+
+    &__block {
+      margin-bottom: 16px;
+      &-key {
+        @include text(14px, 16px, 600, $gray);
+        margin-bottom: 12px;
+      }
+      
+      &-value {
+        @include text(18px, 24px, 700, $dark-gray);
+      }
+    }
+
+    &__line {
+      height: 1px;
+      background: rgba($gray, 0.4);
+      margin-bottom: 16px;
+    }
+
+    &__price {
+      &-total {
+        @include text(18px, 24px, 700, #000);
+
+        span {
+          font-size: 22px;
+        }
+      }
+    }
+
+    &__title {
+      @include text(28px, 36px, 700, #000);
+      margin-bottom: 16px;
+    }
+
+    &__header {
+      @include flex();
+      margin-bottom: 16px;
+
+      &-name{
+        @include flex(flex-start, center);
+        gap: 8px;
+
+        h3 {
+          @include text(18px, 24px, 700, $dark-gray);
+        }
+      }
+
+      &-date{
+        @include flex(flex-start, center);
+        gap: 8px;
+
+        h6 {
+          @include text(14px, 16px, 500, $gray);
+        }
+
+        svg {
+          color: $gray;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}

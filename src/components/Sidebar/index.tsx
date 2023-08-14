@@ -7,7 +7,7 @@ const Sidebar = () => {
   return (
     <nav className="sidebar">
       <div className="sidebar-part">
-        <div className="sidebar-logo">LOGO</div>
+        <div className="sidebar-logo">alemSharla <br/> <span>- VISA AGENCY -</span></div>
         <ul className="sidebar-links__list">
           <SidebarLink name="Заявки" link={APPLICATIONS_ROUTE} icon={faList} />
           <SidebarLink name="Чат" link={CHAT_ROUTE} icon={faComments} />

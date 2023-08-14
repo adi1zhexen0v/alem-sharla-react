@@ -8,7 +8,7 @@ import './assets/scss/style.scss';
 const App: React.FunctionComponent = () => {
   const { isAuth, loading, user } = useAuth();
   useUpdateUser(user);
-
+  
   if (loading) {
     return <FullPageLoader />;
   }

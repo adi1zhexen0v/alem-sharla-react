@@ -17,3 +17,42 @@ export interface Correspondence {
 export interface Chat {
   [correspondenceId: string]: Correspondence;
 }
+
+interface AdditionalService {
+  price: number;
+  title: string;
+}
+
+interface Applicant {
+  authority: string;
+  citizenship: string;
+  dateOfBirth: string;
+  gender: string;
+  iin: string;
+  name: string;
+  passportDueToDate: string;
+  passportGivenDate: string;
+  passportID: string;
+  surname: string;
+}
+
+export interface Application {
+  additionalServices: AdditionalService[];
+  applicants: Applicant[];
+  biometricFeeTenge: number;
+  consularFeeTenge: number;
+  courierFeeTenge: number;
+  country: string;
+  createdAt: number;
+  finalCost: number;
+  id: string;
+  processingCost: number;
+  processingTime: number;
+  serviceFeeTenge: number;
+  standartVisaApplicationTimeDays: number;
+  userID: string;
+  visaEntryType: string;
+  visaEndDate: string;
+  visaStartDate: string;
+  visaType: string;
+}
