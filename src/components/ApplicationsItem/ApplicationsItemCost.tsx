@@ -1,34 +1,61 @@
 import { ApplicationItemProps } from ".";
-import { getPrice } from "../../utils/utils";
 import ApplicationsItemBlock from "./ApplicationsItemBlock";
+import { getPrice } from "../../utils/utils";
 
 const ApplicationsItemCost: React.FunctionComponent<ApplicationItemProps> = ({ application }) => {
   const amountOfApplicants = application.applicants.length;
 
+  const feeDetails = [
+    { title: "Стоимость сервисного сбора", value: application.serviceFeeTenge },
+    { title: "Стоимость услуг агенства", value: application.processingCost },
+    { title: "Стоимость курьера", value: application.courierFeeTenge },
+    { title: "Плата за биометрию", value: application.biometricFeeTenge },
+    { title: "Консульский сбор", value: application.consularFeeTenge }
+  ];
+
   return (
     <div className="applications-item__section">
       <h6 className="applications-item__title">Стоимость услуг</h6>
-      <div className="applications-item__price-list">
-        <div className="applications-item__">
-          
+      <div className="applications-item__grid">
+        <div className="applications-item__grid-part">
+          <div className="applications-item__price-list">
+            {feeDetails.map(item =>
+              item.value > 0 && (
+                <ApplicationsItemBlock
+                  title={item.title}
+                  value={
+                    item.title === "Стоимость курьера"
+                      ? getPrice(1, item.value)
+                      : getPrice(amountOfApplicants, item.value)
+                  }
+                />
+              )
+            )}
+          </div>
         </div>
-        <ApplicationsItemBlock title="Стоимость услуг агенства" value={getPrice(amountOfApplicants, application.processingCost)}/>
-        <ApplicationsItemBlock title="Консульский сбор" value={getPrice(amountOfApplicants, application.consularFeeTenge)}/>
-        {
-          application.additionalServices.map(service => (
-            <ApplicationsItemBlock
-              title={service.title}
-              value={`${service.price} ₸`}/>
-          ))
-        }
+        <div className="applications-item__grid-part">
+          <div className="applications-item__price-list">
+            {application.additionalServices.map(service => (
+              <ApplicationsItemBlock
+                title={service.title}
+                value={
+                  service.title === "Premium фото сервис"
+                    ? getPrice(amountOfApplicants, service.price)
+                    : `${service.price} ₸`
+                }
+              />
+            ))}
+          </div>
+        </div>
       </div>
-      <div className="applications-item__line"></div> 
+
+      <div className="applications-item__line"></div>
       <h2 className="applications-item__price-total">
-        Общая сумма: 
-        <span> {application.finalCost} ₸</span> 
+        Общая сумма:
+        <span> {application.finalCost} ₸</span>
       </h2>
     </div>
-  )
+  );
 }
 
 export default ApplicationsItemCost;

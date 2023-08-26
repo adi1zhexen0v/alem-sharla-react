@@ -40,12 +40,17 @@ export interface Application {
   additionalServices: AdditionalService[];
   applicants: Applicant[];
   biometricFeeTenge: number;
+  citizenship: string;
   consularFeeTenge: number;
-  courierFeeTenge: number;
   country: string;
+  courierFeeTenge: number;
   createdAt: number;
   finalCost: number;
   id: string;
+  interViewDate: string;
+  isPaid: boolean;
+  orderID: number;
+  paymentTime: number;
   processingCost: number;
   processingTime: number;
   serviceFeeTenge: number;

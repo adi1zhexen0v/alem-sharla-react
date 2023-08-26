@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Application } from "../../utils/interfaces";
-import { IconDefinition, faClock, faCoins, faInfo, faUser, faUsers } from "@fortawesome/free-solid-svg-icons";
+import { IconDefinition, faClock, faCoins, faHashtag, faInfo, faUsers } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import ApplicationsItemGeneral from "./ApplicationsItemGeneral";
 import ApplicationsItemCost from "./ApplicationsItemCost";
@@ -41,8 +41,8 @@ const ApplicationsItem: React.FunctionComponent<ApplicationItemProps> = ({ appli
       }</div>
       <div className="applications-item__header">
         <div className="applications-item__header-name">
-          <FontAwesomeIcon icon={faUser}/>
-          <h3>{application.userID}</h3>
+          <FontAwesomeIcon icon={faHashtag}/>
+          <h3>{application.orderID}</h3>
         </div>
         <div className="applications-item__header-date">
           <FontAwesomeIcon icon={faClock}/>
