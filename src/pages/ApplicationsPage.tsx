@@ -6,7 +6,7 @@ import { useAppDispatch } from '../hooks/reduxHooks';
 import { removeCorrespondenceId } from '../redux/slices/correspondenceSlise';
 import Loader from '../components/Loader';
 
-const ApplicationsPage: React.FunctionComponent = () => {
+const ApplicationsPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const [applications, setApplications] = useState<Application[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -21,6 +21,7 @@ const ApplicationsPage: React.FunctionComponent = () => {
     }
     fetchApplications();
   }, [dispatch]);
+
   return (
     <div className="content">
       <div className="applications">

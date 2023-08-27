@@ -1,6 +1,6 @@
-import { collection, getDocs } from "firebase/firestore";
+import { doc, collection, getDocs, updateDoc } from "firebase/firestore";
 import { firestore } from "./config";
-import { Application } from "../utils/interfaces";
+import { Application, Feedback } from "../utils/interfaces";
 
 export const getAllApplications = async () => {
   const applicationsRef = collection(firestore, "applications");
@@ -14,4 +14,33 @@ export const getAllApplications = async () => {
   });
 
   return applications;
+}
+ 
+export const updateApplicationIsPaid = async (id: string, isPaid: boolean) => {
+  const applicationRef = doc(firestore, "applications", id);
+  await updateDoc(applicationRef, {
+    isPaid
+  });
+}
+
+export const updateApplicationInterviewDate= async (id: string, date: string) => {
+  const applicationRef = doc(firestore, "applications", id);
+  await updateDoc(applicationRef, {
+    interViewDate: date,
+    paymentTime: Date.now()
+  });
+}
+
+export const getFeedback = async () => {
+  const feedbackRef = collection(firestore, "feedback");
+  const querySnapshot = await getDocs(feedbackRef);
+
+  const feedback: Feedback[] = [];
+
+  querySnapshot.forEach((doc) => {
+    const item = doc.data() as Feedback;
+    feedback.push(item);
+  });
+
+  return feedback;
 }

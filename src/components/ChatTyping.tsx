@@ -15,7 +15,7 @@ interface ChatTypingProps {
 
 const userProfilePicture = require('../assets/img/ava-default.png');
 
-const ChatTyping: React.FunctionComponent<ChatTypingProps> = ({ correspondences }) => {
+const ChatTyping: React.FC<ChatTypingProps> = ({ correspondences }) => {
   const listRef = useRef<HTMLDivElement>(null);
   const [inputText, setInputText] = useState<string>('');
   const dispatch = useAppDispatch();

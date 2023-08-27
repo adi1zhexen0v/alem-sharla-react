@@ -5,7 +5,7 @@ interface ApplicationsListProps {
   applications: Application[];
 }
 
-const ApplicationsList: React.FunctionComponent<ApplicationsListProps> = ({ applications }) => {
+const ApplicationsList: React.FC<ApplicationsListProps> = ({ applications }) => {
   return (
     <div className="applications-grid">{
       applications.map(application => <ApplicationsItem key={application.id} application={application}/>)

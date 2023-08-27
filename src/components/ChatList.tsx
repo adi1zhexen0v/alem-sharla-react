@@ -10,7 +10,7 @@ interface ChatListProps {
   correspondencesKeys: string[];
 }
 
-const ChatList: React.FunctionComponent<ChatListProps> = ({ correspondences, correspondencesKeys }) => {
+const ChatList: React.FC<ChatListProps> = ({ correspondences, correspondencesKeys }) => {
   const dispatch = useAppDispatch();
 
   const markMessagesAsSeen = async (uid: string) => {

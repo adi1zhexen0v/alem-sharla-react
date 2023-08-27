@@ -10,7 +10,7 @@ interface ChatItemProps {
 }
 
 
-const ChatItem: React.FunctionComponent<ChatItemProps> = ({
+const ChatItem: React.FC<ChatItemProps> = ({
   correspondenceId,
   lastMessage,
   unseenMessageCount,

@@ -24,7 +24,7 @@ const data: Data[] = [
     icon: faCoins,
   }];
 
-const ApplicationsItem: React.FunctionComponent<ApplicationItemProps> = ({ application }) => {
+const ApplicationsItem: React.FC<ApplicationItemProps> = ({ application }) => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
   return (
     <div className="applications-item">

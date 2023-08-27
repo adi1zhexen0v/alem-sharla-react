@@ -10,7 +10,7 @@ interface AuthInputProps {
   isPassword?: boolean;
 }
 
-const AuthInput: React.FunctionComponent<AuthInputProps> = ({
+const AuthInput: React.FC<AuthInputProps> = ({
   value,
   setValue,
   placeholder,

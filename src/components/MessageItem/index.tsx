@@ -13,7 +13,7 @@ interface MessageItemProps {
   type: MessageTypes;
 }
 
-const MessageItem: React.FunctionComponent<MessageItemProps> = ({ message, isManager, date, type }) => {
+const MessageItem: React.FC<MessageItemProps> = ({ message, isManager, date, type }) => {
   const [imageIsOpen, setImageIsOpen] = useState<boolean>(false);
   const className = isManager
     ? 'chat-typing__body-message chat-typing__body-message-self'

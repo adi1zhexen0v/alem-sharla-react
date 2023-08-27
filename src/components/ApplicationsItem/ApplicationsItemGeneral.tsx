@@ -1,9 +1,11 @@
 import { ApplicationItemProps } from ".";
 import { getVisaEntryType, getVisaType } from "../../utils/utils";
+import ApplicationsItemBooleanToggle from "./ApplicationsItemBooleanToggle";
+import ApplicationsItemDate from "./ApplicationsItemDate";
 import ApplicationsItemBlock from "./ApplicationsItemBlock";
 
 
-const ApplicationsItemGeneral: React.FunctionComponent<ApplicationItemProps> = ({ application }) => {
+const ApplicationsItemGeneral: React.FC<ApplicationItemProps> = ({ application }) => {
   const amountOfApplicants = application.applicants.length;
 
   return (
@@ -15,6 +17,8 @@ const ApplicationsItemGeneral: React.FunctionComponent<ApplicationItemProps> = (
           <ApplicationsItemBlock title="Тип визы" value={getVisaType(application.visaType)}/>
           {application.visaEntryType !== "" && <ApplicationsItemBlock title="Вид визы" value={getVisaEntryType(application.visaEntryType)}/>}
           <ApplicationsItemBlock title="Срок визы" value={`${application.visaStartDate} - ${application.visaEndDate}`}/>
+          <ApplicationsItemBlock title="Оплачено" children={<ApplicationsItemBooleanToggle isPaid={application.isPaid} id={application.id} />}/>
+          <ApplicationsItemBlock title="Оплачено" children={<ApplicationsItemDate id={application.id} date={application.interViewDate}/>}/>
         </div>
         <div className="applications-item__grid-part">
           <ApplicationsItemBlock title="Количество заявителей" value={amountOfApplicants}/>

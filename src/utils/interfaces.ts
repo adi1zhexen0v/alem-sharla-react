@@ -1,3 +1,5 @@
+import { Timestamp } from "firebase/firestore";
+
 export interface Message {
   displayName: string;
   isManager: false;
@@ -60,4 +62,11 @@ export interface Application {
   visaEndDate: string;
   visaStartDate: string;
   visaType: string;
+}
+
+export interface Feedback {
+  contact: string;
+  createdAt: Timestamp;
+  message: string;
+  name: string;
 }

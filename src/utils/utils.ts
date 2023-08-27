@@ -1,8 +1,7 @@
 import { Correspondence, Message } from './interfaces';
 
 export const countUnseenMessages = (correspondence: Correspondence) => {
-  return Object.values(correspondence).filter((message) => !message.isSeen)
-    .length;
+  return Object.values(correspondence).filter((message) => !message.isSeen).length;
 };
 
 export const getLastMessageText = (correspondence: Correspondence): string => {
@@ -63,3 +62,21 @@ export const getVisaEntryType = (value: string): string => {
 export const getPrice = (length: number, price: number): string => {
   return length > 1 ? `${length} x ${price} ₸` : `${price} ₸`;
 }
+
+export const formatDateToISO = (input: string): string => {
+  const [datePart, timePart] = input.split(' ');
+  const [day, month, year] = datePart.split('.');
+  const [hours, minutes] = timePart.split(':');
+  
+  const isoDate = `${year}-${month}-${day}T${hours}:${minutes}`;
+  return isoDate;
+};
+
+export const formatISOToDate = (iso: string): string => {
+  const [datePart, timePart] = iso.split('T');
+  const [year, month, day] = datePart.split('-');
+  const [hours, minutes] = timePart.split(':');
+  
+  const formattedDate = `${day}.${month}.${year} ${hours}:${minutes}`;
+  return formattedDate;
+};

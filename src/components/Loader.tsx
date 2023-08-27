@@ -1,4 +1,4 @@
-const Loader: React.FunctionComponent = () => {
+const Loader: React.FC = () => {
   return (
     <div className="loader-wrapper">
       <span className="loader"></span>

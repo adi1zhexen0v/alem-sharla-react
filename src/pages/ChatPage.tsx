@@ -5,7 +5,7 @@ import { useMessages } from '../hooks/useMessages';
 import { RootState } from '../redux/store';
 import ChatItemSkeletion from '../components/ChatItem/Skeleton';
 
-const ChatPage: React.FunctionComponent = () => {
+const ChatPage: React.FC = () => {
   const { isLoading, correspondences, sortedCorrespondencesKeys } =
     useMessages();
 

@@ -1,7 +1,7 @@
 import { ApplicationItemProps } from ".";
 import ApplicationsItemBlock from "./ApplicationsItemBlock";
 
-const ApplicationsItemApplicants: React.FunctionComponent<ApplicationItemProps> = ({ application }) => {
+const ApplicationsItemApplicants: React.FC<ApplicationItemProps> = ({ application }) => {
   const applicants = application.applicants;
   const amountOfApplicants = application.applicants.length;
   const sectionTitle = `Данные ${amountOfApplicants > 1 ? 'заявителей' : 'заявителя'}`

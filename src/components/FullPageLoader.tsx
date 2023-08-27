@@ -1,4 +1,4 @@
-const FullPageLoader: React.FunctionComponent = () => {
+const FullPageLoader: React.FC = () => {
   return (
     <div className="loader-container">
       <span className="loader"></span>

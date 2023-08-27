@@ -2,7 +2,7 @@ import { ApplicationItemProps } from ".";
 import ApplicationsItemBlock from "./ApplicationsItemBlock";
 import { getPrice } from "../../utils/utils";
 
-const ApplicationsItemCost: React.FunctionComponent<ApplicationItemProps> = ({ application }) => {
+const ApplicationsItemCost: React.FC<ApplicationItemProps> = ({ application }) => {
   const amountOfApplicants = application.applicants.length;
 
   const feeDetails = [
