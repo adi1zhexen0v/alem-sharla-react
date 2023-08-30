@@ -1,11 +1,12 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Application } from "../../utils/interfaces";
-import { IconDefinition, faClock, faCoins, faHashtag, faInfo, faUsers } from "@fortawesome/free-solid-svg-icons";
+import { IconDefinition, faClock, faCoins, faHashtag, faIdCardClip, faInfo, faUsers } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import ApplicationsItemGeneral from "./ApplicationsItemGeneral";
 import ApplicationsItemCost from "./ApplicationsItemCost";
 import ApplicationsItemApplicants from "./ApplicationsItemApplicants";
 import { formatDate } from "../../utils/utils";
+import ApplicationsItemProfile from "./ApplicationsItemProfile";
 
 export interface ApplicationItemProps {
   application: Application
@@ -22,7 +23,10 @@ const data: Data[] = [
     icon: faUsers,
   }, {
     icon: faCoins,
-  }];
+  }, {
+    icon: faIdCardClip
+  }
+];
 
 const ApplicationsItem: React.FC<ApplicationItemProps> = ({ application }) => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
@@ -51,9 +55,10 @@ const ApplicationsItem: React.FC<ApplicationItemProps> = ({ application }) => {
       </div>
       <div className="applications-item__line"></div>
       {
-        activeIndex === 0 ? <ApplicationsItemGeneral application={application}/> :
-        activeIndex === 1 ? <ApplicationsItemApplicants application={application}/> :
-        <ApplicationsItemCost application={application}/>
+        activeIndex === 0 ? <ApplicationsItemGeneral application={application} /> :
+        activeIndex === 1 ? <ApplicationsItemApplicants application={application} /> :
+        activeIndex === 2 ? <ApplicationsItemCost application={application} /> : 
+        <ApplicationsItemProfile user={application.user!}/>
       }
     </div>
   )

@@ -76,6 +76,7 @@
     }
 
     &__grid {
+      position: relative;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       grid-gap: 56px 40px;
@@ -196,6 +197,80 @@
         svg {
           color: $gray;
           font-size: 14px;
+        }
+      }
+    }
+
+    &__questionnaire {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 12;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(#000, .85);
+
+      @include flex(center, center);
+
+      &-btn {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 32px;
+        aspect-ratio: 1/1;
+        border-radius: 4px;
+        background: $green;
+        color: #fff;
+        transition: 0.2s ease;
+
+        @include flex(center, center);
+
+        &:hover {
+          cursor: pointer;
+          background: $green-hover;
+        }
+      }
+
+      &-modal {
+        width: 600px;
+        
+        &-header {
+          padding: 16px 24px;
+          background: $green;
+          border-radius: 8px 8px 0 0;
+
+          @include flex();
+
+          svg {
+            font-size: 28px;
+            color: #fff;
+          }
+        }
+
+        &-body {
+          padding: 24px;
+          background: #fff;
+          border-radius: 0 0 8px 8px;
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+        }
+
+        &-title {
+          @include text(20px, 28px, 700, #fff);
+        }
+
+        &-close {
+          cursor: pointer;
+        }
+
+        &-key {
+          @include text(14px, 16px, 600, $gray);
+          margin-bottom: 8px;
+        }
+        
+        &-value {
+          @include text(18px, 24px, 700, $dark-gray);
         }
       }
     }

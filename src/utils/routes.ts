@@ -2,7 +2,8 @@ import ApplicationsPage from '../pages/ApplicationsPage';
 import ChatPage from '../pages/ChatPage';
 import FeedbackPage from '../pages/FeedbackPage';
 import LoginPage from '../pages/LoginPage';
-import { APPLICATIONS_ROUTE, CHAT_ROUTE, FEEDBACK_ROUTE, LOGIN_ROUTE } from './consts';
+import UsersPage from '../pages/UsersPage';
+import { APPLICATIONS_ROUTE, CHAT_ROUTE, FEEDBACK_ROUTE, LOGIN_ROUTE, USERS_ROUTE } from './consts';
 
 export const publicRoutes = [
   {
@@ -23,5 +24,9 @@ export const privateRoutes = [
   {
     path: FEEDBACK_ROUTE,
     element: FeedbackPage
+  },
+  {
+    path: USERS_ROUTE,
+    element: UsersPage
   }
 ];

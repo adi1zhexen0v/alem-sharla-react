@@ -1,4 +1,4 @@
-import { Timestamp } from "firebase/firestore";
+import { DocumentReference, Timestamp } from "firebase/firestore";
 
 export interface Message {
   displayName: string;
@@ -55,8 +55,11 @@ export interface Application {
   paymentTime: number;
   processingCost: number;
   processingTime: number;
+  questionnaires: QuestionnaireAnswer[];
+  questionnaireIDs: DocumentReference[];
   serviceFeeTenge: number;
   standartVisaApplicationTimeDays: number;
+  user: User | null;
   userID: string;
   visaEntryType: string;
   visaEndDate: string;
@@ -69,4 +72,24 @@ export interface Feedback {
   createdAt: Timestamp;
   message: string;
   name: string;
+}
+
+interface ApplicantQuestionnaireAnswer {
+  answer: string;
+  question: string;
+}
+
+export interface QuestionnaireAnswer {
+  applicantQuestionnaireAnswers: ApplicantQuestionnaireAnswer[];
+  id: string;
+}
+
+export interface User {
+  address: string;
+  aparment: string;
+  email: string;
+  phoneNumber: string;
+  photoLink: string;
+  userID: string;
+  username: string;
 }

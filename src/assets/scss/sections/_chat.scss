@@ -230,8 +230,8 @@
         }
 
         &-date {
-          @include text(16px, 20px, 600, rgba($gray, 0.6));
-          margin-top: 6px;
+          @include text(14px, 20px, 600, rgba($gray, 0.6));
+          margin: 2px 0 8px;
         }
       }
 

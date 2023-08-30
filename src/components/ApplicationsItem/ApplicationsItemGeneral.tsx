@@ -18,7 +18,7 @@ const ApplicationsItemGeneral: React.FC<ApplicationItemProps> = ({ application }
           {application.visaEntryType !== "" && <ApplicationsItemBlock title="Вид визы" value={getVisaEntryType(application.visaEntryType)}/>}
           <ApplicationsItemBlock title="Срок визы" value={`${application.visaStartDate} - ${application.visaEndDate}`}/>
           <ApplicationsItemBlock title="Оплачено" children={<ApplicationsItemBooleanToggle isPaid={application.isPaid} id={application.id} />}/>
-          <ApplicationsItemBlock title="Оплачено" children={<ApplicationsItemDate id={application.id} date={application.interViewDate}/>}/>
+          <ApplicationsItemBlock title="Дата интервью" children={<ApplicationsItemDate id={application.id} date={application.interViewDate}/>}/>
         </div>
         <div className="applications-item__grid-part">
           <ApplicationsItemBlock title="Количество заявителей" value={amountOfApplicants}/>

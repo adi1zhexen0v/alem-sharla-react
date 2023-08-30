@@ -15,8 +15,8 @@ const FeedbackPage = () => {
     dispatch(removeCorrespondenceId());
     const fetchFeedback = async () => {
       setIsLoading(true);
-      const applications = await getFeedback();
-      setFeedback(applications);
+      const feedbackList = await getFeedback();
+      setFeedback(feedbackList);
       setIsLoading(false);
     }
     fetchFeedback();

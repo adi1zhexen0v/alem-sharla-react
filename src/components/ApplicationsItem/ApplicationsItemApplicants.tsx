@@ -1,5 +1,6 @@
 import { ApplicationItemProps } from ".";
 import ApplicationsItemBlock from "./ApplicationsItemBlock";
+import ApplicationsItemQuestionnaire from "./ApplicationsItemQuestionnaire";
 
 const ApplicationsItemApplicants: React.FC<ApplicationItemProps> = ({ application }) => {
   const applicants = application.applicants;
@@ -12,6 +13,11 @@ const ApplicationsItemApplicants: React.FC<ApplicationItemProps> = ({ applicatio
       {applicants.map((applicant, index) => (
         <>
           <div className="applications-item__grid" key={index}>
+            {
+              application.questionnaires && application.questionnaires[index] && (
+                <ApplicationsItemQuestionnaire questionnaire={application.questionnaires[index]} />
+              )
+            }
             <div className="applications-item__grid-part">
               <ApplicationsItemBlock title="Полное имя" value={`${applicant.name} ${applicant.surname}`}/>
               <ApplicationsItemBlock title="Дата рождения" value={applicant.dateOfBirth}/>

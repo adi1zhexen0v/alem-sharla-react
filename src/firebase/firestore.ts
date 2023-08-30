@@ -1,6 +1,6 @@
-import { doc, collection, getDocs, updateDoc } from "firebase/firestore";
+import { doc, collection, getDocs, updateDoc, getDoc, DocumentReference } from "firebase/firestore";
 import { firestore } from "./config";
-import { Application, Feedback } from "../utils/interfaces";
+import { Application, Feedback, QuestionnaireAnswer, User } from "../utils/interfaces";
 
 export const getAllApplications = async () => {
   const applicationsRef = collection(firestore, "applications");
@@ -8,14 +8,48 @@ export const getAllApplications = async () => {
 
   const applications: Application[] = [];
 
-  querySnapshot.forEach((doc) => {
+  for (const doc of querySnapshot.docs) {
     const application = doc.data() as Application;
+    
+    if (application.questionnaireIDs) {
+      const questionnaires = await getQuestionnaires(application.questionnaireIDs);
+      application.questionnaires = questionnaires;
+    } else 
+
+    if (application.userID) {
+      const user = await getUser(application.userID);
+      application.user = user;
+    }
+
     applications.push(application);
-  });
+  }
 
   return applications;
 }
- 
+
+const getUser = async (userId: string) => {
+  const userRef = doc(firestore, "profiles", userId);
+  const userSnap = await getDoc(userRef);
+  if (userSnap.exists()) {
+    const user = userSnap.data() as User;
+    return user;
+  }
+  return null;
+}
+
+const getQuestionnaires = async (questionnaireIDs: DocumentReference[]) => {
+  const questionnaires: QuestionnaireAnswer[] = [];
+  for (const questionnaireID of questionnaireIDs) {
+    const questionnaireDoc = await getDoc(questionnaireID);
+    if (questionnaireDoc.exists()) {
+      const questionnaire = questionnaireDoc.data() as QuestionnaireAnswer;
+      questionnaires.push(questionnaire);
+    }
+  }
+  return questionnaires;
+}
+
+
 export const updateApplicationIsPaid = async (id: string, isPaid: boolean) => {
   const applicationRef = doc(firestore, "applications", id);
   await updateDoc(applicationRef, {
@@ -43,4 +77,18 @@ export const getFeedback = async () => {
   });
 
   return feedback;
+}
+
+export const getAllUsers = async () => {
+  const usersRef = collection(firestore, "profiles");
+  const querySnapshot = await getDocs(usersRef);
+
+  const users: User[] = [];
+
+  querySnapshot.forEach((doc) => {
+    const user = doc.data() as User;
+    users.push(user);
+  })
+
+  return users;
 }
