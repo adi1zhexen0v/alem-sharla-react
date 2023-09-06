@@ -86,7 +86,7 @@ export interface QuestionnaireAnswer {
 
 export interface User {
   address: string;
-  aparment: string;
+  apartment: string;
   email: string;
   phoneNumber: string;
   photoLink: string;

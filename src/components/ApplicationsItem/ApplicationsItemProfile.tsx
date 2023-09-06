@@ -17,7 +17,7 @@ const ApplicationsItemProfile: React.FC<ApplicationsItemProfileProps> = ({ user 
         </div>
         <div className="applications-item__grid-part">
           <ApplicationsItemBlock title="Адрес" value={user.address} />
-          <ApplicationsItemBlock title="Квартира" value={user.aparment} />
+          <ApplicationsItemBlock title="Квартира" value={user.apartment} />
         </div>
       </div>
     </div>

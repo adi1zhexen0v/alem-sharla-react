@@ -1,12 +1,13 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Application } from "../../utils/interfaces";
-import { IconDefinition, faClock, faCoins, faHashtag, faIdCardClip, faInfo, faUsers } from "@fortawesome/free-solid-svg-icons";
+import { IconDefinition, faClock, faCoins, faFileCircleQuestion, faHashtag, faIdCardClip, faInfo, faUsers } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import ApplicationsItemGeneral from "./ApplicationsItemGeneral";
 import ApplicationsItemCost from "./ApplicationsItemCost";
 import ApplicationsItemApplicants from "./ApplicationsItemApplicants";
 import { formatDate } from "../../utils/utils";
 import ApplicationsItemProfile from "./ApplicationsItemProfile";
+import ApplicationsItemQuestionnaire from "./ApplicationsItemQuestionnaire";
 
 export interface ApplicationItemProps {
   application: Application
@@ -25,6 +26,8 @@ const data: Data[] = [
     icon: faCoins,
   }, {
     icon: faIdCardClip
+  }, {
+    icon: faFileCircleQuestion
   }
 ];
 
@@ -58,7 +61,8 @@ const ApplicationsItem: React.FC<ApplicationItemProps> = ({ application }) => {
         activeIndex === 0 ? <ApplicationsItemGeneral application={application} /> :
         activeIndex === 1 ? <ApplicationsItemApplicants application={application} /> :
         activeIndex === 2 ? <ApplicationsItemCost application={application} /> : 
-        <ApplicationsItemProfile user={application.user!}/>
+        activeIndex === 3 ? <ApplicationsItemProfile user={application.user!}/> :
+        <ApplicationsItemQuestionnaire questionnaires={application.questionnaires}/>
       }
     </div>
   )

@@ -19,7 +19,7 @@ const UsersItem: React.FC<UsersItemProps> = ({ user }) => {
         <UsersItemBlock title="E-mail" value={user.email}/>
         <UsersItemBlock title="Телефон" value={user.phoneNumber}/>
         <UsersItemBlock title="Адрес" value={user.address}/>
-        <UsersItemBlock title="Квартира" value={user.aparment}/>
+        <UsersItemBlock title="Квартира" value={user.apartment}/>
       </div>
     </div>
   )

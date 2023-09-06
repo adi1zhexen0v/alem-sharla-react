@@ -53,15 +53,15 @@ const getQuestionnaires = async (questionnaireIDs: DocumentReference[]) => {
 export const updateApplicationIsPaid = async (id: string, isPaid: boolean) => {
   const applicationRef = doc(firestore, "applications", id);
   await updateDoc(applicationRef, {
-    isPaid
+    isPaid,
+    paymentTime: Math.floor(Date.now() / 1000)
   });
 }
 
-export const updateApplicationInterviewDate= async (id: string, date: string) => {
+export const updateApplicationInterviewDate = async (id: string, date: string) => {
   const applicationRef = doc(firestore, "applications", id);
   await updateDoc(applicationRef, {
-    interViewDate: date,
-    paymentTime: Date.now()
+    interViewDate: date
   });
 }
 
