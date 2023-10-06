@@ -68,10 +68,12 @@ export interface Application {
 }
 
 export interface Feedback {
+  id: string;
   contact: string;
   createdAt: Timestamp;
   message: string;
   name: string;
+  status: string;
 }
 
 interface ApplicantQuestionnaireAnswer {

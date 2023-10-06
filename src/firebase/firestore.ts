@@ -73,6 +73,7 @@ export const getFeedback = async () => {
 
   querySnapshot.forEach((doc) => {
     const item = doc.data() as Feedback;
+    item.id = doc.id;
     feedback.push(item);
   });
 
