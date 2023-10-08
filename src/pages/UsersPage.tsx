@@ -18,22 +18,20 @@ const UsersPage = () => {
       const usersList = await getAllUsers();
       setUsers(usersList);
       setIsLoading(false);
-    }
+    };
     fetchUsers();
   }, [dispatch]);
-  
+
   return (
     <div className="content">
       <div className="users">
         <h2 className="section-title">Пользователи</h2>
         <div className="users-wrapper">
-          {
-            isLoading ? <Loader/> : <UsersList users={users}/>
-          }
+          {isLoading ? <Loader /> : <UsersList users={users} />}
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default UsersPage;

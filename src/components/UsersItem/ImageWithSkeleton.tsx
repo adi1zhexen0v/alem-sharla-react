@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import ImageSkeleton from './ImageSkeleton';
+import { useState } from "react";
+import ImageSkeleton from "./ImageSkeleton";
 
 interface ImageWithSkeletonProps {
   imageUrl: string;
@@ -14,7 +14,7 @@ const ImageWithSkeleton: React.FC<ImageWithSkeletonProps> = ({ imageUrl }) => {
         src={imageUrl}
         alt="Изображение"
         onLoad={() => setIsLoaded(true)}
-        style={{ display: isLoaded ? 'block' : 'none' }}
+        style={{ display: isLoaded ? "block" : "none" }}
       />
       {!isLoaded && <ImageSkeleton />}
     </>

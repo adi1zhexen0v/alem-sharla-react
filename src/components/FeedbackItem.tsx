@@ -1,15 +1,24 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronDown, faClock } from "@fortawesome/free-solid-svg-icons";
+import { faClock } from "@fortawesome/free-solid-svg-icons";
 import { Feedback } from "../utils/interfaces";
 import { formatDate } from "../utils/utils";
+import { useAppSelector } from "../hooks/reduxHooks";
+import { RootState } from "../redux/store";
+import StatusChangeButton from "./StatusChangeButton";
+import { FEEDBACK_COLLECTION } from "../utils/consts";
 
 interface FeedbackItemProps {
-  feedback: Feedback
+  feedback: Feedback;
 }
 
 const FeedbackItem: React.FC<FeedbackItemProps> = ({ feedback }) => {
+  const activeStatus: string = useAppSelector(
+    (state: RootState) => state.feedback.activeStatus,
+  );
+
   return (
     <div className="feedback-item">
+      
       <div className="feedback-item__block">
         <span className="feedback-item__block-key">Имя пользователя</span>
         <h4 className="feedback-item__block-value">{feedback.name}</h4>
@@ -23,19 +32,19 @@ const FeedbackItem: React.FC<FeedbackItemProps> = ({ feedback }) => {
         <h4 className="feedback-item__block-value">{feedback.message}</h4>
       </div>
       <span className="feedback-item__date">
-        <FontAwesomeIcon icon={faClock}/>
-        <h6>{formatDate(feedback.createdAt.seconds * 1000)}</h6>
+        <FontAwesomeIcon icon={faClock} />
+        <h6>{formatDate(feedback.createdAt * 1000)}</h6>
       </span>
-      <div className="status">
-        <button className="status-btn">
-          Переместить
-          <FontAwesomeIcon icon={faChevronDown}/>
-        </button>
-        <div className="status-list"></div>
-      </div>
 
+      <StatusChangeButton
+        id={feedback.id}
+        collection={FEEDBACK_COLLECTION}
+        status={activeStatus}
+      />
+
+      { activeStatus === 'new' && <div className="feedback-item__new">Новое</div> }
     </div>
-  )
-}
+  );
+};
 
 export default FeedbackItem;

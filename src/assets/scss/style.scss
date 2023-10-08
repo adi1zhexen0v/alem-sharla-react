@@ -113,10 +113,35 @@ body {
 
   &-list {
     position: absolute;
-    bottom: -25px;
+    top: calc(100% - 25px);
     right: 30px;
-    height: 10px;
-    background: #000;
+    width: 150px;
+    padding: 10px 0;
+    background: #fff;
+    border: 1px solid rgba($dark-gray, 0.08);
+    border-radius: 7px;
+
+    &__btn {
+      padding: 12px 0 12px 24px;
+      transition: 0.2s ease;
+
+      @include text(14px, 14px, 400, $gray);
+
+      &:hover {
+        cursor: pointer;
+        background: rgba($dark-gray, 0.04);
+      }
+
+      &:not(:last-child) {
+        border-bottom: 1px solid rgba($dark-gray, 0.08);
+      }
+    }
+
+    &__loading {
+      padding: 6px 0 6px 24px;
+
+      @include text(14px, 14px, 400, $gray);
+    }
   }
 }
 
@@ -144,6 +169,21 @@ body {
     width: 100%;
     height: 100%;
     @include flex(center, center);
+    flex-direction: column;
+  }
+}
+
+.not-found {
+  width: 100%;
+  @include flex(center, center);
+
+  &__img {
+    width: 360px;
+  }
+
+  &__text {
+    text-align: center;
+    @include text(20px, 28px, 600, $dark-gray);
   }
 }
 

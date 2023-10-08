@@ -1,10 +1,10 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { faFile } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import ImageWithSkeleton from './ImageWithSkeleton';
-import { formatDate } from '../../utils/utils';
-import { MessageTypes } from '../../utils/enums';
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { faFile } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import ImageWithSkeleton from "./ImageWithSkeleton";
+import { formatDate } from "../../utils/utils";
+import { MessageTypes } from "../../utils/enums";
 
 interface MessageItemProps {
   message: string;
@@ -13,11 +13,16 @@ interface MessageItemProps {
   type: MessageTypes;
 }
 
-const MessageItem: React.FC<MessageItemProps> = ({ message, isManager, date, type }) => {
+const MessageItem: React.FC<MessageItemProps> = ({
+  message,
+  isManager,
+  date,
+  type,
+}) => {
   const [imageIsOpen, setImageIsOpen] = useState<boolean>(false);
   const className = isManager
-    ? 'chat-typing__body-message chat-typing__body-message-self'
-    : 'chat-typing__body-message';
+    ? "chat-typing__body-message chat-typing__body-message-self"
+    : "chat-typing__body-message";
 
   return (
     <div className={className}>

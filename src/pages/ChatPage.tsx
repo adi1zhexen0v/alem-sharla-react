@@ -1,9 +1,9 @@
-import ChatTyping from '../components/ChatTyping';
-import ChatList from '../components/ChatList';
-import { useAppSelector } from '../hooks/reduxHooks';
-import { useMessages } from '../hooks/useMessages';
-import { RootState } from '../redux/store';
-import ChatItemSkeletion from '../components/ChatItem/Skeleton';
+import ChatTyping from "../components/ChatTyping";
+import ChatList from "../components/ChatList";
+import { useAppSelector } from "../hooks/reduxHooks";
+import { useMessages } from "../hooks/useMessages";
+import { RootState } from "../redux/store";
+import ChatItemSkeletion from "../components/ChatItem/Skeleton";
 
 const ChatPage: React.FC = () => {
   const { isLoading, correspondences, sortedCorrespondencesKeys } =
@@ -31,7 +31,7 @@ const ChatPage: React.FC = () => {
                 )}
           </div>
           <div className="chat-part">
-            {correspondenceId !== '' && (
+            {correspondenceId !== "" && (
               <ChatTyping correspondences={correspondences!} />
             )}
           </div>

@@ -1,4 +1,4 @@
-import { DocumentReference, Timestamp } from "firebase/firestore";
+import { DocumentReference } from "firebase/firestore";
 
 export interface Message {
   displayName: string;
@@ -70,7 +70,7 @@ export interface Application {
 export interface Feedback {
   id: string;
   contact: string;
-  createdAt: Timestamp;
+  createdAt: number;
   message: string;
   name: string;
   status: string;

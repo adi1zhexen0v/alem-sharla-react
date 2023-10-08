@@ -29,6 +29,18 @@
     border-radius: 12px;
     box-shadow: 2px 2px 10px 0px rgba(34, 60, 80, 0.2);
 
+
+    &__new {
+      position: absolute;
+      top: -20px;
+      left: 40px;
+      padding: 10px 20px;
+      border-radius: 6px;
+      background: $red;
+
+      @include text(16px, 16px, 400, #fff);
+    }
+
     &__block {
       margin-bottom: 15px;
       &:not(:first-child) {

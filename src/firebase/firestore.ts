@@ -49,6 +49,12 @@ const getQuestionnaires = async (questionnaireIDs: DocumentReference[]) => {
   return questionnaires;
 }
 
+export const updateStatus = async(id: string, collection: string, status: string) => {
+  const docRef = doc(firestore, collection, id);
+  await updateDoc(docRef, {
+    status
+  });
+}
 
 export const updateApplicationIsPaid = async (id: string, isPaid: boolean) => {
   const applicationRef = doc(firestore, "applications", id);

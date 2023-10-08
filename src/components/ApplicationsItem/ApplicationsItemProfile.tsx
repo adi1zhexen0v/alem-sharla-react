@@ -5,13 +5,18 @@ interface ApplicationsItemProfileProps {
   user: User | null;
 }
 
-const ApplicationsItemProfile: React.FC<ApplicationsItemProfileProps> = ({ user }) => {
+const ApplicationsItemProfile: React.FC<ApplicationsItemProfileProps> = ({
+  user,
+}) => {
   return user ? (
     <div className="applications-item__sectiom">
       <h6 className="applications-item__title">Данные пользователя</h6>
       <div className="applications-item__grid">
         <div className="applications-item__grid-part">
-          <ApplicationsItemBlock title="Имя пользователя" value={user.username} />
+          <ApplicationsItemBlock
+            title="Имя пользователя"
+            value={user.username}
+          />
           <ApplicationsItemBlock title="E-mail" value={user.email} />
           <ApplicationsItemBlock title="Телефон" value={user.phoneNumber} />
         </div>
@@ -22,6 +27,6 @@ const ApplicationsItemProfile: React.FC<ApplicationsItemProfileProps> = ({ user 
       </div>
     </div>
   ) : null;
-}
+};
 
 export default ApplicationsItemProfile;

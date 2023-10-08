@@ -1,10 +1,14 @@
 import { ApplicationItemProps } from ".";
 import ApplicationsItemBlock from "./ApplicationsItemBlock";
 
-const ApplicationsItemApplicants: React.FC<ApplicationItemProps> = ({ application }) => {
+const ApplicationsItemApplicants: React.FC<ApplicationItemProps> = ({
+  application,
+}) => {
   const applicants = application.applicants;
   const amountOfApplicants = application.applicants.length;
-  const sectionTitle = `Данные ${amountOfApplicants > 1 ? 'заявителей' : 'заявителя'}`
+  const sectionTitle = `Данные ${
+    amountOfApplicants > 1 ? "заявителей" : "заявителя"
+  }`;
 
   return (
     <div className="applications-item__section">
@@ -13,30 +17,53 @@ const ApplicationsItemApplicants: React.FC<ApplicationItemProps> = ({ applicatio
         <>
           <div className="applications-item__grid" key={index}>
             <div className="applications-item__grid-part">
-              <ApplicationsItemBlock title="Полное имя" value={`${applicant.name} ${applicant.surname}`}/>
-              <ApplicationsItemBlock title="Дата рождения" value={applicant.dateOfBirth}/>
-              <ApplicationsItemBlock title="Гражданство" value={applicant.citizenship}/>
-              <ApplicationsItemBlock title="Пол" value={applicant.gender}/>
+              <ApplicationsItemBlock
+                title="Полное имя"
+                value={`${applicant.name} ${applicant.surname}`}
+              />
+              <ApplicationsItemBlock
+                title="Дата рождения"
+                value={applicant.dateOfBirth}
+              />
+              <ApplicationsItemBlock
+                title="Гражданство"
+                value={applicant.citizenship}
+              />
+              <ApplicationsItemBlock title="Пол" value={applicant.gender} />
             </div>
             <div className="applications-item__grid-part">
-              <ApplicationsItemBlock title="ИИН" value={applicant.iin}/>
-              <ApplicationsItemBlock title="Номер паспорта" value={applicant.passportID}/>
+              <ApplicationsItemBlock title="ИИН" value={applicant.iin} />
+              <ApplicationsItemBlock
+                title="Номер паспорта"
+                value={applicant.passportID}
+              />
               <div className="applications-item__grid">
                 <div className="applications-item__grid-part">
-                  <ApplicationsItemBlock title="Дата выдачи" value={applicant.passportGivenDate}/>
+                  <ApplicationsItemBlock
+                    title="Дата выдачи"
+                    value={applicant.passportGivenDate}
+                  />
                 </div>
                 <div className="applications-item__grid-part">
-                  <ApplicationsItemBlock title="Действителен до" value={applicant.passportDueToDate}/>
+                  <ApplicationsItemBlock
+                    title="Действителен до"
+                    value={applicant.passportDueToDate}
+                  />
                 </div>
               </div>
-              <ApplicationsItemBlock title="Орган, который выдал" value={applicant.authority}/>
+              <ApplicationsItemBlock
+                title="Орган, который выдал"
+                value={applicant.authority}
+              />
             </div>
           </div>
-          {index + 1 !== amountOfApplicants && <div className="applications-item__line"></div> }
+          {index + 1 !== amountOfApplicants && (
+            <div className="applications-item__line"></div>
+          )}
         </>
       ))}
     </div>
-  )
-}
+  );
+};
 
 export default ApplicationsItemApplicants;

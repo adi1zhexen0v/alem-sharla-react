@@ -3,7 +3,7 @@ import ImageWithSkeleton from "./ImageWithSkeleton";
 import UsersItemBlock from "./UsersItemBlock";
 
 interface UsersItemProps {
-  user: User
+  user: User;
 }
 
 const UsersItem: React.FC<UsersItemProps> = ({ user }) => {
@@ -16,13 +16,13 @@ const UsersItem: React.FC<UsersItemProps> = ({ user }) => {
       </div>
       <div className="users-item__body">
         <h4 className="users-item__body-name">{user.username}</h4>
-        <UsersItemBlock title="E-mail" value={user.email}/>
-        <UsersItemBlock title="Телефон" value={user.phoneNumber}/>
-        <UsersItemBlock title="Адрес" value={user.address}/>
-        <UsersItemBlock title="Квартира" value={user.apartment}/>
+        <UsersItemBlock title="E-mail" value={user.email} />
+        <UsersItemBlock title="Телефон" value={user.phoneNumber} />
+        <UsersItemBlock title="Адрес" value={user.address} />
+        <UsersItemBlock title="Квартира" value={user.apartment} />
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default UsersItem;

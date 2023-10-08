@@ -1,28 +1,28 @@
-import { FormEvent, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
-import AuthInput from '../components/AuthInput';
-import { firebaseAuthSignIn } from '../firebase/auth';
-import { CHAT_ROUTE } from '../utils/consts';
-import { getErrorMessage } from '../utils/errors';
-import { useAppDispatch } from '../hooks/reduxHooks';
-import { setUser } from '../redux/slices/userSlice';
+import { FormEvent, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
+import AuthInput from "../components/AuthInput";
+import { firebaseAuthSignIn } from "../firebase/auth";
+import { CHAT_ROUTE } from "../utils/consts";
+import { getErrorMessage } from "../utils/errors";
+import { useAppDispatch } from "../hooks/reduxHooks";
+import { setUser } from "../redux/slices/userSlice";
 
 const LoginPage: React.FC = () => {
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-  const [error, setError] = useState<string>('');
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [error, setError] = useState<string>("");
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const signIn = async (event: FormEvent) => {
-    setError('');
+    setError("");
     event.preventDefault();
-    if (email.trim() !== '' && password.trim() !== '') {
+    if (email.trim() !== "" && password.trim() !== "") {
       const authResult = await firebaseAuthSignIn(email, password);
 
-      if (typeof authResult === 'string') {
+      if (typeof authResult === "string") {
         setError(getErrorMessage(authResult));
       } else {
         const { email, uid } = authResult;
@@ -37,7 +37,7 @@ const LoginPage: React.FC = () => {
         navigate(CHAT_ROUTE);
       }
     } else {
-      setError('Ошибка: Заполните все поля');
+      setError("Ошибка: Заполните все поля");
     }
   };
 

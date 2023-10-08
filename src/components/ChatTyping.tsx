@@ -1,23 +1,23 @@
-import { useState, useEffect, useRef } from 'react';
-import { faClose, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { insertNewMessage } from '../firebase/database';
-import { useAppDispatch, useAppSelector } from '../hooks/reduxHooks';
-import { RootState } from '../redux/store';
-import { removeCorrespondenceId } from '../redux/slices/correspondenceSlise';
-import { Chat } from '../utils/interfaces';
-import MessageItem from './MessageItem';
-import { MessageTypes } from '../utils/enums';
+import { useState, useEffect, useRef } from "react";
+import { faClose, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { insertNewMessage } from "../firebase/database";
+import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
+import { RootState } from "../redux/store";
+import { removeCorrespondenceId } from "../redux/slices/correspondenceSlise";
+import { Chat } from "../utils/interfaces";
+import MessageItem from "./MessageItem";
+import { MessageTypes } from "../utils/enums";
 
 interface ChatTypingProps {
   correspondences: Chat;
 }
 
-const userProfilePicture = require('../assets/img/ava-default.png');
+const userProfilePicture = require("../assets/img/ava-default.png");
 
 const ChatTyping: React.FC<ChatTypingProps> = ({ correspondences }) => {
   const listRef = useRef<HTMLDivElement>(null);
-  const [inputText, setInputText] = useState<string>('');
+  const [inputText, setInputText] = useState<string>("");
   const dispatch = useAppDispatch();
   const correspondenceId = useAppSelector(
     (state: RootState) => state.correspondence.id,
@@ -25,7 +25,7 @@ const ChatTyping: React.FC<ChatTypingProps> = ({ correspondences }) => {
   const sendMessage = (e: React.FormEvent) => {
     e.preventDefault();
     insertNewMessage(correspondenceId, inputText);
-    setInputText('');
+    setInputText("");
   };
 
   const closeCorrespondence = () => {

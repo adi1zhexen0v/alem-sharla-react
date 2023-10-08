@@ -1,7 +1,7 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
-import { privateRoutes, publicRoutes } from '../utils/routes';
-import { CHAT_ROUTE, LOGIN_ROUTE } from '../utils/consts';
-import { useAuth } from '../hooks/useAuth';
+import { Routes, Route, Navigate } from "react-router-dom";
+import { privateRoutes, publicRoutes } from "../utils/routes";
+import { CHAT_ROUTE, LOGIN_ROUTE } from "../utils/consts";
+import { useAuth } from "../hooks/useAuth";
 
 const AppRouter: React.FC = () => {
   const { isAuth } = useAuth();

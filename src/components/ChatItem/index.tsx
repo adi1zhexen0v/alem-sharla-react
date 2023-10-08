@@ -1,6 +1,6 @@
 import { truncateText } from "../../utils/utils";
 
-const userProfilePicture = require('../../assets/img/ava-default.png');
+const userProfilePicture = require("../../assets/img/ava-default.png");
 
 interface ChatItemProps {
   correspondenceId: string;
@@ -8,7 +8,6 @@ interface ChatItemProps {
   unseenMessageCount: number;
   markMessagesAsSeen: (userId: string) => void;
 }
-
 
 const ChatItem: React.FC<ChatItemProps> = ({
   correspondenceId,

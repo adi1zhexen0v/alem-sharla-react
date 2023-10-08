@@ -1,14 +1,14 @@
-import { useAuth } from './hooks/useAuth';
-import { useUpdateUser } from './hooks/useUpdateUser';
-import Sidebar from './components/Sidebar';
-import AppRouter from './components/AppRouter';
-import FullPageLoader from './components/FullPageLoader';
-import './assets/scss/style.scss';
+import { useAuth } from "./hooks/useAuth";
+import { useUpdateUser } from "./hooks/useUpdateUser";
+import Sidebar from "./components/Sidebar";
+import AppRouter from "./components/AppRouter";
+import FullPageLoader from "./components/FullPageLoader";
+import "./assets/scss/style.scss";
 
 const App: React.FC = () => {
   const { isAuth, loading, user } = useAuth();
   useUpdateUser(user);
-  
+
   if (loading) {
     return <FullPageLoader />;
   }
