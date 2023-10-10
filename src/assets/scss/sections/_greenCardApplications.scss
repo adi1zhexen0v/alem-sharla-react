@@ -1,0 +1,195 @@
+@import '../libs/variables';
+@import '../libs/mixins';
+
+.gca {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  &-wrapper {
+    padding: 36px 12px 12px 6px;
+    flex: 1;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  &-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 60px 40px;
+  }
+
+  &-item {
+    position: relative;
+    background: $ghost-white;
+    box-shadow: 2px 2px 10px 0px rgba(34, 60, 80, 0.2);
+
+    &__btn {
+      &-list {
+        position: absolute;
+        top: -28px;
+        left: 36px;
+
+        @include flex(flex-start, flex-end);
+        gap: 12px;
+      }
+
+      &-item {
+        width: 44px;  
+        aspect-ratio: 1/1;
+        background: $ghost-white;
+        border: 1px solid rgba($gray, 0.5);
+        border-radius: 8px;
+        box-shadow: 2px 2px 10px 0px rgba(34, 60, 80, 0.2);
+        transition: 0.02s ease;
+
+        @include flex(center, center);
+
+        svg {
+          font-size: 18px;
+          color: $green;
+        }
+
+        &:hover {
+          cursor: pointer;
+        }
+
+        &-active {     
+          width: 56px;    
+          svg {
+            font-size: 24px;
+          }
+
+          &:hover {
+            cursor: default;
+          }
+        }
+      }
+    }
+
+    &__header {
+      position: relative;
+      padding: 44px 36px 20px;
+      background: $green;
+      @include flex();
+
+      &-name{
+        @include flex(flex-start, center);
+        gap: 8px;
+
+        h3 {
+          @include text(18px, 24px, 700, $ghost-white);
+        }
+
+        svg {
+          color: $ghost-white;
+        }
+      }
+
+      &-date{
+        @include flex(flex-start, center);
+        gap: 8px;
+
+        h6 {
+          @include text(14px, 16px, 500, $ghost-white);
+        }
+
+        svg {
+          color: $ghost-white;
+          font-size: 14px;
+        }
+      }
+    }
+
+    &__body {
+      padding: 20px 36px;
+    }
+
+    &__grid {
+      display: flex;
+      gap: 24px;
+    }
+
+    &__column {
+      width: 50%;
+    }
+
+    &__new {
+      position: absolute;
+      top: -20px;
+      right: 36px;
+      padding: 10px 20px;
+      border-radius: 6px;
+      background: #E32636;
+      font-size: 16px;
+      line-height: 16px;
+      font-weight: 400;
+      color: #fff;
+    }
+
+    &__block {
+      margin-bottom: 12px;
+      &-key {
+        @include text(14px, 16px, 600, $gray);
+        margin-bottom: 12px;
+      }
+      
+      &-value {
+        @include text(18px, 24px, 700, $dark-gray);
+      }
+
+      &-img {
+        position: relative;
+        margin: 8px 0;
+        width: 200px;
+        height: 200px;
+        border: 1px solid rgba($dark-gray, 0.5);
+        border-radius: 6px;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: 0.2s ease;
+        }
+
+        &-btns {
+          position: absolute;
+          top: 8px;
+          right: 8px;
+          @include flex(flex-end, flex-end);
+          gap: 8px;
+        }
+
+        &-btn {
+          width: 28px;
+          aspect-ratio: 1/1;
+          background: $ghost-white;
+          border-radius: 4px;
+          border: 1px solid $dark-gray;
+          box-shadow: 2px 2px 10px 0px rgba(34, 60, 80, 0.2);
+          transition: 0.2s ease;
+
+          @include flex(center, center);
+
+          svg {
+            font-size: 16px;
+            color: $green;
+          }
+
+          &:hover {
+            cursor: pointer;
+            background: $bg;
+          }
+        }
+      }
+    }
+
+    &__title {
+      @include text(28px, 36px, 700, $dark-gray);
+      margin-bottom: 16px;
+    }
+  }
+}

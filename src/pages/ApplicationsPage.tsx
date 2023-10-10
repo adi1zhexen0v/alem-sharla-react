@@ -25,7 +25,7 @@ const ApplicationsPage: React.FC = () => {
   return (
     <div className="content">
       <div className="applications">
-        <h2 className="section-title">Заявки</h2>
+        <h2 className="section-title">Заявки на Визу</h2>
         <div className="applications-wrapper">
           {isLoading ? (
             <Loader />

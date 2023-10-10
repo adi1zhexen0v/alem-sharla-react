@@ -1,5 +1,5 @@
 import { useState } from "react";
-import ImageSkeleton from "./ImageSkeleton";
+import ImageSkeleton from "../ImageSkeleton";
 
 interface ImageWithSkeletonProps {
   imageUrl: string;
@@ -22,7 +22,7 @@ const ImageWithSkeleton: React.FC<ImageWithSkeletonProps> = ({
         className="chat-typing__body-image"
         style={{ display: isLoaded ? "block" : "none" }}
       />
-      {!isLoaded && <ImageSkeleton />}
+      {!isLoaded && <ImageSkeleton width={360} height={280} />}
     </>
   );
 };

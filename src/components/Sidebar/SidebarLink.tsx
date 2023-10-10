@@ -12,7 +12,9 @@ const SidebarLink = ({ name, link, icon }: SidebarLinkProps) => {
   return (
     <li className="sidebar-links__item">
       <Link to={link} className="sidebar-links__link">
-        <FontAwesomeIcon icon={icon} />
+        <div className="sidebar-links__link-icon">
+          <FontAwesomeIcon icon={icon} />
+        </div>
         {name}
       </Link>
     </li>

@@ -11,6 +11,7 @@ import {
 import Loader from "../components/Loader";
 import FeedbackList from "../components/FeedbackList";
 import SectionHeader from "../components/SectionHeader";
+import { StatusRusTypes, StatusTypes } from "../utils/enums";
 
 const FeedbackPage = () => {
   const dispatch = useAppDispatch();
@@ -52,8 +53,12 @@ const FeedbackPage = () => {
       <div className="feedback">
         <h2 className="section-title">Обратная связь</h2>
         <SectionHeader
+          searchIsNumeric={false}
+          searchPlaceholder="Поиск..."
           activeStatus={activeStatus}
           numberOfNewItems={numberOfNewFeedback}
+          statusArray={Object.values(StatusTypes)}
+          rusStatusArray={Object.values(StatusRusTypes)}
           setActiveStatus={setActiveStatus}
           handleChangeSearchText={handleChangeSearchText}
         />

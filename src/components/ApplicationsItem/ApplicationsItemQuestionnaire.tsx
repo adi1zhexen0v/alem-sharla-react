@@ -10,7 +10,6 @@ const ApplicationsItemQuestionnaire: React.FC<
 > = ({ questionnaires }) => {
   const sectionTitle =
     questionnaires && questionnaires.length > 1 ? "Анкеты" : "Анкета";
-  console.log(sectionTitle);
 
   return (
     <div className="applications-item__section">

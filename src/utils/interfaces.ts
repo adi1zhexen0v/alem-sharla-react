@@ -95,3 +95,23 @@ export interface User {
   userID: string;
   username: string;
 }
+
+interface GreenCardApplicant extends Applicant {
+  photoLink: string;
+}
+
+export interface GreenCardApplication {
+  applicants: GreenCardApplicant[];
+  createdAt: number;
+  finalCost: number;
+  id: string;
+  isPaid: boolean; 
+  orderID: number;
+  paymentTime: number;
+  questionnaires: QuestionnaireAnswer[];
+  questionnaireIDs?: DocumentReference[];
+  resultsDate: number;
+  status: string;
+  user: User | null;
+  userID: string;
+}

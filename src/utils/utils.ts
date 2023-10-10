@@ -24,9 +24,10 @@ const getZero = (num: number): string => {
   return num < 10 ? `0${num}` : `${num}`;
 };
 
-export const formatDate = (timestamp: number): string => {
+export const formatDate = (timestamp: number, withYear: boolean = false): string => {
   const date = new Date(timestamp);
-  const formattedDate = `${getZero(date.getDate())}.${getZero(date.getMonth() + 1,)} ${getZero(date.getHours())}:${getZero(date.getMinutes())}`;
+  const formattedDate = withYear ? `${getZero(date.getDate())}.${getZero(date.getMonth() + 1,)}.${date.getFullYear()}` 
+    : `${getZero(date.getDate())}.${getZero(date.getMonth() + 1,)} ${getZero(date.getHours())}:${getZero(date.getMinutes())}`;
   return formattedDate;
 };
 

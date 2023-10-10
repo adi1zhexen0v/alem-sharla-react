@@ -17,7 +17,9 @@ const SidebarLogoutBtn = () => {
   return (
     <div className="sidebar-links__item" onClick={logOut}>
       <div className="sidebar-links__link">
-        <FontAwesomeIcon icon={faArrowRightFromBracket} />
+        <div className="sidebar-links__link-icon">
+          <FontAwesomeIcon icon={faArrowRightFromBracket} />
+        </div>
         Выйти
       </div>
     </div>
