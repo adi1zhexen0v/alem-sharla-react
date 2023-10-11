@@ -7,13 +7,26 @@ import { RootState } from "../redux/store";
 import SectionHeader from "../components/SectionHeader";
 import Loader from "../components/Loader";
 import GreenCardApplicationsList from "../components/GCApplicationsList";
+import { Status } from "../utils/interfaces";
 
-const GreenCardsStatuses = {
-  new: 'Новые',
-  process: 'В процессе',
-  won: 'Одобренные',
-  lost: 'Не одобренные'
-}
+export const GreenCardsStatuses: Status[] = [
+  {
+    eng: 'new',
+    rus: 'Новые'
+  },
+  {
+    eng: 'process',
+    rus: 'В процессе'
+  },
+  {
+    eng: 'won',
+    rus: 'Одобренные'
+  },
+  {
+    eng: 'lost',
+    rus: 'Не одобренные'
+  }
+];
 
 const GreenCardsPage: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -61,8 +74,7 @@ const GreenCardsPage: React.FC = () => {
           searchPlaceholder="Поиск по номеру заявки..."
           activeStatus={activeStatus}
           numberOfNewItems={numberOfNewGCApplications}
-          statusArray={Object.keys(GreenCardsStatuses)}
-          rusStatusArray={Object.values(GreenCardsStatuses)}
+          statuses={GreenCardsStatuses}
           setActiveStatus={setActiveStatus}
           handleChangeSearchText={handleChangeSearchText}
         />

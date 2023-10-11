@@ -5,7 +5,8 @@ import { formatDate } from "../utils/utils";
 import { useAppSelector } from "../hooks/reduxHooks";
 import { RootState } from "../redux/store";
 import StatusChangeButton from "./StatusChangeButton";
-import { FEEDBACK_COLLECTION } from "../utils/consts";
+import { FEEDBACK_COLLECTION, GeneralStatuses } from "../utils/consts";
+import { updateFeedbackStatus } from "../redux/slices/feedbackSlice";
 
 interface FeedbackItemProps {
   feedback: Feedback;
@@ -39,7 +40,12 @@ const FeedbackItem: React.FC<FeedbackItemProps> = ({ feedback }) => {
       <StatusChangeButton
         id={feedback.id}
         collection={FEEDBACK_COLLECTION}
-        status={activeStatus}
+        activeStatus={activeStatus}
+        statuses={GeneralStatuses}
+        bottomOffset={30}
+        rightOffset={30}
+        topOffset={25}
+        dispatchMethod={updateFeedbackStatus}
       />
 
       { activeStatus === 'new' && <div className="feedback-item__new">Новое</div> }

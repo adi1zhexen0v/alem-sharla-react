@@ -11,7 +11,7 @@ import {
 import Loader from "../components/Loader";
 import FeedbackList from "../components/FeedbackList";
 import SectionHeader from "../components/SectionHeader";
-import { StatusRusTypes, StatusTypes } from "../utils/enums";
+import { GeneralStatuses } from "../utils/consts";
 
 const FeedbackPage = () => {
   const dispatch = useAppDispatch();
@@ -57,8 +57,7 @@ const FeedbackPage = () => {
           searchPlaceholder="Поиск..."
           activeStatus={activeStatus}
           numberOfNewItems={numberOfNewFeedback}
-          statusArray={Object.values(StatusTypes)}
-          rusStatusArray={Object.values(StatusRusTypes)}
+          statuses={GeneralStatuses}
           setActiveStatus={setActiveStatus}
           handleChangeSearchText={handleChangeSearchText}
         />

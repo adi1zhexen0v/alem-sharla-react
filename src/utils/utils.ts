@@ -81,3 +81,7 @@ export const formatISOToDate = (iso: string): string => {
   const formattedDate = `${day}.${month}.${year} ${hours}:${minutes}`;
   return formattedDate;
 };
+
+export const getGender = (gender: string): string => {
+  return gender === 'M' ? 'Мужской' : gender === 'F' ? 'Женский' : gender;
+}

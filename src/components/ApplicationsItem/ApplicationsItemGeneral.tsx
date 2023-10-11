@@ -1,8 +1,9 @@
 import { ApplicationItemProps } from ".";
 import { getVisaEntryType, getVisaType } from "../../utils/utils";
-import ApplicationsItemBooleanToggle from "./ApplicationsItemBooleanToggle";
+import ApplicationsItemBooleanToggle from "../ApplicationsItemBooleanToggle";
 import ApplicationsItemDate from "./ApplicationsItemDate";
 import ApplicationsItemBlock from "./ApplicationsItemBlock";
+import { APPLICATIONS_COLLECTION } from "../../utils/consts";
 
 const ApplicationsItemGeneral: React.FC<ApplicationItemProps> = ({
   application,
@@ -38,6 +39,7 @@ const ApplicationsItemGeneral: React.FC<ApplicationItemProps> = ({
               <ApplicationsItemBooleanToggle
                 isPaid={application.isPaid}
                 id={application.id}
+                collection={APPLICATIONS_COLLECTION}
               />
             }
           />

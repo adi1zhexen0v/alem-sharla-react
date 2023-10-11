@@ -108,9 +108,19 @@
       padding: 20px 36px;
     }
 
+    &__section {
+      position: relative;
+    }
+
     &__grid {
       display: flex;
       gap: 24px;
+    }
+
+    &__questionnaire {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 0 24px;
     }
 
     &__column {

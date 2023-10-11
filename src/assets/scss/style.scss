@@ -97,8 +97,8 @@ body {
 .status {
   &-btn {
     position: absolute;
-    bottom: 30px;
-    right: 30px;
+    bottom: 0;
+    right: 0;
     padding: 14px 18px;
     width: 150px;
     background: $green-button;
@@ -118,7 +118,6 @@ body {
   &-list {
     position: absolute;
     top: calc(100% - 25px);
-    right: 30px;
     width: 150px;
     padding: 10px 0;
     background: #fff;

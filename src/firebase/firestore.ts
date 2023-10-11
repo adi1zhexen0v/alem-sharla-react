@@ -1,4 +1,4 @@
-import { doc, collection, getDocs, updateDoc, getDoc, DocumentReference } from "firebase/firestore";
+import { doc, collection, getDocs, updateDoc, getDoc, DocumentReference, deleteField } from "firebase/firestore";
 import { firestore } from "./config";
 import { Application, Feedback, GreenCardApplication, QuestionnaireAnswer, User } from "../utils/interfaces";
 import { APPLICATIONS_COLLECTION, FEEDBACK_COLLECTION, GREEN_CARDS_APPLICATIONS_COLLECTION, PROFILES_COLLECTION } from "../utils/consts";
@@ -60,11 +60,19 @@ export const updateStatus = async(id: string, collection: string, status: string
 
 export const updateApplicationIsPaid = async (id: string, isPaid: boolean, collection: string) => {
   const applicationRef = doc(firestore, collection, id);
-  await updateDoc(applicationRef, {
-    isPaid,
-    paymentTime: Math.floor(Date.now() / 1000)
-  });
+  const updateData = isPaid
+    ? {
+        isPaid: true,
+        paymentTime: Math.floor(Date.now() / 1000)
+      }
+    : {
+        isPaid: false,
+        paymentTime: deleteField()
+      };
+
+  await updateDoc(applicationRef, updateData);
 }
+
 
 export const updateApplicationInterviewDate = async (id: string, date: string) => {
   const applicationRef = doc(firestore, APPLICATIONS_COLLECTION, id);
@@ -110,6 +118,7 @@ export const getAllGreenCardApplications = async () => {
 
   for (const doc of querySnapshot.docs) {
     const greenCardApplication = doc.data() as GreenCardApplication;
+    greenCardApplication.id = doc.id;
     
     if (greenCardApplication.questionnaireIDs) {
       const questionnaires = await getQuestionnaires(greenCardApplication.questionnaireIDs);

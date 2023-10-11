@@ -1,17 +1,15 @@
 import { useState } from "react";
 import { faEdit, faSave } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { updateApplicationIsPaid } from "../../firebase/firestore";
-import { APPLICATIONS_COLLECTION } from "../../utils/consts";
+import { updateApplicationIsPaid } from "../firebase/firestore";
 
 interface ApplicationsItemBooleanToggleProps {
   isPaid: boolean;
   id: string;
+  collection: string;
 }
 
-const ApplicationsItemBooleanToggle: React.FC<
-  ApplicationsItemBooleanToggleProps
-> = ({ isPaid, id }) => {
+const ApplicationsItemBooleanToggle: React.FC<ApplicationsItemBooleanToggleProps> = ({ isPaid, id, collection }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isChangable, setIsChangable] = useState(false);
   const [checked, setChecked] = useState(isPaid);
@@ -22,7 +20,7 @@ const ApplicationsItemBooleanToggle: React.FC<
 
   const updateIsPaid = async () => {
     setIsLoading(true);
-    await updateApplicationIsPaid(id, checked, APPLICATIONS_COLLECTION);
+    await updateApplicationIsPaid(id, checked, collection);
     setIsChangable(false);
     setIsLoading(false);
   };

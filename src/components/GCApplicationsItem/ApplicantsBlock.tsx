@@ -1,3 +1,4 @@
+import { getGender } from "../../utils/utils";
 import GreenCardApplicantImage from "./ApplicantImage";
 import { GreenCardApplicationsItemProps } from "./index";
 import GreenCardApplicationsInfoBlock from "./InfoBlock";
@@ -16,7 +17,7 @@ const GreenCardApplicationsItemApplicantsBlock: React.FC<GreenCardApplicationsIt
             <GreenCardApplicationsInfoBlock title="Дата рождения" value={applicant.dateOfBirth}/>
           </div>
           <div className="gca-item__column">
-            <GreenCardApplicationsInfoBlock title="Пол" value={applicant.gender}/>
+            <GreenCardApplicationsInfoBlock title="Пол" value={getGender(applicant.gender)}/>
             <GreenCardApplicationsInfoBlock title="ИИН" value={applicant.iin}/>
             <GreenCardApplicationsInfoBlock title="Гражданство" value={applicant.citizenship} />
             <GreenCardApplicationsInfoBlock title="Номер паспорта" value={applicant.passportID} />

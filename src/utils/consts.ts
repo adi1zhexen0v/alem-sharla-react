@@ -1,3 +1,6 @@
+import { StatusRusTypes, StatusTypes } from "./enums";
+import { Status } from "./interfaces";
+
 export const LOGIN_ROUTE: string = '/login';
 export const CHAT_ROUTE: string = '/chat';
 export const APPLICATIONS_ROUTE: string = '/applications';
@@ -11,3 +14,18 @@ export const PROFILES_COLLECTION: string = 'profiles';
 export const GREEN_CARDS_APPLICATIONS_COLLECTION: string = 'greenCardApplications';
 
 export const NUMBER_REGEXP: RegExp = /^\d+$/;
+
+export const GeneralStatuses: Status[] = [
+  {
+    eng: StatusTypes.NEW,
+    rus: StatusRusTypes.NEW
+  },
+  {
+    eng: StatusTypes.PROCESS,
+    rus: StatusRusTypes.PROCESS
+  },
+  {
+    eng: StatusTypes.COMPLETED,
+    rus: StatusRusTypes.COMPLETED
+  }
+]

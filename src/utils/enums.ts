@@ -6,12 +6,12 @@ export enum MessageTypes {
 
 export enum StatusTypes {
   NEW = 'new',
-  PROGRESS = 'progress',
+  PROCESS = 'inProcess',
   COMPLETED = 'completed'
 }
 
 export enum StatusRusTypes {
   NEW = 'Новые',
-  PROGRESS = 'В процессе',
+  PROCESS  = 'В процессе',
   COMPLETED = 'Завершенные'
 }

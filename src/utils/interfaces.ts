@@ -115,3 +115,8 @@ export interface GreenCardApplication {
   user: User | null;
   userID: string;
 }
+
+export interface Status {
+  eng: string;
+  rus: string;
+}

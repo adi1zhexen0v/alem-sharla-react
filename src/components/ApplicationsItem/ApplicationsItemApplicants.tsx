@@ -1,4 +1,5 @@
 import { ApplicationItemProps } from ".";
+import { getGender } from "../../utils/utils";
 import ApplicationsItemBlock from "./ApplicationsItemBlock";
 
 const ApplicationsItemApplicants: React.FC<ApplicationItemProps> = ({
@@ -29,7 +30,7 @@ const ApplicationsItemApplicants: React.FC<ApplicationItemProps> = ({
                 title="Гражданство"
                 value={applicant.citizenship}
               />
-              <ApplicationsItemBlock title="Пол" value={applicant.gender} />
+              <ApplicationsItemBlock title="Пол" value={getGender(applicant.gender)} />
             </div>
             <div className="applications-item__grid-part">
               <ApplicationsItemBlock title="ИИН" value={applicant.iin} />

@@ -14,29 +14,22 @@ export interface GreenCardApplicationsItemProps {
 
 interface Data {
   icon: IconDefinition;
-  block: React.FC<GreenCardApplicationsItemProps>;
 }
 
 const data: Data[] = [
   {
-    icon: faInfo,
-    block: GreenCardApplicationsItemGeneralInfoBlock
+    icon: faInfo
   },
   {
-    icon: faUsers,
-    block: GreenCardApplicationsItemApplicantsBlock
+    icon: faUsers
   },
   {
-    icon: faFileCircleQuestion,
-    block: GreenCardApplicationsItemQuestionnaireBlock
+    icon: faFileCircleQuestion
   }
 ];
 
 const GreenCardApplicationsItem: React.FC<GreenCardApplicationsItemProps> = ({ greenCardApplication }) => {
-  
-
   const [activeIndex, setActiveIndex] = useState<number>(0);
-  const activeBlock = data[activeIndex];
 
   return (
     <div className="gca-item">
@@ -61,7 +54,9 @@ const GreenCardApplicationsItem: React.FC<GreenCardApplicationsItemProps> = ({ g
         </div>
       </div>
       <div className="gca-item__body">{
-        activeBlock.block({ greenCardApplication })
+        activeIndex === 0 ? <GreenCardApplicationsItemGeneralInfoBlock greenCardApplication={greenCardApplication}/> :
+        activeIndex === 1 ? <GreenCardApplicationsItemApplicantsBlock greenCardApplication={greenCardApplication}/> :
+        <GreenCardApplicationsItemQuestionnaireBlock greenCardApplication={greenCardApplication}/>
       }</div>
       {
         greenCardApplication.status === StatusTypes.NEW && <div className="gca-item__new">Новое</div>
