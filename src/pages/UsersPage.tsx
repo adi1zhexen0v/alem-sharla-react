@@ -6,7 +6,7 @@ import { User } from "../utils/interfaces";
 import Loader from "../components/Loader";
 import UsersList from "../components/UsersList";
 
-const UsersPage = () => {
+const UsersPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const [users, setUsers] = useState<User[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);

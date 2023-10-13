@@ -13,7 +13,7 @@ import FeedbackList from "../components/FeedbackList";
 import SectionHeader from "../components/SectionHeader";
 import { GeneralStatuses } from "../utils/consts";
 
-const FeedbackPage = () => {
+const FeedbackPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const feedback = useAppSelector(

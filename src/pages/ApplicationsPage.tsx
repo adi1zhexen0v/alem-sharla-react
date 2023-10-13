@@ -1,36 +1,69 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, ChangeEvent } from "react";
 import { getAllApplications } from "../firebase/firestore";
-import { Application } from "../utils/interfaces";
 import ApplicationsList from "../components/ApplicationsList";
 import Loader from "../components/Loader";
-import { useAppDispatch } from "../hooks/reduxHooks";
+import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
 import { removeCorrespondenceId } from "../redux/slices/correspondenceSlise";
+import SectionHeader from "../components/SectionHeader";
+import { RootState } from "../redux/store";
+import { addApplications, changeApplicationsActiveStatus, changeApplicationsSearchText } from "../redux/slices/applicationsSlice";
+import { GeneralStatuses } from "../utils/consts";
 
 const ApplicationsPage: React.FC = () => {
   const dispatch = useAppDispatch();
-  const [applications, setApplications] = useState<Application[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const applications = useAppSelector(
+    (state: RootState) => state.applications.applicationsList,
+  );
+  const numberOfNewApplications: number = useAppSelector(
+    (state: RootState) => state.applications.applicationsList.filter((item) => item.status === "new").length,
+  );
+  const activeStatus: string = useAppSelector(
+    (state: RootState) => state.applications.activeStatus,
+  );
+  const searchText: string = useAppSelector(
+    (state: RootState) => state.applications.searchText,
+  );
 
   useEffect(() => {
     dispatch(removeCorrespondenceId());
     const fetchApplications = async () => {
       setIsLoading(true);
       const applications = await getAllApplications();
-      setApplications(applications);
+      dispatch(addApplications(applications));
       setIsLoading(false);
     };
     fetchApplications();
   }, [dispatch]);
 
+  const setActiveStatus = (status: string) => {
+    dispatch(changeApplicationsActiveStatus(status));
+  };
+
+  const handleChangeSearchText = (e: ChangeEvent<HTMLInputElement>) => {
+    dispatch(changeApplicationsSearchText(e.target.value));
+  };
+
   return (
     <div className="content">
       <div className="applications">
         <h2 className="section-title">Заявки на Визу</h2>
+        <SectionHeader
+          searchIsNumeric={true}
+          searchPlaceholder="Поиск по номеру заявки..."
+          activeStatus={activeStatus}
+          numberOfNewItems={numberOfNewApplications}
+          statuses={GeneralStatuses}
+          setActiveStatus={setActiveStatus}
+          handleChangeSearchText={handleChangeSearchText}
+        />
         <div className="applications-wrapper">
           {isLoading ? (
             <Loader />
           ) : (
-            <ApplicationsList applications={applications} />
+            <ApplicationsList applications={
+              applications.filter((item) => item.status === activeStatus && item.orderID.toString().includes(searchText))
+            } />
           )}
         </div>
       </div>

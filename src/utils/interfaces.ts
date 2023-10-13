@@ -59,6 +59,7 @@ export interface Application {
   questionnaireIDs: DocumentReference[];
   serviceFeeTenge: number;
   standartVisaApplicationTimeDays: number;
+  status: string;
   user: User | null;
   userID: string;
   visaEntryType: string;

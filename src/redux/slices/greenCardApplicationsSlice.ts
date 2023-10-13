@@ -22,9 +22,9 @@ export const greenCardApplicationsSlice = createSlice({
     },
     updateGCApplicationsStatus(state, action) {
       const { id, status } = action.payload;
-      const feedbackItem = state.greenCardApplicationsList.find(item => item.id === id);
-      if (feedbackItem) {
-        feedbackItem.status = status;
+      const greenCardApplicationItem = state.greenCardApplicationsList.find(item => item.id === id);
+      if (greenCardApplicationItem) {
+        greenCardApplicationItem.status = status;
       }
     },
     changeGCApplicationsActiveStatus(state, action) {

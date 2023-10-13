@@ -17,6 +17,7 @@ import ApplicationsItemApplicants from "./ApplicationsItemApplicants";
 import { formatDate } from "../../utils/utils";
 import ApplicationsItemProfile from "./ApplicationsItemProfile";
 import ApplicationsItemQuestionnaire from "./ApplicationsItemQuestionnaire";
+import { StatusTypes } from "../../utils/enums";
 
 export interface ApplicationItemProps {
   application: Application;
@@ -85,6 +86,8 @@ const ApplicationsItem: React.FC<ApplicationItemProps> = ({ application }) => {
           questionnaires={application.questionnaires}
         />
       )}
+
+      { application.status === StatusTypes.NEW && <div className="applications-item__new">Новое</div> }
     </div>
   );
 };
