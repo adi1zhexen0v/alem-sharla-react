@@ -1,3 +1,4 @@
+import { IconDefinition } from "@fortawesome/free-solid-svg-icons";
 import { DocumentReference } from "firebase/firestore";
 
 export interface Message {
@@ -60,7 +61,7 @@ export interface Application {
   serviceFeeTenge: number;
   standartVisaApplicationTimeDays: number;
   status: string;
-  user: User | null;
+  user: Profile | null;
   userID: string;
   visaEntryType: string;
   visaEndDate: string;
@@ -87,7 +88,7 @@ export interface QuestionnaireAnswer {
   id: string;
 }
 
-export interface User {
+export interface Profile {
   address: string;
   apartment: string;
   email: string;
@@ -113,11 +114,17 @@ export interface GreenCardApplication {
   questionnaireIDs?: DocumentReference[];
   resultsDate: number;
   status: string;
-  user: User | null;
+  user: Profile | null;
   userID: string;
 }
 
 export interface Status {
   eng: string;
   rus: string;
+}
+
+export interface Sort {
+  sort: string;
+  name: string;
+  icon: IconDefinition;
 }

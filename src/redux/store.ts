@@ -4,6 +4,7 @@ import userReducer from './slices/userSlice';
 import correspondenceReducer from './slices/correspondenceSlise';
 import feedbackReducer from './slices/feedbackSlice';
 import greenCardApplicationsReducer from './slices/greenCardApplicationsSlice';
+import profilesReducer from './slices/profilesSlice';
 
 const store = configureStore({
   reducer: {
@@ -11,7 +12,8 @@ const store = configureStore({
     user: userReducer,
     correspondence: correspondenceReducer,
     feedback: feedbackReducer,
-    greenCardApplications: greenCardApplicationsReducer
+    greenCardApplications: greenCardApplicationsReducer,
+    profiles: profilesReducer
   },
 });
 

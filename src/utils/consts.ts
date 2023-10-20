@@ -1,5 +1,6 @@
+import { faArrowUpAZ, faArrowUpZA } from "@fortawesome/free-solid-svg-icons";
 import { StatusRusTypes, StatusTypes } from "./enums";
-import { Status } from "./interfaces";
+import { Sort, Status } from "./interfaces";
 
 export const LOGIN_ROUTE: string = '/login';
 export const CHAT_ROUTE: string = '/chat';
@@ -27,5 +28,20 @@ export const GeneralStatuses: Status[] = [
   {
     eng: StatusTypes.COMPLETED,
     rus: StatusRusTypes.COMPLETED
+  }
+]
+
+export const FromAtoZSorting: string = "-name";
+export const FromZtoASorting: string = "+name";
+export const ProfilesSorting: Sort[] = [
+  {
+    sort: FromAtoZSorting,
+    name: "По имени (А-Я)",
+    icon: faArrowUpAZ
+  }, 
+  {
+    sort: FromZtoASorting,
+    name: "По имени (Я-А)",
+    icon: faArrowUpZA
   }
 ]

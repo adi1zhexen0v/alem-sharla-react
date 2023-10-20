@@ -1,6 +1,6 @@
 import { doc, collection, getDocs, updateDoc, getDoc, DocumentReference, deleteField } from "firebase/firestore";
 import { firestore } from "./config";
-import { Application, Feedback, GreenCardApplication, QuestionnaireAnswer, User } from "../utils/interfaces";
+import { Application, Feedback, GreenCardApplication, QuestionnaireAnswer, Profile } from "../utils/interfaces";
 import { APPLICATIONS_COLLECTION, FEEDBACK_COLLECTION, GREEN_CARDS_APPLICATIONS_COLLECTION, PROFILES_COLLECTION } from "../utils/consts";
 import { StatusTypes } from "../utils/enums";
 
@@ -33,7 +33,7 @@ const getUser = async (userId: string) => {
   const userRef = doc(firestore, PROFILES_COLLECTION, userId);
   const userSnap = await getDoc(userRef);
   if (userSnap.exists()) {
-    const user = userSnap.data() as User;
+    const user = userSnap.data() as Profile;
     return user;
   }
   return null;
@@ -96,14 +96,14 @@ export const getFeedback = async () => {
   return feedback;
 }
 
-export const getAllUsers = async () => {
+export const getAllProfiles = async () => {
   const usersRef = collection(firestore, PROFILES_COLLECTION);
   const querySnapshot = await getDocs(usersRef);
 
-  const users: User[] = [];
+  const users: Profile[] = [];
 
   querySnapshot.forEach((doc) => {
-    const user = doc.data() as User;
+    const user = doc.data() as Profile;
     users.push(user);
   })
 

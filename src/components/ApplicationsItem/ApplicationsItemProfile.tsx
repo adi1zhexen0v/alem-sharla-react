@@ -1,8 +1,8 @@
-import { User } from "../../utils/interfaces";
+import { Profile } from "../../utils/interfaces";
 import ApplicationsItemBlock from "./ApplicationsItemBlock";
 
 interface ApplicationsItemProfileProps {
-  user: User | null;
+  user: Profile | null;
 }
 
 const ApplicationsItemProfile: React.FC<ApplicationsItemProfileProps> = ({

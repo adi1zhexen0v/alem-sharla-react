@@ -1,0 +1,73 @@
+@import '../libs/variables';
+@import '../libs/mixins';
+
+.profiles {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  
+
+  &-wrapper {
+    @include flex(space-between, stretch);
+    overflow: hidden;
+  }
+
+  &-list {
+    margin-left: -12px;
+    padding: 0 12px; 
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 420px;
+    height: 100%;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  &-full {
+    flex: 1;
+  }
+
+  &-item {
+    padding: 10px 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 2px 2px 12px 0px rgba($dark-gray, 0.1);
+    transition: 0.2s ease;
+
+    @include flex(flex-start, center);
+    gap: 20px;
+
+    &__info {
+      @include flex(flex-start, center);
+      gap: 16px;
+    }
+
+    &__name {
+      @include text(16px, 24px, 700, $green);
+    }
+
+    &__contact {
+      @include text(15px, 15px, 400, $dark-gray);
+    }
+
+    &__number {
+      @include text(16px, 24px, 700, $green);
+    }
+
+    &__img {
+      width: 40px;
+      aspect-ratio: 1/1;
+      border-radius: 100%;
+      object-fit: cover;
+    }
+
+    &:hover {
+      background: rgba($message, 0.5);
+      cursor: pointer;
+    }
+  }
+}
