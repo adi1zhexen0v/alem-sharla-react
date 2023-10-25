@@ -8,13 +8,13 @@ import { RootState } from "../../redux/store";
 import { addProfiles, changeProfilesSearchText, changeProfilesSort, toggleProfilesIsByEmail } from "../../redux/slices/profilesSlice";
 import ProfilesSectionHeader from "./components/ProfilesSectionHeader";
 import { FromAtoZSorting, FromZtoASorting } from "../../utils/consts";
+import ProfilesFullPage from "./components/FullPage";
 
 const ProfilesPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const isByEmail = useAppSelector(
-    (state: RootState) => state.profiles.isByEmail
-  );
+  const isByEmail = useAppSelector((state: RootState) => state.profiles.isByEmail);
+  const activeProfile = useAppSelector((state: RootState) => state.profiles.activeProfile);
 
   const setIsByEmail = () => {
     dispatch(toggleProfilesIsByEmail(!isByEmail));
@@ -75,7 +75,7 @@ const ProfilesPage: React.FC = () => {
         />
         <div className="profiles-wrapper">
           {isLoading ? <Loader /> : <ProfilesList profiles={profiles} />}
-          <div className="profiles-full"></div>
+          {!isLoading && activeProfile && <ProfilesFullPage profile={activeProfile}/>}
         </div>
       </div>
     </div>

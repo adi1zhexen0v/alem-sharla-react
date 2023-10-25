@@ -21,6 +21,12 @@ export interface Chat {
   [correspondenceId: string]: Correspondence;
 }
 
+export interface CorrespondenceRedux {
+  id: string;
+  messages: Message[]; 
+  status: string;
+}
+
 interface AdditionalService {
   price: number;
   title: string;

@@ -6,8 +6,8 @@ import { RootState } from "../redux/store";
 import ChatItemSkeletion from "../components/ChatItem/Skeleton";
 
 const ChatPage: React.FC = () => {
-  const { isLoading, correspondences, sortedCorrespondencesKeys } =
-    useMessages();
+  const { isLoading, correspondences, sortedCorrespondencesKeys } = useMessages();
+  console.log(correspondences);
 
   const correspondenceId = useAppSelector(
     (state: RootState) => state.correspondence.id,

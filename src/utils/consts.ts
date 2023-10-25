@@ -6,7 +6,7 @@ export const LOGIN_ROUTE: string = '/login';
 export const CHAT_ROUTE: string = '/chat';
 export const APPLICATIONS_ROUTE: string = '/applications';
 export const FEEDBACK_ROUTE: string = '/feedback';
-export const USERS_ROUTE: string = '/users';
+export const USERS_ROUTE: string = '/profiles';
 export const GREEN_CARDS_ROUTE: string = '/greencards'
 
 export const APPLICATIONS_COLLECTION: string = 'applications';
@@ -44,4 +44,5 @@ export const ProfilesSorting: Sort[] = [
     name: "По имени (Я-А)",
     icon: faArrowUpZA
   }
-]
+];
+

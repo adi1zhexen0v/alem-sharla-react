@@ -3,6 +3,7 @@ import { Profile } from '../../utils/interfaces';
 
 interface ProfilesState {
   profilesList: Profile[];
+  activeProfile: Profile | null;
   sort: string;
   searchText: string;
   isByEmail: boolean;
@@ -10,6 +11,7 @@ interface ProfilesState {
 
 const initialState: ProfilesState = {
   profilesList: [],
+  activeProfile: null,
   sort: '-name',
   searchText: '',
   isByEmail: false
@@ -21,6 +23,13 @@ export const profilesSlice = createSlice({
   reducers: {
     addProfiles(state, action) {
       state.profilesList = action.payload;
+    },
+    toggleActiveProfile(state, action) {
+      if (action.payload) {
+        state.activeProfile = action.payload
+      } else {
+        state.activeProfile = null;
+      }
     },
     changeProfilesSort(state, action) {
       state.sort = action.payload;
@@ -34,5 +43,5 @@ export const profilesSlice = createSlice({
   },
 });
 
-export const { addProfiles, changeProfilesSort, changeProfilesSearchText, toggleProfilesIsByEmail } = profilesSlice.actions;
+export const { addProfiles, toggleActiveProfile, changeProfilesSort, changeProfilesSearchText, toggleProfilesIsByEmail } = profilesSlice.actions;
 export default profilesSlice.reducer;
