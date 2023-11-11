@@ -1,27 +1,39 @@
 import { useEffect, useState } from 'react';
 import { selectAllMessages } from '../firebase/database';
-import { Chat } from '../utils/interfaces';
+import { getUser } from '../firebase/firestore';
+import { RootState } from '../redux/store';
+import { setChat } from '../redux/slices/chatSlice';
+import { useAppDispatch, useAppSelector } from './reduxHooks';
+import { Correspondence, Profile } from '../utils/interfaces';
 
 export function useMessages() {
   const [isLoading, setIsLoading] = useState(false);
-  const [correspondences, setCorrespondences] = useState<Chat | null>(null);
-  const [sortedCorrespondencesKeys, setSortedCorrespondencesKeys] = useState<string[]>([]);
+
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     setIsLoading(true);
 
-    const messagesListener = selectAllMessages((data) => {
-      setCorrespondences(data);
+    const messagesListener = selectAllMessages(async (data) => {
+      const chat: Correspondence[] = [];
+      for (const correspondenceData of Array.from(data)) {
+        const profile: Profile | null = await getUser(correspondenceData.id);
+        const correspondence: Correspondence = {
+          id: correspondenceData.id,
+          messages: correspondenceData.messages,
+          status: correspondenceData.status
+        };
 
-      if (data) {
-        const sortedKeys = Object.keys(data).sort(
-          (a, b) =>
-            data[b][Object.keys(data[b])[0]].sentDate -
-            data[a][Object.keys(data[a])[0]].sentDate,
-        );
-        setSortedCorrespondencesKeys(sortedKeys);
+        if (profile) {
+          correspondence.profile = profile;
+        }
+
+        chat.push(correspondence);
       }
 
+      console.log(chat);
+
+      dispatch(setChat(chat));
       setIsLoading(false);
     });
 
@@ -30,5 +42,6 @@ export function useMessages() {
     };
   }, []);
 
-  return { isLoading, correspondences, sortedCorrespondencesKeys };
+  return { isLoading };
 }
+

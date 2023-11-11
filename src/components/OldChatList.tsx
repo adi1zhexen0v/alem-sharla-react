@@ -1,30 +1,24 @@
-import { updateAllMessagesAsSeen } from "../firebase/database";
 import ChatItem from "./ChatItem";
 import { useAppDispatch } from "../hooks/reduxHooks";
-import { setCorrespondenceId } from "../redux/slices/correspondenceSlise";
 import { countUnseenMessages, getLastMessageText } from "../utils/utils";
-import { Chat } from "../utils/interfaces";
 
-interface ChatListProps {
-  correspondences: Chat;
-  correspondencesKeys: string[];
-}
+// interface ChatListProps {
+//   correspondences: Chat;
+//   correspondencesKeys: string[];
+// }
 
-const ChatList: React.FC<ChatListProps> = ({
-  correspondences,
-  correspondencesKeys,
-}) => {
-  const dispatch = useAppDispatch();
+const ChatList: React.FC = () => {
+//   const dispatch = useAppDispatch();
 
-  const markMessagesAsSeen = async (uid: string) => {
-    dispatch(setCorrespondenceId(uid));
-    if (!correspondences) return;
-    updateAllMessagesAsSeen(uid, correspondences);
-  };
+//   const markMessagesAsSeen = async (uid: string) => {
+//     dispatch(setCorrespondenceId(uid));
+//     if (!correspondences) return;
+//     updateAllMessagesAsSeen(uid, correspondences);
+//   };
 
   return (
     <div className="chat-list">
-      {correspondencesKeys.map((correspondenceId) => {
+      {/* {correspondencesKeys.map((correspondenceId) => {
         const correspondence = correspondences?.[correspondenceId];
         if (!correspondence) return null;
         const lastMessage = getLastMessageText(correspondence);
@@ -38,7 +32,7 @@ const ChatList: React.FC<ChatListProps> = ({
             unseenMessageCount={unseenMessageCount}
           />
         );
-      })}
+      })} */}
     </div>
   );
 };

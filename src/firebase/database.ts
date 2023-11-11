@@ -1,14 +1,26 @@
 import { ref, set, update, onValue } from 'firebase/database';
 import { v4 as uuidv4 } from 'uuid';
 import { database } from './config';
-import { Chat } from '../utils/interfaces';
+import { Correspondence } from '../utils/interfaces';
 
-export const selectAllMessages = (callback: (data: any) => void) => {
+export const selectAllMessages = (callback: (data: Correspondence[]) => void) => {
   const messagesRef = ref(database, 'messages/');
 
   const messagesListener = onValue(messagesRef, (snapshot) => {
-    const data = snapshot.val();
-    callback(data);
+    const messagesData: Correspondence[] = [];
+
+    snapshot.forEach((childSnapshot) => {
+      const messageData = childSnapshot.val();
+
+      const { status, ...messages } = messageData;
+
+      messagesData.push({
+        id: childSnapshot.key,
+        messages: Object.values(messages),
+        status: status,
+      });
+    });
+    callback(messagesData);
   });
 
   return messagesListener;
@@ -32,20 +44,20 @@ export const insertNewMessage = (userId: string, text: string) => {
   }
 };
 
-export const updateAllMessagesAsSeen = async (
-  userId: string,
-  correspondences: Chat,
-) => {
-  try {
-    const updatedCorrespondences = { ...correspondences };
-    const userCorrespondence = updatedCorrespondences[userId];
+// export const updateAllMessagesAsSeen = async (
+//   userId: string,
+//   correspondences: Chat,
+// ) => {
+//   try {
+//     const updatedCorrespondences = { ...correspondences };
+//     const userCorrespondence = updatedCorrespondences[userId];
 
-    for (const messageId in userCorrespondence) {
-      userCorrespondence[messageId].isSeen = true;
-    }
+//     for (const messageId in userCorrespondence) {
+//       userCorrespondence[messageId].isSeen = true;
+//     }
 
-    update(ref(database, `messages/${userId}`), userCorrespondence);
-  } catch (error) {
-    console.error(error);
-  }
-};
+//     update(ref(database, `messages/${userId}`), userCorrespondence);
+//   } catch (error) {
+//     console.error(error);
+//   }
+// };

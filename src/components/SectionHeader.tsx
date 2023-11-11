@@ -27,7 +27,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
   return (
     <div className="section-header">
       <div className="section-tabs">{
-        statuses.map((status, i) => (
+        statuses.map((status) => (
           <div
             className={
               activeStatus === status.eng

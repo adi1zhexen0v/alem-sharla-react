@@ -1,6 +1,5 @@
 import { useState, useEffect, ChangeEvent } from "react";
 import { getAllGreenCardApplications } from "../firebase/firestore";
-import { removeCorrespondenceId } from "../redux/slices/correspondenceSlise";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
 import { addGCApplications, changeGCApplicationsActiveStatus, changeGCApplicationsSearchText } from "../redux/slices/greenCardApplicationsSlice";
 import { RootState } from "../redux/store";
@@ -47,7 +46,6 @@ const GreenCardsPage: React.FC = () => {
   );
 
   useEffect(() => {
-    dispatch(removeCorrespondenceId());
     const fetchGreenCardApplications = async () => {
       setIsLoading(true);
       const applications = await getAllGreenCardApplications();

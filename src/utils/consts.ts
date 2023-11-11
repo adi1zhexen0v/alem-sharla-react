@@ -29,7 +29,7 @@ export const GeneralStatuses: Status[] = [
     eng: StatusTypes.COMPLETED,
     rus: StatusRusTypes.COMPLETED
   }
-]
+];
 
 export const FromAtoZSorting: string = "-name";
 export const FromZtoASorting: string = "+name";

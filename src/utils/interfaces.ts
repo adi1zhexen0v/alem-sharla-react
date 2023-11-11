@@ -13,18 +13,15 @@ export interface Message {
   text?: string;
 }
 
+// export interface Chat {
+//   [correspondenceId: string]: Correspondence;
+// }
+
 export interface Correspondence {
-  [messageId: string]: Message;
-}
-
-export interface Chat {
-  [correspondenceId: string]: Correspondence;
-}
-
-export interface CorrespondenceRedux {
   id: string;
   messages: Message[]; 
   status: string;
+  profile?: Profile;
 }
 
 interface AdditionalService {

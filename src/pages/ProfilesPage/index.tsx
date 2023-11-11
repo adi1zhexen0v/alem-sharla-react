@@ -1,6 +1,5 @@
 import { ChangeEvent, useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
-import { removeCorrespondenceId } from "../../redux/slices/correspondenceSlise";
 import { getAllProfiles } from "../../firebase/firestore";
 import Loader from "../../components/Loader";
 import ProfilesList from "./components/ProfilesList";
@@ -51,7 +50,6 @@ const ProfilesPage: React.FC = () => {
   };
 
   useEffect(() => {
-    dispatch(removeCorrespondenceId());
     const fetchProfiles = async () => {
       setIsLoading(true);
       const profilesList = await getAllProfiles();

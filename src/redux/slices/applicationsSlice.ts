@@ -18,7 +18,10 @@ export const applicationsSlice = createSlice({
   initialState,
   reducers: {
     addApplications(state, action) {
-      state.applicationsList = action.payload;
+      state.applicationsList = action.payload.map((app: { [x: string]: any; questionnaireIDs: any; }) => {
+        const { questionnaireIDs, ...rest } = app;
+        return rest;
+      });
     },
     updateApplicationsStatus(state, action) {
       const { id, status } = action.payload;

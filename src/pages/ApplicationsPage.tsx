@@ -3,7 +3,6 @@ import { getAllApplications } from "../firebase/firestore";
 import ApplicationsList from "../components/ApplicationsList";
 import Loader from "../components/Loader";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
-import { removeCorrespondenceId } from "../redux/slices/correspondenceSlise";
 import SectionHeader from "../components/SectionHeader";
 import { RootState } from "../redux/store";
 import { addApplications, changeApplicationsActiveStatus, changeApplicationsSearchText } from "../redux/slices/applicationsSlice";
@@ -26,7 +25,6 @@ const ApplicationsPage: React.FC = () => {
   );
 
   useEffect(() => {
-    dispatch(removeCorrespondenceId());
     const fetchApplications = async () => {
       setIsLoading(true);
       const applications = await getAllApplications();

@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import applicationsReducer from './slices/applicationsSlice';
 import userReducer from './slices/userSlice';
-import correspondenceReducer from './slices/correspondenceSlise';
+import chatReducer from './slices/chatSlice';
 import feedbackReducer from './slices/feedbackSlice';
 import greenCardApplicationsReducer from './slices/greenCardApplicationsSlice';
 import profilesReducer from './slices/profilesSlice';
@@ -10,7 +10,7 @@ const store = configureStore({
   reducer: {
     applications: applicationsReducer,
     user: userReducer,
-    correspondence: correspondenceReducer,
+    chat: chatReducer,
     feedback: feedbackReducer,
     greenCardApplications: greenCardApplicationsReducer,
     profiles: profilesReducer

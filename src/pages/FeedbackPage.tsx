@@ -2,7 +2,6 @@ import { ChangeEvent, useEffect, useState } from "react";
 import { getFeedback } from "../firebase/firestore";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
 import { RootState } from "../redux/store";
-import { removeCorrespondenceId } from "../redux/slices/correspondenceSlise";
 import {
   addFeedback,
   changeFeedbackActiveStatus,
@@ -30,7 +29,6 @@ const FeedbackPage: React.FC = () => {
   );
 
   useEffect(() => {
-    dispatch(removeCorrespondenceId());
     const fetchFeedback = async () => {
       setIsLoading(true);
       const feedbackList = await getFeedback();

@@ -1,13 +1,13 @@
-import { Correspondence, Message } from './interfaces';
+import { Message } from './interfaces';
 
-export const countUnseenMessages = (correspondence: Correspondence) => {
-  return Object.values(correspondence).filter((message) => !message.isSeen).length;
+export const countUnseenMessages = (messages: Message[]): number => {
+  return Object.values(messages).filter((message) => !message.isSeen).length;
 };
 
-export const getLastMessageText = (correspondence: Correspondence): string => {
+export const getLastMessageText = (messages: Message[]): string => {
   let lastMessage: Message | null = null;
 
-  for (const message of Object.values(correspondence)) {
+  for (const message of messages) {
     if (!lastMessage || message.sentDate > lastMessage.sentDate) {
       lastMessage = message;
     }

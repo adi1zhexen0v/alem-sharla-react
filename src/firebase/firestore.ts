@@ -29,7 +29,7 @@ export const getAllApplications = async () => {
   return applications;
 }
 
-const getUser = async (userId: string) => {
+export const getUser = async (userId: string) => {
   const userRef = doc(firestore, PROFILES_COLLECTION, userId);
   const userSnap = await getDoc(userRef);
   if (userSnap.exists()) {
