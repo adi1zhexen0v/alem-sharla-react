@@ -2,7 +2,7 @@
 @import '../libs/mixins';
 
 .sidebar {
-  width: 300px;
+  max-width: 300px;
   height: 100vh;
   background-color: $green;
   box-shadow: 2px 2px 12px 0px rgba(#000, 0.2);
@@ -47,29 +47,29 @@
   }
 
   &-links {
-    &__list {
-      margin-top: 32px;
+    &__arrow {
+      margin: 16px 0 32px;
     }
-    
     &__link {
       position: relative;
       display: inline-block;
       width: 100%;
-      @include text(18px, 24px, 300, #fff);
       text-transform: uppercase;
       padding: 14px 24px;
       transition: 0.3s ease;
-
+      @include text(18px, 24px, 300, #fff);
       @include flex(flex-start, flex-start);
 
       &-icon {
         width: 28px;
         height: 24px;
-        margin-right: 12px;
         flex-shrink: 0;
         text-align: center;
-
         @include flex(center, center);
+      }
+
+      &-name {
+        margin-left: 12px;
       }
 
       &:after {

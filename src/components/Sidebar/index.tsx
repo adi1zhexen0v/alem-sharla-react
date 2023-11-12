@@ -6,8 +6,9 @@ import {
   faUsers,
   faAddressCard,
   faAngleLeft,
+  faArrowRightFromBracket,
+  faAngleRight,
 } from "@fortawesome/free-solid-svg-icons";
-import SidebarLink from "./SidebarLink";
 import {
   APPLICATIONS_ROUTE,
   CHAT_ROUTE,
@@ -15,15 +16,26 @@ import {
   GREEN_CARDS_ROUTE,
   USERS_ROUTE,
 } from "../../utils/consts";
-import SidebarLogoutBtn from "./SidebarLogoutBtn";
+import { firebaseAuthSignOut } from "../../firebase/auth";
+import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
+import { removeUser } from "../../redux/slices/userSlice";
+import { toggleSidebar } from "../../redux/slices/settingsSlice";
+import { RootState } from "../../redux/store";
+import SidebarLink from "./SidebarLink";
 
 const Sidebar = () => {
+  const dispatch = useAppDispatch();
+  const sidebarIsFull = useAppSelector((state: RootState) => state.settings.sidebarIsFull);
+
+  const logOut = async () => {
+    await firebaseAuthSignOut();
+    dispatch(removeUser());
+  };
   return (
     <nav className="sidebar">
       <div className="sidebar-part">
-     
         <ul className="sidebar-links__list">
-          <SidebarLink name="Скрыть меню" icon={faAngleLeft}/>
+          <SidebarLink name="Скрыть меню" icon={sidebarIsFull ? faAngleLeft : faAngleRight} func={() => dispatch(toggleSidebar(null))}/>
           <SidebarLink name="Заявки на Визу" link={APPLICATIONS_ROUTE} icon={faList} />
           <SidebarLink name="Обратная связь" link={FEEDBACK_ROUTE} icon={faMap}/>
           <SidebarLink name="Пользователи" link={USERS_ROUTE} icon={faUsers} />
@@ -31,7 +43,7 @@ const Sidebar = () => {
         </ul>
       </div>
       <div className="sidebar-part">
-        <SidebarLogoutBtn />
+        <SidebarLink name="Выйти" icon={faArrowRightFromBracket} func={logOut}/>
       </div>
     </nav>
   );
