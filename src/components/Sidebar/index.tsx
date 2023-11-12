@@ -1,9 +1,11 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faList,
   faComments,
   faMap,
   faUsers,
   faAddressCard,
+  faAngleLeft,
 } from "@fortawesome/free-solid-svg-icons";
 import SidebarLink from "./SidebarLink";
 import {
@@ -19,12 +21,10 @@ const Sidebar = () => {
   return (
     <nav className="sidebar">
       <div className="sidebar-part">
-        <div className="sidebar-logo">
-          alemSharla <br /> <span>- VISA AGENCY -</span>
-        </div>
+     
         <ul className="sidebar-links__list">
+          <SidebarLink name="Скрыть меню" icon={faAngleLeft}/>
           <SidebarLink name="Заявки на Визу" link={APPLICATIONS_ROUTE} icon={faList} />
-          <SidebarLink name="Чат" link={CHAT_ROUTE} icon={faComments} />
           <SidebarLink name="Обратная связь" link={FEEDBACK_ROUTE} icon={faMap}/>
           <SidebarLink name="Пользователи" link={USERS_ROUTE} icon={faUsers} />
           <SidebarLink name="Заявки на Грин-карты" link={GREEN_CARDS_ROUTE} icon={faAddressCard}/>

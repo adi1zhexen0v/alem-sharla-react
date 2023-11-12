@@ -28,7 +28,7 @@ const ChatPage: React.FC = () => {
   const { isLoading } = useMessages();
   const correspondences: Correspondence[] = useAppSelector((state: RootState) => state.chat.chatList);
   const activeStatus: string = useAppSelector((state: RootState) => state.chat.activeStatus);
-  const setActiveStatus = (status: string) => {
+  const setActiveStatus = (status: string | number) => {
     dispatch(changeChatActiveStatus(status));
   };
 
@@ -45,7 +45,8 @@ const ChatPage: React.FC = () => {
           searchPlaceholder="Поиск по имени..."
           activeStatus={activeStatus}
           numberOfNewItems={0}
-          statuses={ChatStatuses}
+          statusesIsStrings={false}
+          statusesAsStatuses={ChatStatuses}
           setActiveStatus={setActiveStatus}
           handleChangeSearchText={handleChangeSearchText}
         />

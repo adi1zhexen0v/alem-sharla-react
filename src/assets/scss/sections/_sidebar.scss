@@ -4,7 +4,6 @@
 .sidebar {
   width: 300px;
   height: 100vh;
-  padding: 48px 0 12px;
   background-color: $green;
   box-shadow: 2px 2px 12px 0px rgba(#000, 0.2);
   @include flex(space-between, flex-start);
@@ -16,17 +15,8 @@
   }
 
   &-logo {
-    @include text(30px, 30px, 700, #fff);
-    text-align: center;
-    padding-bottom: 12px;
-    margin: 0 32px;
-    border-bottom: 1px solid rgba(#fff, 0.3);
-
-    span {
-      text-align: center;
-      @include text(16px, 16px, 100, #fff);
-      letter-spacing: 2.3px;
-    }
+    width: 100%;
+    margin: 24px 0;
   }
 
   &-welcome {
@@ -36,18 +26,38 @@
     border-bottom: 1px solid rgba(#fff, 0.3);
   }
 
-  &-links {
-    &__list {
-      margin-top: 24px;
+  &-hide {
+    &__btn {
+      width: 32px;
+      aspect-ratio: 1/1;
+      border: 1px solid #fff;
+      border-radius: 4px;
+      @include flex(center, center);
+
+      svg {
+        color: #fff;
+        font-size: 20px;
+      }
     }
 
+    &__wrapper {
+      margin: 32px 24px;
+      @include flex(flex-end, center);
+    }
+  }
+
+  &-links {
+    &__list {
+      margin-top: 32px;
+    }
+    
     &__link {
       position: relative;
       display: inline-block;
       width: 100%;
       @include text(18px, 24px, 300, #fff);
       text-transform: uppercase;
-      padding: 14px 32px;
+      padding: 14px 24px;
       transition: 0.3s ease;
 
       @include flex(flex-start, flex-start);

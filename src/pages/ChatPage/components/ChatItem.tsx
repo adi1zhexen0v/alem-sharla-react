@@ -22,7 +22,7 @@ const ChatItem: React.FC<ChatItemProps> = ({ correspondence }) => {
         </div>
         <div className="chat-item__info">
           <h4 className="chat-item__name">{profile && profile.username ? profile.username : correspondence.id}</h4>
-          <p className="chat-item__message">{truncateText(lastMessage, 40)}</p>
+          <p className="chat-item__message">{truncateText(lastMessage, 30)}</p>
         </div>
       </div>
       {/* <p className="chat-item__message">{truncateText(lastMessage, 40)}</p> */}

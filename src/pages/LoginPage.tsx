@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 import AuthInput from "../components/AuthInput";
 import { firebaseAuthSignIn } from "../firebase/auth";
-import { CHAT_ROUTE } from "../utils/consts";
+import { APPLICATIONS_ROUTE } from "../utils/consts";
 import { getErrorMessage } from "../utils/errors";
 import { useAppDispatch } from "../hooks/reduxHooks";
 import { setUser } from "../redux/slices/userSlice";
@@ -34,7 +34,7 @@ const LoginPage: React.FC = () => {
             id: uid,
           }),
         );
-        navigate(CHAT_ROUTE);
+        navigate(APPLICATIONS_ROUTE);
       }
     } else {
       setError("Ошибка: Заполните все поля");

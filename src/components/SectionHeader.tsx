@@ -8,10 +8,12 @@ import { Status } from "../utils/interfaces";
 interface SectionHeaderProps {
   searchIsNumeric: boolean;
   searchPlaceholder: string;
-  activeStatus: string;
+  activeStatus: string | number;
   numberOfNewItems: number;
-  statuses: Status[];
-  setActiveStatus: (value: string) => void;
+  statusesIsStrings: boolean;
+  statusesAsStrings?: string[];
+  statusesAsStatuses? : Status[];
+  setActiveStatus: (value: string | number) => void;
   handleChangeSearchText: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -20,28 +22,46 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
   searchPlaceholder,
   activeStatus,
   numberOfNewItems,
-  statuses,
+  statusesIsStrings,
+  statusesAsStrings,
+  statusesAsStatuses,
   setActiveStatus,
   handleChangeSearchText,
 }) => {
+
   return (
     <div className="section-header">
-      <div className="section-tabs">{
-        statuses.map((status) => (
-          <div
-            className={
-              activeStatus === status.eng
-                ? "section-tabs__item section-tabs__item-active"
-                : "section-tabs__item"
-            }
-            onClick={() => setActiveStatus(status.eng)}>
-            {status.rus}
-            {status.eng === StatusTypes.NEW && numberOfNewItems > 0 && (
-              <div className="section-tabs__item-amount">{numberOfNewItems}</div>
-            )}
-          </div>
-        ))
-      }</div>
+      <div className="section-tabs">
+        <div className="section-tabs__wrapper">{
+          !statusesIsStrings ? statusesAsStatuses!.map((status) => (
+            <div
+              className={
+                activeStatus === status.eng
+                  ? "section-tabs__item section-tabs__item-active"
+                  : "section-tabs__item"
+              }
+              onClick={() => setActiveStatus(status.eng)}>
+              {status.rus}
+              {status.eng === StatusTypes.NEW && numberOfNewItems > 0 && (
+                <div className="section-tabs__item-amount">{numberOfNewItems}</div>
+              )}
+            </div>
+          )) : statusesAsStrings!.map((status, index) => (
+            <div
+              className={
+                activeStatus === index + 1
+                  ? "section-tabs__item section-tabs__item-active"
+                  : "section-tabs__item"
+              }
+              onClick={() => setActiveStatus(index + 1)}>
+              {status}
+              {index === 0 && numberOfNewItems > 0 && (
+                <div className="section-tabs__item-amount">{numberOfNewItems}</div>
+              )}
+            </div>
+          ))
+        }</div>
+      </div>
       <div className="section-search">
         <input
           type="text"

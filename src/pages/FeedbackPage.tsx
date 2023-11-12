@@ -38,7 +38,7 @@ const FeedbackPage: React.FC = () => {
     fetchFeedback();
   }, [dispatch]);
 
-  const setActiveStatus = (status: string) => {
+  const setActiveStatus = (status: string | number) => {
     dispatch(changeFeedbackActiveStatus(status));
   };
 
@@ -55,7 +55,8 @@ const FeedbackPage: React.FC = () => {
           searchPlaceholder="Поиск..."
           activeStatus={activeStatus}
           numberOfNewItems={numberOfNewFeedback}
-          statuses={GeneralStatuses}
+          statusesIsStrings={false}
+          statusesAsStatuses={GeneralStatuses}
           setActiveStatus={setActiveStatus}
           handleChangeSearchText={handleChangeSearchText}
         />

@@ -193,31 +193,109 @@
       @include text(28px, 36px, 700, #000);
       margin-bottom: 16px;
     }
-
-    &__header {
-      @include flex();
+    &__date{
+      @include flex(flex-end, center);
+      gap: 8px;
       margin-bottom: 16px;
 
-      &-name{
-        @include flex(flex-start, center);
-        gap: 8px;
+      h6 {
+        @include text(14px, 16px, 500, $gray);
+      }
 
-        h3 {
-          @include text(18px, 24px, 700, $dark-gray);
+      svg {
+        color: $gray;
+        font-size: 14px;
+      }
+    }
+    &__btn {
+      padding: 10px 16px;
+      background: #fff;
+      border: 1px solid rgba($gray, 0.1);
+      border-radius: 8px;
+      box-shadow: 0px 0px 7px 0px rgba($gray, 0.4);
+      margin-bottom: 16px;
+      cursor: pointer;
+
+      @include flex();
+      &-part {
+        &:first-child {
+          h3 {
+            @include text(18px, 24px, 700, $dark-gray);
+          }
+
+          h6 {
+            @include text(16px, 19px, 600, $green);
+          }
+        }
+
+        &:last-child {
+          svg {
+            font-size: 18px;
+            color: $green;
+          }
+        }
+      }
+    }
+
+    &__statuses {
+      padding: 16px 12px;
+      background: #fff;
+      background: #fff;
+      border: 1px solid rgba($gray, 0.1);
+      border-radius: 12px;
+      box-shadow: 0px 0px 5px 0px rgba($gray, 0.2);
+
+      &-item {
+        padding: 14px 12px;
+        @include text(17px, 17px, 600, $gray);
+        cursor: pointer;
+
+        &-active {
+          border-radius: 6px;
+          background: $green-button;
+          color: $green;
         }
       }
 
-      &-date{
-        @include flex(flex-start, center);
-        gap: 8px;
+      &-line {
+        height: 1px;
+        background: rgba($gray, 0.2);
+      }
 
-        h6 {
-          @include text(14px, 16px, 500, $gray);
+      &-btn {
+        padding: 14px 40px;
+        background: $green-button;
+        border-radius: 6px;
+        transition: 0.2s ease;
+        @include text(16px, 16px, 600, $green);
+
+        &:disabled {
+          cursor: not-allowed;
+          background: rgba($dark-gray, 0.1);
+          color: $dark-gray;
+          pointer-events: none;
         }
 
-        svg {
-          color: $gray;
-          font-size: 14px;
+        &:hover:enabled {
+          cursor: pointer;
+          background: rgba($green-hover, 0.55);
+        }
+
+        &-wrapper {
+          margin-top: 16px;
+          gap: 16px;
+          @include flex(flex-end, center);
+        }
+
+        &-loader {
+          width: 44px;
+          height: 44px;
+          border: 5px solid $green;
+          border-bottom-color: transparent;
+          border-radius: 50%;
+          display: inline-block;
+          box-sizing: border-box;
+          animation: rotation 1s linear infinite;
         }
       }
     }

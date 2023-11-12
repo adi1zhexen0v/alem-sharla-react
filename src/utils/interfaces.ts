@@ -60,10 +60,10 @@ export interface Application {
   processingCost: number;
   processingTime: number;
   questionnaires: QuestionnaireAnswer[];
-  questionnaireIDs: DocumentReference[];
+  questionnaireIDs?: DocumentReference[];
   serviceFeeTenge: number;
   standartVisaApplicationTimeDays: number;
-  status: string;
+  status: number;
   user: Profile | null;
   userID: string;
   visaEntryType: string;

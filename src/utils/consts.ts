@@ -16,6 +16,15 @@ export const GREEN_CARDS_APPLICATIONS_COLLECTION: string = 'greenCardApplication
 
 export const NUMBER_REGEXP: RegExp = /^\d+$/;
 
+export const ApplicationsStatuses: string[] = [
+  'Заявка подана',
+  'Визовый специалист проверяет данные',
+  'Ваши документы подготавливаются для сдачи в посольство',
+  'Ваши документы сданы в посольство',
+  'Выбираем доступные слоты для собеседования в посольство',
+  'Собеседование назначено'
+];
+
 export const GeneralStatuses: Status[] = [
   {
     eng: StatusTypes.NEW,

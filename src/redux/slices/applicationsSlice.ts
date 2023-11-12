@@ -3,13 +3,13 @@ import { Application } from '../../utils/interfaces';
 
 interface ApplicationsState {
   applicationsList: Application[];
-  activeStatus: string;
+  activeStatus: number;
   searchText: string;
 }
 
 const initialState: ApplicationsState = {
   applicationsList: [],
-  activeStatus: 'new',
+  activeStatus: 1,
   searchText: ''
 };
 
@@ -27,7 +27,7 @@ export const applicationsSlice = createSlice({
       const { id, status } = action.payload;
       const applicationItem = state.applicationsList.find(item => item.id === id);
       if (applicationItem) {
-        applicationItem.status = status;
+        applicationItem.status = +status;
       }
     },
     changeApplicationsActiveStatus(state, action) {

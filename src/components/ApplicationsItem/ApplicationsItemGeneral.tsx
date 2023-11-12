@@ -3,19 +3,12 @@ import { getVisaEntryType, getVisaType } from "../../utils/utils";
 import ApplicationsItemBooleanToggle from "../ApplicationsItemBooleanToggle";
 import ApplicationsItemDate from "./ApplicationsItemDate";
 import ApplicationsItemBlock from "./ApplicationsItemBlock";
-import { APPLICATIONS_COLLECTION, GeneralStatuses } from "../../utils/consts";
-import { useAppSelector } from "../../hooks/reduxHooks";
-import { RootState } from "../../redux/store";
-import { updateApplicationsStatus } from "../../redux/slices/applicationsSlice";
-import StatusChangeButton from "../StatusChangeButton";
+import { APPLICATIONS_COLLECTION } from "../../utils/consts";
 
 const ApplicationsItemGeneral: React.FC<ApplicationItemProps> = ({
   application,
 }) => {
   const amountOfApplicants = application.applicants.length;
-  const activeStatus: string = useAppSelector(
-    (state: RootState) => state.applications.activeStatus,
-  );
 
   return (
     <div className="applications-item__section">
@@ -75,15 +68,6 @@ const ApplicationsItemGeneral: React.FC<ApplicationItemProps> = ({
           />
         </div>
       </div>
-      <StatusChangeButton
-        id={application.id}
-        collection={APPLICATIONS_COLLECTION}
-        activeStatus={activeStatus}
-        statuses={GeneralStatuses}
-        bottomOffset={8}
-        topOffset={3}
-        dispatchMethod={updateApplicationsStatus}
-      />
     </div>
   );
 };

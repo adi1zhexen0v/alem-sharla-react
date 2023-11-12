@@ -5,6 +5,7 @@ import chatReducer from './slices/chatSlice';
 import feedbackReducer from './slices/feedbackSlice';
 import greenCardApplicationsReducer from './slices/greenCardApplicationsSlice';
 import profilesReducer from './slices/profilesSlice';
+import settingsReducer from './slices/settingsSlice';
 
 const store = configureStore({
   reducer: {
@@ -13,7 +14,8 @@ const store = configureStore({
     chat: chatReducer,
     feedback: feedbackReducer,
     greenCardApplications: greenCardApplicationsReducer,
-    profiles: profilesReducer
+    profiles: profilesReducer,
+    settings: settingsReducer
   },
 });
 

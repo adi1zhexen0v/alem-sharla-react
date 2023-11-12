@@ -1,4 +1,4 @@
-import { doc, collection, getDocs, updateDoc, getDoc, DocumentReference, deleteField } from "firebase/firestore";
+import { doc, collection, getDocs, updateDoc, getDoc, DocumentReference, deleteField, query, orderBy } from "firebase/firestore";
 import { firestore } from "./config";
 import { Application, Feedback, GreenCardApplication, QuestionnaireAnswer, Profile } from "../utils/interfaces";
 import { APPLICATIONS_COLLECTION, FEEDBACK_COLLECTION, GREEN_CARDS_APPLICATIONS_COLLECTION, PROFILES_COLLECTION } from "../utils/consts";
@@ -6,7 +6,7 @@ import { StatusTypes } from "../utils/enums";
 
 export const getAllApplications = async () => {
   const applicationsRef = collection(firestore, APPLICATIONS_COLLECTION);
-  const querySnapshot = await getDocs(applicationsRef);
+  const querySnapshot = await getDocs(query(applicationsRef, orderBy("createdAt", "desc")));
 
   const applications: Application[] = [];
 
@@ -23,7 +23,8 @@ export const getAllApplications = async () => {
       application.user = user;
     }
 
-    applications.push(application);
+    const {questionnaireIDs, ...rest} = application;
+    applications.push(rest);
   }
 
   return applications;
@@ -51,7 +52,7 @@ const getQuestionnaires = async (questionnaireIDs: DocumentReference[]) => {
   return questionnaires;
 }
 
-export const updateStatus = async(id: string, collection: string, status: string) => {
+export const updateStatus = async(id: string, collection: string, status: string | number) => {
   const docRef = doc(firestore, collection, id);
   await updateDoc(docRef, {
     status
@@ -112,7 +113,7 @@ export const getAllProfiles = async () => {
 
 export const getAllGreenCardApplications = async () => {
   const greenCardApplicationsRef = collection(firestore, GREEN_CARDS_APPLICATIONS_COLLECTION);
-  const querySnapshot = await getDocs(greenCardApplicationsRef);
+  const querySnapshot = await getDocs(query(greenCardApplicationsRef, orderBy("createdAt", "desc")));
 
   const greenCardApplications: GreenCardApplication[] = [];
 
