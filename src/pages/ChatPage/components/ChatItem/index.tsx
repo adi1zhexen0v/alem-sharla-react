@@ -1,6 +1,7 @@
-import { Correspondence } from "../../../utils/interfaces";
-import { countUnseenMessages, getLastMessageText, truncateText } from "../../../utils/utils";
-const userDefaultProfile = require('../../../assets/img/ava-default.png');
+import { Correspondence } from "../../../../utils/interfaces";
+import { countUnseenMessages, getLastMessageText, truncateText } from "../../../../utils/utils";
+import StatusChangeButton from "./StatusChangeButton";
+const userDefaultProfile = require('../../../../assets/img/ava-default.png');
 
 interface ChatItemProps {
 	correspondence: Correspondence;
@@ -21,14 +22,12 @@ const ChatItem: React.FC<ChatItemProps> = ({ correspondence }) => {
           )}
         </div>
         <div className="chat-item__info">
-          <h4 className="chat-item__name">{profile && profile.username ? profile.username : correspondence.id}</h4>
+          <h4 className="chat-item__name">{profile && profile.username ? profile.username : correspondence.id.substring(0, 20) + "..."}</h4>
           <p className="chat-item__message">{truncateText(lastMessage, 30)}</p>
         </div>
       </div>
-      {/* <p className="chat-item__message">{truncateText(lastMessage, 40)}</p> */}
-
       <div className="chat-item__part">
-       
+        <StatusChangeButton id={correspondence.id} isCompleted={correspondence.isCompleted}/>
       </div>  
     </div>
 	);

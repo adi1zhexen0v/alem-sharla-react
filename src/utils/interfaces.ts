@@ -20,7 +20,7 @@ export interface Message {
 export interface Correspondence {
   id: string;
   messages: Message[]; 
-  status: string;
+  isCompleted: boolean;
   profile?: Profile;
 }
 
@@ -64,6 +64,7 @@ export interface Application {
   serviceFeeTenge: number;
   standartVisaApplicationTimeDays: number;
   status: number;
+  statusType: string;
   user: Profile | null;
   userID: string;
   visaEntryType: string;

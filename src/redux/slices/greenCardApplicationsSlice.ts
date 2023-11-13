@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { GreenCardApplication } from '../../utils/interfaces';
+import { StatusTypes } from '../../utils/enums';
 
 interface GreenCardApplicationsState {
   greenCardApplicationsList: GreenCardApplication[];
@@ -9,7 +10,7 @@ interface GreenCardApplicationsState {
 
 const initialState: GreenCardApplicationsState = {
   greenCardApplicationsList: [],
-  activeStatus: 'new',
+  activeStatus: StatusTypes.NEW,
   searchText: ''
 };
 

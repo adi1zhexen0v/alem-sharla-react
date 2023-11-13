@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { Feedback } from '../../utils/interfaces';
+import { StatusTypes } from '../../utils/enums';
 
 interface FeedbackState {
   feedbackList: Feedback[];
@@ -9,7 +10,7 @@ interface FeedbackState {
 
 const initialState: FeedbackState = {
   feedbackList: [],
-  activeStatus: 'new',
+  activeStatus: StatusTypes.NEW,
   searchText: ''
 };
 

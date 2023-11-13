@@ -55,7 +55,7 @@ const GreenCardsPage: React.FC = () => {
     fetchGreenCardApplications();
   }, [dispatch]);
 
-  const setActiveStatus = (status: string | number) => {
+  const setActiveStatus = (status: string) => {
     dispatch(changeGCApplicationsActiveStatus(status));
   };
 
@@ -72,8 +72,7 @@ const GreenCardsPage: React.FC = () => {
           searchPlaceholder="Поиск по номеру заявки..."
           activeStatus={activeStatus}
           numberOfNewItems={numberOfNewGCApplications}
-          statusesIsStrings={false}
-          statusesAsStatuses={GreenCardsStatuses}
+          statuses={GreenCardsStatuses}
           setActiveStatus={setActiveStatus}
           handleChangeSearchText={handleChangeSearchText}
         />

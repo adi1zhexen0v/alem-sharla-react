@@ -12,12 +12,12 @@ export const selectAllMessages = (callback: (data: Correspondence[]) => void) =>
     snapshot.forEach((childSnapshot) => {
       const messageData = childSnapshot.val();
 
-      const { status, ...messages } = messageData;
+      const { isCompleted, ...messages } = messageData;
 
       messagesData.push({
         id: childSnapshot.key,
         messages: Object.values(messages),
-        status: status,
+        isCompleted: !!isCompleted,
       });
     });
     callback(messagesData);
@@ -43,6 +43,17 @@ export const insertNewMessage = (userId: string, text: string) => {
     console.error(error);
   }
 };
+
+export const updateCorrespondenceIsCompleted = async (correspondenceId: string, isCompleted: boolean) => {
+  try {
+    const correspondenceRef = ref(database, `/messages/${correspondenceId}`);
+    update(correspondenceRef, {
+      isCompleted
+    })
+  } catch (error) {
+    console.error(error);
+  }
+}
 
 // export const updateAllMessagesAsSeen = async (
 //   userId: string,

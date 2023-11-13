@@ -21,6 +21,7 @@ import ApplicationsItemCost from "./ApplicationsItemCost";
 import ApplicationsItemApplicants from "./ApplicationsItemApplicants";
 import ApplicationsItemProfile from "./ApplicationsItemProfile";
 import ApplicationsItemQuestionnaire from "./ApplicationsItemQuestionnaire";
+import { StatusTypes } from "../../utils/enums";
 
 export interface ApplicationItemProps {
   application: Application;
@@ -58,7 +59,7 @@ const ApplicationsItem: React.FC<ApplicationItemProps> = ({ application }) => {
 
   const changeStatus = async (status: number) => {
     setIsLoading(true);
-    await updateStatus(application.id, APPLICATIONS_COLLECTION, status);
+    await updateStatus(application.id, APPLICATIONS_COLLECTION, status, false);
     dispatch(updateApplicationsStatus({id: application.id, status}));
     setIsLoading(true);
     setListIsOpen(false);
@@ -138,7 +139,7 @@ const ApplicationsItem: React.FC<ApplicationItemProps> = ({ application }) => {
         )
       )}
 
-      { application.status === 1 && <div className="applications-item__new">Новое</div> }
+      { application.statusType === StatusTypes.NEW && <div className="applications-item__new">Новое</div> }
     </div>
   );
 };

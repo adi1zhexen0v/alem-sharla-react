@@ -23,6 +23,10 @@ export const getAllApplications = async () => {
       application.user = user;
     }
 
+    if (!application.hasOwnProperty('statusType')) {
+      application.statusType = StatusTypes.NEW;
+    }
+
     const {questionnaireIDs, ...rest} = application;
     applications.push(rest);
   }
@@ -52,9 +56,11 @@ const getQuestionnaires = async (questionnaireIDs: DocumentReference[]) => {
   return questionnaires;
 }
 
-export const updateStatus = async(id: string, collection: string, status: string | number) => {
+export const updateStatus = async(id: string, collection: string, status: string | number, isStatusType: boolean) => {
   const docRef = doc(firestore, collection, id);
-  await updateDoc(docRef, {
+  await updateDoc(docRef, isStatusType ? {
+    statusType: status
+  } : {
     status
   });
 }

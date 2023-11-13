@@ -6,16 +6,17 @@ import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
 import SectionHeader from "../components/SectionHeader";
 import { RootState } from "../redux/store";
 import { addApplications, changeApplicationsActiveStatus, changeApplicationsSearchText } from "../redux/slices/applicationsSlice";
-import { ApplicationsStatuses, GeneralStatuses } from "../utils/consts";
+import { GeneralStatuses } from "../utils/consts";
 import { Application } from "../utils/interfaces";
+import { StatusTypes } from "../utils/enums";
 
 const ApplicationsPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   
   const applications: Application[] = useAppSelector((state: RootState) => state.applications.applicationsList,);
-  const numberOfNewApplications: number = useAppSelector((state: RootState) => state.applications.applicationsList.filter((item) => item.status === 1).length);
-  const activeStatus: number = useAppSelector((state: RootState) => state.applications.activeStatus);
+  const numberOfNewApplications: number = useAppSelector((state: RootState) => state.applications.applicationsList.filter((item) => item.statusType === StatusTypes.NEW).length);
+  const activeStatus: string = useAppSelector((state: RootState) => state.applications.activeStatus);
   const searchText: string = useAppSelector((state: RootState) => state.applications.searchText);
 
   useEffect(() => {
@@ -28,7 +29,7 @@ const ApplicationsPage: React.FC = () => {
     fetchApplications();
   }, [dispatch]);
 
-  const setActiveStatus = (status: string | number) => {
+  const setActiveStatus = (status: string) => {
     dispatch(changeApplicationsActiveStatus(status));
   };
 
@@ -39,14 +40,13 @@ const ApplicationsPage: React.FC = () => {
   return (
     <div className="content">
       <div className="applications">
-        <h2 className="section-title">Заявки на Визу</h2>
+        <h2 className="section-title">Заявки на Туристическую Визу</h2>
         <SectionHeader
           searchIsNumeric={true}
           searchPlaceholder="Поиск по номеру заявки..."
           activeStatus={activeStatus}
           numberOfNewItems={numberOfNewApplications}
-          statusesIsStrings={true}
-          statusesAsStrings={ApplicationsStatuses}
+          statuses={GeneralStatuses}
           setActiveStatus={setActiveStatus}
           handleChangeSearchText={handleChangeSearchText}
         />
@@ -55,7 +55,7 @@ const ApplicationsPage: React.FC = () => {
             <Loader />
           ) : (
             <ApplicationsList applications={
-              applications.filter((item) => item.status === activeStatus && item.orderID.toString().includes(searchText))
+              applications.filter((item) => item.statusType === activeStatus && item.orderID.toString().includes(searchText))
             } />
           )}
         </div>

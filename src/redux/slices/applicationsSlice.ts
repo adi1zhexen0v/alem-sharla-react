@@ -1,15 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { Application } from '../../utils/interfaces';
+import { StatusTypes } from '../../utils/enums';
 
 interface ApplicationsState {
   applicationsList: Application[];
-  activeStatus: number;
+  activeStatus: string;
   searchText: string;
 }
 
 const initialState: ApplicationsState = {
   applicationsList: [],
-  activeStatus: 1,
+  activeStatus: StatusTypes.NEW,
   searchText: ''
 };
 
@@ -30,6 +31,13 @@ export const applicationsSlice = createSlice({
         applicationItem.status = +status;
       }
     },
+    updateApplicationsStatusType(state, action) {
+      const { id, statusType } = action.payload;
+      const applicationItem = state.applicationsList.find(item => item.id === id);
+      if (applicationItem) {
+        applicationItem.statusType = statusType;
+      }
+    },
     changeApplicationsActiveStatus(state, action) {
       state.activeStatus = action.payload;
     },
@@ -39,5 +47,5 @@ export const applicationsSlice = createSlice({
   },
 });
 
-export const { addApplications, updateApplicationsStatus, changeApplicationsActiveStatus, changeApplicationsSearchText } = applicationsSlice.actions;
+export const { addApplications, updateApplicationsStatus, updateApplicationsStatusType, changeApplicationsActiveStatus, changeApplicationsSearchText } = applicationsSlice.actions;
 export default applicationsSlice.reducer;

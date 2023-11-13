@@ -1,17 +1,19 @@
 import { useState } from "react";
+import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { updateStatus } from "../firebase/firestore";
 import { useAppDispatch } from "../hooks/reduxHooks";
 import { Status } from "../utils/interfaces";
-import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 
 interface StatusChangeProps {
   id: string;
-  status: string;
+  status?: string;
+  statusType?: string;
 }
 
 interface StatusChangeButtonProps {
+  isStatusType?: boolean;
   statuses: Status[];
   activeStatus: string;
   collection: string;
@@ -24,6 +26,7 @@ interface StatusChangeButtonProps {
 
 const StatusChangeButton: React.FC<StatusChangeButtonProps> = ({
   id,
+  isStatusType = false,
   collection,
   activeStatus,
   statuses,
@@ -43,9 +46,9 @@ const StatusChangeButton: React.FC<StatusChangeButtonProps> = ({
 
   const changeStatus = async (status: string) => {
     setIsLoading(true);
-    await updateStatus(id, collection, status);
-    dispatch(dispatchMethod({ id, status }));
-    setIsLoading(true);
+    await updateStatus(id, collection, status, isStatusType);
+    dispatch(dispatchMethod(isStatusType ? { id, statusType: status } : { id, status }));
+    setIsLoading(false);
     setIsOpen(false);
   };
 

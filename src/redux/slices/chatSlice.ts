@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { Correspondence } from '../../utils/interfaces';
+import { StatusTypes } from '../../utils/enums';
 
 interface ChatState {
   activeStatus: string;
@@ -8,7 +9,7 @@ interface ChatState {
 }
 
 const initialState: ChatState = {
-  activeStatus: 'new',
+  activeStatus: StatusTypes.NEW,
   chatList: [],
   searchText: ''
 };
@@ -25,9 +26,14 @@ export const correspondenceSlice = createSlice({
     },
     changeChatSearchText(state, action) {
       state.searchText = action.payload;
+    },
+    changeChatIsCompleted(state, action) {
+      const { id, isCompleted } = action.payload;
+      const correspondence = state.chatList.find(item => item.id === id);
+      correspondence!.isCompleted = isCompleted;
     }
   },
 });
 
-export const { setChat, changeChatActiveStatus, changeChatSearchText } = correspondenceSlice.actions;
+export const { setChat, changeChatActiveStatus, changeChatSearchText, changeChatIsCompleted } = correspondenceSlice.actions;
 export default correspondenceSlice.reducer;

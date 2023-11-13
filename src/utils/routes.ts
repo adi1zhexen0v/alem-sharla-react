@@ -19,6 +19,10 @@ export const privateRoutes = [
     element: ApplicationsPage
   },
   {
+    path: CHAT_ROUTE,
+    element: ChatPage
+  },
+  {
     path: FEEDBACK_ROUTE,
     element: FeedbackPage
   },

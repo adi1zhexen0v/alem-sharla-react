@@ -7,6 +7,7 @@ import { RootState } from "../redux/store";
 import StatusChangeButton from "./StatusChangeButton";
 import { FEEDBACK_COLLECTION, GeneralStatuses } from "../utils/consts";
 import { updateFeedbackStatus } from "../redux/slices/feedbackSlice";
+import { StatusTypes } from "../utils/enums";
 
 interface FeedbackItemProps {
   feedback: Feedback;
@@ -48,7 +49,7 @@ const FeedbackItem: React.FC<FeedbackItemProps> = ({ feedback }) => {
         dispatchMethod={updateFeedbackStatus}
       />
 
-      { activeStatus === 'new' && <div className="feedback-item__new">Новое</div> }
+      { activeStatus === StatusTypes.NEW && <div className="feedback-item__new">Новое</div> }
     </div>
   );
 };

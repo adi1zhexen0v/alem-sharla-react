@@ -21,7 +21,7 @@ export function useMessages() {
         const correspondence: Correspondence = {
           id: correspondenceData.id,
           messages: correspondenceData.messages,
-          status: correspondenceData.status
+          isCompleted: correspondenceData.isCompleted
         };
 
         if (profile) {

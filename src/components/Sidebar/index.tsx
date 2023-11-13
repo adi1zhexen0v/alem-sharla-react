@@ -1,6 +1,4 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faList,
   faComments,
   faMap,
   faUsers,
@@ -8,6 +6,7 @@ import {
   faAngleLeft,
   faArrowRightFromBracket,
   faAngleRight,
+  faEarthAmericas,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   APPLICATIONS_ROUTE,
@@ -36,10 +35,11 @@ const Sidebar = () => {
       <div className="sidebar-part">
         <ul className="sidebar-links__list">
           <SidebarLink name="Скрыть меню" icon={sidebarIsFull ? faAngleLeft : faAngleRight} func={() => dispatch(toggleSidebar(null))}/>
-          <SidebarLink name="Заявки на Визу" link={APPLICATIONS_ROUTE} icon={faList} />
+          <SidebarLink name="Туристические визы" link={APPLICATIONS_ROUTE} icon={faEarthAmericas} />
+          <SidebarLink name="Грин-карты" link={GREEN_CARDS_ROUTE} icon={faAddressCard}/>
+          <SidebarLink name="Чат" link={CHAT_ROUTE} icon={faComments} />
           <SidebarLink name="Обратная связь" link={FEEDBACK_ROUTE} icon={faMap}/>
           <SidebarLink name="Пользователи" link={USERS_ROUTE} icon={faUsers} />
-          <SidebarLink name="Заявки на Грин-карты" link={GREEN_CARDS_ROUTE} icon={faAddressCard}/>
         </ul>
       </div>
       <div className="sidebar-part">

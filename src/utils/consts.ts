@@ -40,6 +40,22 @@ export const GeneralStatuses: Status[] = [
   }
 ];
 
+
+export const ChatStatuses: Status[] = [
+  {
+    eng: 'new',
+    rus: 'Новые'
+  },
+  {
+    eng: 'seen',
+    rus: 'Прочитанные'
+  },
+  {
+    eng: 'completed',
+    rus: 'Завершенные'
+  }
+];
+
 export const FromAtoZSorting: string = "-name";
 export const FromZtoASorting: string = "+name";
 export const ProfilesSorting: Sort[] = [
