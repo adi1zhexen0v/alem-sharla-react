@@ -1,10 +1,15 @@
 import { Message } from './interfaces';
 
+interface lastMessage {
+  isManager: boolean;
+  text: string;
+}
+
 export const countUnseenMessages = (messages: Message[]): number => {
   return Object.values(messages).filter((message) => !message.isSeen).length;
 };
 
-export const getLastMessageText = (messages: Message[]): string => {
+export const getLastMessageText = (messages: Message[]): lastMessage => {
   let lastMessage: Message | null = null;
 
   for (const message of messages) {
@@ -13,11 +18,13 @@ export const getLastMessageText = (messages: Message[]): string => {
     }
   }
 
-  if (lastMessage) {
-    return lastMessage.text || (lastMessage.imageURL ? '📷 Изображение' : lastMessage.fileURL ? '📄 Файл' : '');
+  const lastMessageIsManager: boolean = lastMessage!.isManager;
+  const lastMessageText: string = lastMessage!.text || (lastMessage!.imageURL ? '📷 Изображение' : lastMessage!.fileURL ? '📄 Файл' : '');
+  
+  return { 
+    isManager: lastMessageIsManager,
+    text: lastMessageText
   }
-
-  return '';
 };
 
 const getZero = (num: number): string => {

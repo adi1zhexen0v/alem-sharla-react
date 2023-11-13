@@ -1,7 +1,7 @@
 import { ref, set, update, onValue } from 'firebase/database';
 import { v4 as uuidv4 } from 'uuid';
 import { database } from './config';
-import { Correspondence } from '../utils/interfaces';
+import { Correspondence, Message } from '../utils/interfaces';
 
 export const selectAllMessages = (callback: (data: Correspondence[]) => void) => {
   const messagesRef = ref(database, 'messages/');
@@ -26,10 +26,10 @@ export const selectAllMessages = (callback: (data: Correspondence[]) => void) =>
   return messagesListener;
 };
 
-export const insertNewMessage = (userId: string, text: string) => {
+export const insertNewMessage = async (userId: string, text: string): Promise<Message> => {
   try {
     const messageId = uuidv4().toUpperCase();
-    const message = {
+    const message: Message = {
       messageId,
       senderId: userId,
       displayName: 'Менеджер',
@@ -38,9 +38,13 @@ export const insertNewMessage = (userId: string, text: string) => {
       isManager: true,
       isSeen: true,
     };
-    set(ref(database, `messages/${userId}/${messageId}`), message);
+
+    await set(ref(database, `messages/${userId}/${messageId}`), message);
+
+    return message;
   } catch (error) {
     console.error(error);
+    throw error; 
   }
 };
 
@@ -55,20 +59,17 @@ export const updateCorrespondenceIsCompleted = async (correspondenceId: string, 
   }
 }
 
-// export const updateAllMessagesAsSeen = async (
-//   userId: string,
-//   correspondences: Chat,
-// ) => {
-//   try {
-//     const updatedCorrespondences = { ...correspondences };
-//     const userCorrespondence = updatedCorrespondences[userId];
+export const updateAllMessagesAsSeen = async (
+  userCorrespondence: Correspondence,
+) => {
+  try {
+    for (const message of userCorrespondence.messages) {
+      update(ref(database, `messages/${userCorrespondence.id}/${message.messageId}`), {
+        isSeen: true
+      });
+    }
 
-//     for (const messageId in userCorrespondence) {
-//       userCorrespondence[messageId].isSeen = true;
-//     }
-
-//     update(ref(database, `messages/${userId}`), userCorrespondence);
-//   } catch (error) {
-//     console.error(error);
-//   }
-// };
+  } catch (error) {
+    console.error(error);
+  }
+};

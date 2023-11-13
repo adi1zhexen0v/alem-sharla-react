@@ -3,7 +3,7 @@ import { DocumentReference } from "firebase/firestore";
 
 export interface Message {
   displayName: string;
-  isManager: false;
+  isManager: boolean;
   isSeen: boolean;
   imageURL?: string;
   fileURL?: string;

@@ -2,12 +2,13 @@ import { ChangeEvent } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
 import { useMessages } from "../../hooks/useMessages";
 import { RootState } from "../../redux/store";
-import { changeChatActiveStatus, changeChatSearchText } from "../../redux/slices/chatSlice";
+import { changeChatActiveStatus, changeChatSearchText, deleteSelectedCorrespondence } from "../../redux/slices/chatSlice";
 import Loader from "../../components/Loader";
 import ChatList from "./components/ChatList";
 import SectionHeader from "../../components/SectionHeader";
 import { ChatStatuses } from "../../utils/consts";
 import { Correspondence, Status } from "../../utils/interfaces";
+import ChatTyping from "./components/ChatTyping";
 
 
 const ChatPage: React.FC = () => {
@@ -16,20 +17,22 @@ const ChatPage: React.FC = () => {
   const correspondences: Correspondence[] = useAppSelector((state: RootState) => state.chat.chatList);
   const activeStatus: string = useAppSelector((state: RootState) => state.chat.activeStatus);
   const searchText: string = useAppSelector((state: RootState) => state.chat.searchText);
+  const selectedCorrespondence: Correspondence | null = useAppSelector((state: RootState) => state.chat.selectedCorrespondence);
+
+  const newCorrespondences: Correspondence[] = correspondences.filter(item => !item.isCompleted && item.messages.some(msg => !msg.isSeen));
+  const seenCorrespondences: Correspondence[] = correspondences.filter(item => !item.isCompleted && item.messages.every(msg => msg.isSeen));
+  const completedCorrespondences: Correspondence[] = correspondences.filter(item => item.isCompleted)
+  const sortedCorrespondences: Correspondence[] = activeStatus === ChatStatuses[0].eng ? newCorrespondences : activeStatus === ChatStatuses[1].eng ? seenCorrespondences : completedCorrespondences;
 
   const setActiveStatus = (status: string) => {
     dispatch(changeChatActiveStatus(status));
+    dispatch(deleteSelectedCorrespondence(null));
   };
 
   const handleChangeSearchText = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch(changeChatSearchText(e.target.value));
   };
-
-  const sortedCorrespondences: Correspondence[] =
-    activeStatus === ChatStatuses[0].eng ? correspondences.filter(item => !item.isCompleted && item.messages.some(msg => !msg.isSeen)) : 
-    activeStatus === ChatStatuses[1].eng ? correspondences.filter(item => !item.isCompleted && item.messages.every(msg => msg.isSeen)) :
-    correspondences.filter(item => item.isCompleted);
-
+  
   return (
     <div className="content">
       <div className="chat">
@@ -38,7 +41,7 @@ const ChatPage: React.FC = () => {
           searchIsNumeric={false}
           searchPlaceholder="Поиск по имени..."
           activeStatus={activeStatus}
-          numberOfNewItems={0}
+          numberOfNewItems={newCorrespondences.length}
           statuses={ChatStatuses}
           setActiveStatus={setActiveStatus}
           handleChangeSearchText={handleChangeSearchText}
@@ -49,7 +52,9 @@ const ChatPage: React.FC = () => {
               !!searchText ? sortedCorrespondences.filter(item => item.profile?.username.includes(searchText)) : sortedCorrespondences
             }/>
           }</div>
-          <div className="chat-part"></div>
+          <div className="chat-part">{
+            selectedCorrespondence && <ChatTyping/>
+          }</div>
         </div>
       </div>
     </div>

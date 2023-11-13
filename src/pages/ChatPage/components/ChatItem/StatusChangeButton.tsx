@@ -43,7 +43,7 @@ const StatusChangeButton: React.FC<StatusChangeButtonProps> = ({ id, isCompleted
             <div
                 className="chat-item__status-list__btn"
                 onClick={() => changeStatus(!isCompleted)}>
-                {isCompleted ? StatusRusTypes.COMPLETED : StatusRusTypes.PROCESS}
+                {isCompleted ? StatusRusTypes.PROCESS : StatusRusTypes.COMPLETED}
             </div>
           )}
         </div>

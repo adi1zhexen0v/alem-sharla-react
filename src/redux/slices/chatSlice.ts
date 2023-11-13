@@ -6,12 +6,14 @@ interface ChatState {
   activeStatus: string;
   chatList: Correspondence[];
   searchText: string;
+  selectedCorrespondence: Correspondence | null;
 }
 
 const initialState: ChatState = {
   activeStatus: StatusTypes.NEW,
   chatList: [],
-  searchText: ''
+  searchText: '',
+  selectedCorrespondence: null
 };
 
 export const correspondenceSlice = createSlice({
@@ -20,6 +22,22 @@ export const correspondenceSlice = createSlice({
   reducers: {
     setChat(state, action) {
       state.chatList = action.payload;
+    },
+    setSelectedCorrespondence(state, action) {
+      state.selectedCorrespondence = action.payload;
+    },
+    addMessageToSelectedCorrespondence(state, action) {
+      state.selectedCorrespondence?.messages.push(action.payload);
+    },
+    readAllMessagesIntoSelectedCorrespondence(state, _) {
+      const selectedCorrespondence: Correspondence = state.chatList.find(item => item.id === state.selectedCorrespondence?.id)!;
+      selectedCorrespondence.messages = selectedCorrespondence.messages.map(message => ({
+        ...message,
+        isSeen: true,
+      }));
+    },
+    deleteSelectedCorrespondence(state, _) {
+      state.selectedCorrespondence = null;
     },
     changeChatActiveStatus(state, action) {
       state.activeStatus = action.payload;
@@ -35,5 +53,5 @@ export const correspondenceSlice = createSlice({
   },
 });
 
-export const { setChat, changeChatActiveStatus, changeChatSearchText, changeChatIsCompleted } = correspondenceSlice.actions;
+export const { setChat, setSelectedCorrespondence, addMessageToSelectedCorrespondence, readAllMessagesIntoSelectedCorrespondence, deleteSelectedCorrespondence, changeChatActiveStatus, changeChatSearchText, changeChatIsCompleted } = correspondenceSlice.actions;
 export default correspondenceSlice.reducer;

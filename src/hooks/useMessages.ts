@@ -31,8 +31,6 @@ export function useMessages() {
         chat.push(correspondence);
       }
 
-      console.log(chat);
-
       dispatch(setChat(chat));
       setIsLoading(false);
     });

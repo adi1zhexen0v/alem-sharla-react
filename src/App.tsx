@@ -4,6 +4,7 @@ import { useAppDispatch } from "./hooks/reduxHooks";
 import { useAuth } from "./hooks/useAuth";
 import { useUpdateUser } from "./hooks/useUpdateUser";
 import { toggleActiveProfile } from "./redux/slices/profilesSlice";
+import { deleteSelectedCorrespondence } from "./redux/slices/chatSlice";
 import Sidebar from "./components/Sidebar";
 import AppRouter from "./components/AppRouter";
 import FullPageLoader from "./components/FullPageLoader";
@@ -14,6 +15,7 @@ const App: React.FC = () => {
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(toggleActiveProfile(null));
+    dispatch(deleteSelectedCorrespondence(null));
   }, [dispatch, location]);
 
   const { isAuth, loading, user } = useAuth();
