@@ -1,6 +1,6 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import { privateRoutes, publicRoutes } from "../utils/routes";
-import { APPLICATIONS_ROUTE, LOGIN_ROUTE } from "../utils/consts";
+import { TOURIST_VISAS_ROUTE, LOGIN_ROUTE } from "../utils/consts";
 import { useAuth } from "../hooks/useAuth";
 
 const AppRouter: React.FC = () => {
@@ -14,7 +14,7 @@ const AppRouter: React.FC = () => {
       ))}
       <Route
         path="*"
-        element={<Navigate to={isAuth ? APPLICATIONS_ROUTE : LOGIN_ROUTE} />}
+        element={<Navigate to={isAuth ? TOURIST_VISAS_ROUTE : LOGIN_ROUTE} />}
       />
     </Routes>
   );

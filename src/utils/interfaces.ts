@@ -11,6 +11,7 @@ export interface Message {
   senderId: string;
   sentDate: number;
   text?: string;
+  userDidSee?: boolean
 }
 
 // export interface Chat {
@@ -59,6 +60,7 @@ export interface Application {
   paymentTime: number;
   processingCost: number;
   processingTime: number;
+  phoneNumber: string;
   questionnaires: QuestionnaireAnswer[];
   questionnaireIDs?: DocumentReference[];
   serviceFeeTenge: number;
@@ -82,7 +84,7 @@ export interface Feedback {
   status: string;
 }
 
-interface ApplicantQuestionnaireAnswer {
+export interface ApplicantQuestionnaireAnswer {
   answer: string;
   question: string;
 }
@@ -131,4 +133,12 @@ export interface Sort {
   sort: string;
   name: string;
   icon: IconDefinition;
+}
+
+export interface ImmigrationVisa {
+  id: string;
+  user?: Profile | null;
+  userID: string;
+  status: string;
+  applicantQuestionnaireAnswers: ApplicantQuestionnaireAnswer[];
 }

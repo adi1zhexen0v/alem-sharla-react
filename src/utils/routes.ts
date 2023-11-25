@@ -2,9 +2,10 @@ import ApplicationsPage from '../pages/ApplicationsPage';
 import ChatPage from '../pages/ChatPage';
 import FeedbackPage from '../pages/FeedbackPage';
 import GreenCardsPage from '../pages/GreenCardsPage';
+import ImmigrationVisasPage from '../pages/ImmigrationVisasPage';
 import LoginPage from '../pages/LoginPage';
 import ProfilesPage from '../pages/ProfilesPage';
-import { APPLICATIONS_ROUTE, CHAT_ROUTE, FEEDBACK_ROUTE, GREEN_CARDS_ROUTE, LOGIN_ROUTE, USERS_ROUTE } from './consts';
+import { TOURIST_VISAS_ROUTE, CHAT_ROUTE, FEEDBACK_ROUTE, GREEN_CARDS_ROUTE, LOGIN_ROUTE, USERS_ROUTE, IMMIGRATION_VISAS_ROUTE } from './consts';
 
 export const publicRoutes = [
   {
@@ -15,7 +16,7 @@ export const publicRoutes = [
 
 export const privateRoutes = [
   {
-    path: APPLICATIONS_ROUTE,
+    path: TOURIST_VISAS_ROUTE,
     element: ApplicationsPage
   },
   {
@@ -33,5 +34,9 @@ export const privateRoutes = [
   {
     path: GREEN_CARDS_ROUTE,
     element: GreenCardsPage
+  },
+  {
+    path: IMMIGRATION_VISAS_ROUTE,
+    element: ImmigrationVisasPage
   }
 ];

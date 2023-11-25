@@ -13,7 +13,7 @@ import {
 import { updateStatus } from "../../firebase/firestore";
 import { Application } from "../../utils/interfaces";
 import { formatDate } from "../../utils/utils";
-import { APPLICATIONS_COLLECTION, ApplicationsStatuses } from "../../utils/consts";
+import { TOURIST_VISAS_COLLECTION, ApplicationsStatuses } from "../../utils/consts";
 import { useAppDispatch } from "../../hooks/reduxHooks";
 import { updateApplicationsStatus } from "../../redux/slices/applicationsSlice";
 import ApplicationsItemGeneral from "./ApplicationsItemGeneral";
@@ -59,7 +59,7 @@ const ApplicationsItem: React.FC<ApplicationItemProps> = ({ application }) => {
 
   const changeStatus = async (status: number) => {
     setIsLoading(true);
-    await updateStatus(application.id, APPLICATIONS_COLLECTION, status, false);
+    await updateStatus(application.id, TOURIST_VISAS_COLLECTION, status, false);
     dispatch(updateApplicationsStatus({id: application.id, status}));
     setIsLoading(true);
     setListIsOpen(false);
@@ -131,7 +131,7 @@ const ApplicationsItem: React.FC<ApplicationItemProps> = ({ application }) => {
         ) : activeIndex === 2 ? (
           <ApplicationsItemCost application={application} />
         ) : activeIndex === 3 ? (
-          <ApplicationsItemProfile user={application.user!} />
+          <ApplicationsItemProfile user={application.user!} phoneNumber={application.phoneNumber}/>
         ) : (
           <ApplicationsItemQuestionnaire
             questionnaires={application.questionnaires}

@@ -37,6 +37,7 @@ export const insertNewMessage = async (userId: string, text: string): Promise<Me
       sentDate: Date.now(),
       isManager: true,
       isSeen: true,
+      userDidSee: false
     };
 
     await set(ref(database, `messages/${userId}/${messageId}`), message);

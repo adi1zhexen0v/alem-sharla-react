@@ -1,11 +1,11 @@
 import { doc, collection, getDocs, updateDoc, getDoc, DocumentReference, deleteField, query, orderBy } from "firebase/firestore";
 import { firestore } from "./config";
-import { Application, Feedback, GreenCardApplication, QuestionnaireAnswer, Profile } from "../utils/interfaces";
-import { APPLICATIONS_COLLECTION, FEEDBACK_COLLECTION, GREEN_CARDS_APPLICATIONS_COLLECTION, PROFILES_COLLECTION } from "../utils/consts";
+import { Application, Feedback, GreenCardApplication, QuestionnaireAnswer, Profile, ImmigrationVisa } from "../utils/interfaces";
+import { TOURIST_VISAS_COLLECTION, FEEDBACK_COLLECTION, GREEN_CARDS_APPLICATIONS_COLLECTION, PROFILES_COLLECTION, IMMIGRATION_VISAS_COLLECTION } from "../utils/consts";
 import { StatusTypes } from "../utils/enums";
 
 export const getAllApplications = async () => {
-  const applicationsRef = collection(firestore, APPLICATIONS_COLLECTION);
+  const applicationsRef = collection(firestore, TOURIST_VISAS_COLLECTION);
   const querySnapshot = await getDocs(query(applicationsRef, orderBy("createdAt", "desc")));
 
   const applications: Application[] = [];
@@ -82,7 +82,7 @@ export const updateApplicationIsPaid = async (id: string, isPaid: boolean, colle
 
 
 export const updateApplicationInterviewDate = async (id: string, date: string) => {
-  const applicationRef = doc(firestore, APPLICATIONS_COLLECTION, id);
+  const applicationRef = doc(firestore, TOURIST_VISAS_COLLECTION, id);
   await updateDoc(applicationRef, {
     interViewDate: date
   });
@@ -146,4 +146,27 @@ export const getAllGreenCardApplications = async () => {
   }
 
   return greenCardApplications;
+}
+
+export const getAllImmigrationVisas = async () => {
+  const immigrationVisasRef = collection(firestore, IMMIGRATION_VISAS_COLLECTION);
+  const querySnapshot = await getDocs(immigrationVisasRef);
+
+  const immigrationVisas: ImmigrationVisa[] = [];
+
+  for (const doc of querySnapshot.docs) {
+    const immigrationVisa = doc.data() as ImmigrationVisa;
+    if (immigrationVisa.userID) {
+      const user = await getUser(immigrationVisa.userID);
+      immigrationVisa.user = user;
+    }
+
+    if (!immigrationVisa.hasOwnProperty('status')) {
+      immigrationVisa.status = StatusTypes.NEW;
+    }
+
+    immigrationVisas.push(immigrationVisa);
+  }
+
+  return immigrationVisas;
 }

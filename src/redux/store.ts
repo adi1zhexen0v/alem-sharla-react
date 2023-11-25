@@ -6,6 +6,7 @@ import feedbackReducer from './slices/feedbackSlice';
 import greenCardApplicationsReducer from './slices/greenCardApplicationsSlice';
 import profilesReducer from './slices/profilesSlice';
 import settingsReducer from './slices/settingsSlice';
+import immigrationVisaReducer from './slices/immigrationVisaSlice';
 
 const store = configureStore({
   reducer: {
@@ -15,8 +16,9 @@ const store = configureStore({
     feedback: feedbackReducer,
     greenCardApplications: greenCardApplicationsReducer,
     profiles: profilesReducer,
-    settings: settingsReducer
-  },
+    settings: settingsReducer,
+    immigrationVisas: immigrationVisaReducer
+  }
 });
 
 export type RootState = ReturnType<typeof store.getState>;

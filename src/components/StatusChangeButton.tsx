@@ -54,12 +54,19 @@ const StatusChangeButton: React.FC<StatusChangeButtonProps> = ({
 
   return (
     <div className="status">
-      <button className="status-btn" onClick={toogleButtonsList} style={{bottom: bottomOffset, right: rightOffset}}>
+      <button className="status-btn" 
+        onClick={toogleButtonsList} 
+        style={bottomOffset >= 0 ? {bottom: bottomOffset, right: rightOffset} : {top: Math.abs(bottomOffset), right: rightOffset}}
+      >
         Переместить
         <FontAwesomeIcon icon={faChevronDown} />
       </button>
       {isOpen && (
-        <div className="status-list" style={{right: rightOffset, top: `calc(100% - ${topOffset}px)`}}>
+        <div className="status-list" 
+          style={bottomOffset >= 0 ? 
+            {right: rightOffset, top: `calc(100% - ${topOffset}px)`} : 
+            {right: rightOffset, top: Math.abs(bottomOffset) + 42 + topOffset}
+          }>
           {isLoading ? (
             <div className="status-list__loading">Загрузка...</div>
           ) : (

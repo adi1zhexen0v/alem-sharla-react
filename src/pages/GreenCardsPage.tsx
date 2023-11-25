@@ -32,18 +32,10 @@ const GreenCardsPage: React.FC = () => {
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const greenCardApplications = useAppSelector(
-    (state: RootState) => state.greenCardApplications.greenCardApplicationsList
-  );
-  const numberOfNewGCApplications: number = useAppSelector(
-    (state: RootState) => state.greenCardApplications.greenCardApplicationsList.filter((item) => item.status === "new").length,
-  );
-  const activeStatus: string = useAppSelector(
-    (state: RootState) => state.greenCardApplications.activeStatus,
-  );
-  const searchText: string = useAppSelector(
-    (state: RootState) => state.greenCardApplications.searchText,
-  );
+  const greenCardApplications = useAppSelector((state: RootState) => state.greenCardApplications.greenCardApplicationsList);
+  const numberOfNewGCApplications: number = useAppSelector((state: RootState) => state.greenCardApplications.greenCardApplicationsList.filter((item) => item.status === "new").length);
+  const activeStatus: string = useAppSelector((state: RootState) => state.greenCardApplications.activeStatus);
+  const searchText: string = useAppSelector((state: RootState) => state.greenCardApplications.searchText);
 
   useEffect(() => {
     const fetchGreenCardApplications = async () => {

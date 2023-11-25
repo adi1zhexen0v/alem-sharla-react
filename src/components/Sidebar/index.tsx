@@ -7,13 +7,16 @@ import {
   faArrowRightFromBracket,
   faAngleRight,
   faEarthAmericas,
+  faBriefcase,
+  faList,
 } from "@fortawesome/free-solid-svg-icons";
 import {
-  APPLICATIONS_ROUTE,
+  TOURIST_VISAS_ROUTE,
   CHAT_ROUTE,
   FEEDBACK_ROUTE,
   GREEN_CARDS_ROUTE,
   USERS_ROUTE,
+  IMMIGRATION_VISAS_ROUTE,
 } from "../../utils/consts";
 import { firebaseAuthSignOut } from "../../firebase/auth";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
@@ -35,7 +38,9 @@ const Sidebar = () => {
       <div className="sidebar-part">
         <ul className="sidebar-links__list">
           <SidebarLink name="Скрыть меню" icon={sidebarIsFull ? faAngleLeft : faAngleRight} func={() => dispatch(toggleSidebar(null))}/>
-          <SidebarLink name="Туристические визы" link={APPLICATIONS_ROUTE} icon={faEarthAmericas} />
+          <SidebarLink name="Туристические визы" link={TOURIST_VISAS_ROUTE} icon={faEarthAmericas} />
+          {/* <SidebarLink name="Рабочие визы" link={TOURIST_VISAS_ROUTE} icon={faBriefcase} /> */}
+          <SidebarLink name="Иммиграционные визы" link={IMMIGRATION_VISAS_ROUTE} icon={faList} /> 
           <SidebarLink name="Грин-карты" link={GREEN_CARDS_ROUTE} icon={faAddressCard}/>
           <SidebarLink name="Чат" link={CHAT_ROUTE} icon={faComments} />
           <SidebarLink name="Обратная связь" link={FEEDBACK_ROUTE} icon={faMap}/>

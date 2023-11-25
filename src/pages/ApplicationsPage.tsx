@@ -14,7 +14,7 @@ const ApplicationsPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   
-  const applications: Application[] = useAppSelector((state: RootState) => state.applications.applicationsList,);
+  const applications: Application[] = useAppSelector((state: RootState) => state.applications.applicationsList);
   const numberOfNewApplications: number = useAppSelector((state: RootState) => state.applications.applicationsList.filter((item) => item.statusType === StatusTypes.NEW).length);
   const activeStatus: string = useAppSelector((state: RootState) => state.applications.activeStatus);
   const searchText: string = useAppSelector((state: RootState) => state.applications.searchText);

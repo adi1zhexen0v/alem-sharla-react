@@ -12,7 +12,8 @@ interface SectionHeaderProps {
   numberOfNewItems: number;
   statuses: Status[];
   setActiveStatus: (value: string) => void;
-  handleChangeSearchText: (e: ChangeEvent<HTMLInputElement>) => void;
+  hasSearch?: boolean;
+  handleChangeSearchText?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 const SectionHeader: React.FC<SectionHeaderProps> = ({
@@ -22,6 +23,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
   numberOfNewItems,
   statuses,
   setActiveStatus,
+  hasSearch = true,
   handleChangeSearchText,
 }) => {
   return (
@@ -42,20 +44,23 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
           </div>
         ))
       }</div>
-      <div className="section-search">
-        <input
-          type="text"
-          className="section-search__input"
-          placeholder={searchPlaceholder}
-          onChange={handleChangeSearchText}
-          onKeyPress={(e: KeyboardEvent<HTMLInputElement>) => {
-            if (searchIsNumeric && !NUMBER_REGEXP.test(e.key)) {
-              e.preventDefault(); 
-            }
-          }}
-        />
-        <FontAwesomeIcon icon={faMagnifyingGlass} />
-      </div>
+      {
+        hasSearch && <div className="section-search">
+          <input
+            type="text"
+            className="section-search__input"
+            placeholder={searchPlaceholder}
+            onChange={handleChangeSearchText}
+            onKeyPress={(e: KeyboardEvent<HTMLInputElement>) => {
+              if (searchIsNumeric && !NUMBER_REGEXP.test(e.key)) {
+                e.preventDefault(); 
+              }
+            }}
+          />
+          <FontAwesomeIcon icon={faMagnifyingGlass} />
+        </div>
+      }
+      
     </div>
   );
 };

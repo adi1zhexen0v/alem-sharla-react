@@ -3,7 +3,7 @@ import { getVisaEntryType, getVisaType } from "../../utils/utils";
 import ApplicationsItemBooleanToggle from "../ApplicationsItemBooleanToggle";
 import ApplicationsItemDate from "./ApplicationsItemDate";
 import ApplicationsItemBlock from "./ApplicationsItemBlock";
-import { APPLICATIONS_COLLECTION, GeneralStatuses } from "../../utils/consts";
+import { TOURIST_VISAS_COLLECTION, GeneralStatuses } from "../../utils/consts";
 import { useAppSelector } from "../../hooks/reduxHooks";
 import { RootState } from "../../redux/store";
 import { updateApplicationsStatusType } from "../../redux/slices/applicationsSlice";
@@ -46,7 +46,7 @@ const ApplicationsItemGeneral: React.FC<ApplicationItemProps> = ({
               <ApplicationsItemBooleanToggle
                 isPaid={application.isPaid}
                 id={application.id}
-                collection={APPLICATIONS_COLLECTION}
+                collection={TOURIST_VISAS_COLLECTION}
               />
             }
           />
@@ -78,7 +78,7 @@ const ApplicationsItemGeneral: React.FC<ApplicationItemProps> = ({
       <StatusChangeButton
         id={application.id}
         isStatusType={true}
-        collection={APPLICATIONS_COLLECTION}
+        collection={TOURIST_VISAS_COLLECTION}
         activeStatus={activeStatus}
         statuses={GeneralStatuses}
         bottomOffset={8}
